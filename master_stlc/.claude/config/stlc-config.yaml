@@ -1,0 +1,15 @@
+stlc:
+  project_name: "Generic Claude STLC Project"
+  pipeline_version: "1.0.0"
+
+permissions:
+  create_external_defects: false   # set true to allow defect-analysis-agent to create Jira/GitHub tickets
+
+execution:
+  require_user_scope: true         # prompt user to confirm test scope before every run
+  max_reruns: 2
+  max_self_healing_iterations: 2
+
+state:
+  file: "artifacts/state/stlc-state.json"
+  auto_resume: true

@@ -1,0 +1,85 @@
+# Model Configuration
+# Assign the right model to each phase to minimize token cost.
+# Lightweight (haiku): phases that classify, scan, or aggregate from existing artifacts.
+# Standard (sonnet): phases that require reasoning, generation, or review.
+
+models:
+  repository_discovery:
+    model_id: "claude-haiku-4-5-20251001"
+    label: "Repository discovery"
+    reason: "Structural scanning only — no deep reasoning required"
+
+  requirement_analysis:
+    model_id: "claude-sonnet-5"
+    label: "Requirement analysis"
+    reason: "Requires careful interpretation of business rules and acceptance criteria"
+
+  impact_analysis:
+    model_id: "claude-haiku-4-5-20251001"
+    label: "Impact analysis"
+    reason: "Classification from pre-collected discovery and requirement artifacts"
+
+  test_planning:
+    model_id: "claude-sonnet-5"
+    label: "Test planning"
+    reason: "Strategic scenario design requires reasoning across multiple dimensions"
+
+  test_generation:
+    model_id: "claude-sonnet-5"
+    label: "Manual test generation"
+    reason: "Authoring precise Gherkin scenarios requires language quality"
+
+  test_review:
+    model_id: "claude-sonnet-5"
+    label: "Test review"
+    reason: "Coverage and traceability analysis requires careful cross-reference"
+
+  framework_selection:
+    model_id: "claude-haiku-4-5-20251001"
+    label: "Framework selection"
+    reason: "Decision from known framework list and repository evidence"
+
+  automation_generation:
+    model_id: "claude-sonnet-5"
+    label: "Automation generation"
+    reason: "Code generation requires correctness and framework convention knowledge"
+
+  automation_review:
+    model_id: "claude-sonnet-5"
+    label: "Automation review"
+    reason: "Code quality review requires reasoning about correctness"
+
+  execution:
+    model_id: "claude-sonnet-5"
+    label: "Test execution"
+    reason: "Command construction and environment validation require reasoning"
+
+  failure_analysis:
+    model_id: "claude-sonnet-5"
+    label: "Failure analysis"
+    reason: "Log interpretation and root cause classification require reasoning"
+
+  self_healing:
+    model_id: "claude-sonnet-5"
+    label: "Self-healing"
+    reason: "Safe code repair requires understanding of framework behavior"
+
+  defect_analysis:
+    model_id: "claude-haiku-4-5-20251001"
+    label: "Defect analysis"
+    reason: "Structured formatting of existing evidence — no new analysis"
+
+  reporting:
+    model_id: "claude-haiku-4-5-20251001"
+    label: "Reporting"
+    reason: "Aggregation and formatting of completed artifacts — no re-analysis"
+
+  pr_generation:
+    model_id: "claude-haiku-4-5-20251001"
+    label: "PR generation"
+    reason: "Assembling functional PR description from existing artifacts — no new analysis"
+
+  orchestrator:
+    model_id: "claude-sonnet-5"
+    label: "STLC orchestrator"
+    reason: "Pipeline sequencing and gate enforcement require full reasoning"

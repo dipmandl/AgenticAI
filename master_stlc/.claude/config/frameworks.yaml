@@ -1,0 +1,95 @@
+# Path resolution for all frameworks:
+#
+#   manual tests  →  <project_root>/manual/<feature_area>/
+#   automation    →  <project_root>/<automation_root>/       ← framework's working dir
+#   test files    →  <project_root>/<automation_root>/<test_root>/<feature_area>/
+#   config file   →  <project_root>/<automation_root>/<config_file>
+#   run command   →  cd <project_root>/<run_from> && <command>
+#
+# project_root is read from artifacts/discovery/repository-discovery.md by each agent.
+# artifacts/   must contain ONLY .md files — no code of any kind.
+
+frameworks:
+  pytest:
+    label: "Pytest"
+    artifacts_dir: "automation"              # relative to artifacts/<story_id>/ — agents prepend that prefix
+    automation_root: "automation"            # relative to project_root — skill's working dir
+    test_root: "tests"                       # relative to automation_root; append /<feature_area>/
+    config_file: "pytest.ini"               # relative to automation_root
+    run_from: "automation"                   # cd here before running command
+    command: "pytest tests/ -v"
+    supports: ["unit", "api", "integration", "ui", "e2e"]
+    documentation: "Python-first framework; use pytest-playwright for browser/E2E tests"
+    file_naming: "feature-based"
+    file_name_examples:
+      - "test_form_submission.py"
+      - "test_form_validation.py"
+      - "test_form_boundary.py"
+      - "test_form_regression.py"
+
+  behave:
+    label: "Behave"
+    artifacts_dir: "artifacts/automation"
+    automation_root: "automation"
+    test_root: "features"                    # behave uses features/<feature_area>/*.feature
+    config_file: "behave.ini"
+    run_from: "automation"
+    command: "behave"
+    supports: ["gherkin", "functional", "bdd"]
+    documentation: "Python BDD framework using Gherkin scenarios and step definitions"
+    file_naming: "feature-based"
+
+  playwright:
+    label: "Playwright (Node/TS)"
+    artifacts_dir: "artifacts/automation"
+    automation_root: "automation"
+    test_root: "tests"                       # tests/<feature_area>/*.spec.ts
+    config_file: "playwright.config.ts"
+    run_from: "automation"
+    command: "npx playwright test"
+    supports: ["ui", "e2e", "browser"]
+    documentation: "Node/TypeScript browser automation for web UI and E2E testing"
+    file_naming: "feature-based"
+    file_name_examples:
+      - "form-submission.spec.ts"
+      - "form-validation.spec.ts"
+      - "form-boundary.spec.ts"
+
+  selenium:
+    label: "Selenium"
+    artifacts_dir: "artifacts/automation"
+    automation_root: "automation"
+    test_root: "tests"                       # tests/<feature_area>/test_*.py
+    config_file: "pytest.ini"
+    run_from: "automation"
+    command: "pytest tests/ -v"
+    supports: ["ui", "browser"]
+    documentation: "WebDriver-based cross-browser UI automation using Python"
+    file_naming: "feature-based"
+
+  cypress:
+    label: "Cypress"
+    artifacts_dir: "artifacts/automation"
+    automation_root: "automation"
+    test_root: "cypress/e2e"                 # cypress/e2e/<feature_area>/*.cy.js
+    config_file: "cypress.config.js"
+    run_from: "automation"
+    command: "npx cypress run"
+    supports: ["ui", "e2e", "browser"]
+    documentation: "JavaScript E2E automation framework with real-time browser feedback"
+    file_naming: "feature-based"
+    file_name_examples:
+      - "form-submission.cy.js"
+      - "form-validation.cy.js"
+
+  api:
+    label: "API Automation"
+    artifacts_dir: "artifacts/automation"
+    automation_root: "automation"
+    test_root: "tests"                       # tests/<resource_area>/test_*.py
+    config_file: "pytest.ini"
+    run_from: "automation"
+    command: "pytest tests/ -v"
+    supports: ["api", "contract", "integration"]
+    documentation: "Framework-agnostic API test automation using pytest + requests/httpx"
+    file_naming: "feature-based"

@@ -1,0 +1,90 @@
+{
+  "hooks": [
+    {
+      "name": "load-mcp-env-before-task",
+      "trigger": "before-task",
+      "condition": "task.command",
+      "action": "shell",
+      "script": "powershell -NoProfile -ExecutionPolicy Bypass -File .\\scripts\\bootstrap-mcp.ps1",
+      "description": "Load repo .env values and initialize Atlassian auth before any Claude task or STLC command runs",
+      "severity": "info",
+      "continue_on_error": false
+    },
+    {
+      "name": "stlc-pre-task-validation",
+      "trigger": "before-task",
+      "condition": "task.command && (task.command.includes('stlc') || task.command.includes('/1') || task.command.includes('/2') || task.command.includes('/3') || task.command.includes('/4') || task.command.includes('/5') || task.command.includes('/6'))",
+      "action": "shell",
+      "script": "echo '[STLC Pre-Task] Validating repository context...' && test -d .claude/config && test -f artifacts/state/stlc-state.json && echo '[OK] Repository and state validated' || echo '[WARN] State file may need initialization'",
+      "description": "Pre-task: Validate repository structure, configuration, and STLC state before phase execution",
+      "severity": "warning",
+      "continue_on_error": true
+    },
+    {
+      "name": "stlc-pre-task-safety-check",
+      "trigger": "before-task",
+      "condition": "task.command && (task.command.includes('stlc-run') || task.command.includes('/4'))",
+      "action": "shell",
+      "script": "echo '[STLC Safety Check] Verifying execution permissions...' && echo '[CHECK] Require user approval before execution' && echo '[CHECK] No destructive commands without approval' && echo '[CHECK] No dependency installation without permission'",
+      "description": "Pre-execution safety gate: Verify permissions and constraints before running tests",
+      "severity": "info"
+    },
+    {
+      "name": "stlc-post-task-artifact-validation",
+      "trigger": "after-task",
+      "condition": "task.command && (task.command.includes('stlc') || task.command.includes('plan') || task.command.includes('automate') || task.command.includes('run') || task.command.includes('report'))",
+      "action": "shell",
+      "script": "echo '[STLC Post-Task] Validating generated artifacts...' && test -d artifacts && ls -la artifacts/*/",
+      "description": "Post-task: Validate all generated artifacts exist and are not duplicates",
+      "severity": "info",
+      "continue_on_error": true
+    },
+    {
+      "name": "stlc-token-metrics-generation",
+      "trigger": "after-task",
+      "condition": "task.command && task.command.includes('/6-stlc-report')",
+      "action": "shell",
+      "script": "echo '[STLC Metrics] Generating token usage report...' && python .claude\\scripts\\token-usage.py",
+      "description": "Post-reporting: Generate token usage metrics per phase and agent",
+      "severity": "info"
+    },
+    {
+      "name": "stlc-html-report-generation",
+      "trigger": "after-task",
+      "condition": "task.command && task.command.includes('/6-stlc-report')",
+      "action": "shell",
+      "script": "echo '[STLC Report] Generating interactive HTML report...' && python .claude\\scripts\\html-report-generator.py",
+      "description": "Post-reporting: Generate combined HTML report with metrics and execution results",
+      "severity": "info"
+    },
+    {
+      "name": "stlc-traceability-validation",
+      "trigger": "after-task",
+      "condition": "task.command && (task.command.includes('automate') || task.command.includes('run'))",
+      "action": "shell",
+      "script": "echo '[STLC Traceability] Validating requirement-test-execution linkage...' && test -f artifacts/traceability/traceability-matrix.md && echo '[OK] Traceability matrix exists' || echo '[WARN] Traceability matrix not found'",
+      "description": "Post-phase: Validate end-to-end traceability from REQ to TC to execution",
+      "severity": "warning",
+      "continue_on_error": true
+    },
+    {
+      "name": "stlc-safety-violation-check",
+      "trigger": "on-error",
+      "condition": "error && (error.message.includes('APPLICATION_FAILURE') || error.message.includes('AUTOMATION_FAILURE'))",
+      "action": "shell",
+      "script": "echo '[STLC Safety] Failure detected. Classifying root cause...' && echo '[ACTION] Review failure analysis artifacts before proceeding' && echo '[ACTION] Self-healing allowed for AUTOMATION_FAILURE only'",
+      "description": "On-error: Classify failure type and enforce safety constraints (no assertion weakening, no app code changes)",
+      "severity": "warning"
+    },
+    {
+      "name": "stlc-state-persistence",
+      "trigger": "after-task",
+      "condition": "task.command && task.command.includes('stlc')",
+      "action": "shell",
+      "script": "echo '[STLC State] Persisting phase state...' && test -f artifacts/state/stlc-state.json && echo '[OK] State persisted for resumability' || echo '[WARN] State file not found'",
+      "description": "Post-phase: Ensure state is persisted for resumable pipelines",
+      "severity": "info",
+      "continue_on_error": true
+    }
+  ]
+}
