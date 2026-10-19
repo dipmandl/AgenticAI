@@ -30,6 +30,18 @@
             <input type="text" id="version" name="version" placeholder="e.g., v1.4.0" required />
           </label>
 
+          <label>
+            Team Name
+            <input
+              type="text"
+              id="teamName"
+              name="teamName"
+              placeholder="e.g., Platform Team"
+              aria-describedby="team-name-error"
+            />
+            <span id="team-name-error" class="field-error" aria-live="polite"></span>
+          </label>
+
           <label class="span-2">
             Title
             <input type="text" id="title" name="title" placeholder="e.g., Faster invoice export" required />
@@ -52,7 +64,8 @@
         </div>
 
         <div class="form-actions">
-          <button type="submit">Add Release Note</button>
+          <button type="submit" id="submit-button">Add Release Note</button>
+          <button type="button" id="cancel-edit-button" class="button-secondary" hidden>Cancel Edit</button>
         </div>
       </form>
     </section>
@@ -60,22 +73,34 @@
     <section class="panel" aria-labelledby="release-list-title">
       <div class="panel-head">
         <h2 id="release-list-title">Release List</h2>
-        <div class="filters">
-          <label>
-            Product
-            <input type="text" id="product-filter" placeholder="Filter by product" />
-          </label>
-          <label>
-            Change Type
-            <select id="breaking-filter">
-              <option value="all">All</option>
-              <option value="breaking">Breaking only</option>
-              <option value="non-breaking">Non-breaking only</option>
-            </select>
-          </label>
+        <div class="list-controls">
+          <div class="filters">
+            <label>               Search
+               <input type="text" id="search-filter" placeholder="Search by title or description" />
+             </label>
+             <label>              Product
+              <select id="product-filter">
+                <option value="all">All products</option>
+              </select>
+            </label>
+            <label>
+              Change Type
+              <select id="breaking-filter">
+                <option value="all">All</option>
+                <option value="breaking">Breaking only</option>
+                <option value="non-breaking">Non-breaking only</option>
+              </select>
+            </label>
+          </div>
+          <div class="transfer-actions">
+            <button type="button" id="export-csv-button">Export CSV</button>
+            <button type="button" id="import-json-button" class="button-secondary">Import JSON</button>
+            <input type="file" id="import-json-file" accept="application/json,.json" hidden />
+          </div>
         </div>
       </div>
 
+      <p id="transfer-status" class="transfer-status" aria-live="polite"></p>
       <div id="release-list" class="release-list" aria-live="polite"></div>
     </section>
   </main>
@@ -87,8 +112,13 @@
         <span class="badge"></span>
       </div>
       <h3 class="release-title"></h3>
+      <p class="release-team"></p>
       <p class="release-description"></p>
       <p class="release-date"></p>
+      <div class="card-actions">
+        <button type="button" class="card-action-btn edit-btn">Edit</button>
+        <button type="button" class="card-action-btn danger-btn delete-btn">Delete</button>
+      </div>
     </article>
   </template>
 

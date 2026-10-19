@@ -125,20 +125,24 @@ Example for a form validation story with pytest (project_root = `product_release
 ```
 product_release_dashboard/
 ├── manual/
-│   └── release_form/
-│       ├── form_submission.feature
-│       ├── form_validation.feature
-│       ├── form_boundary.feature
-│       └── form_regression.feature
+│   └── release_notes/
+│       ├── add_release_note.feature      # all scenarios for adding a release note
+│       ├── edit_release_note.feature     # all scenarios for editing a release note
+│       ├── delete_release_note.feature   # all scenarios for deleting a release note
+│       └── search_release_note.feature   # all scenarios for searching release notes
 └── automation/
     ├── pytest.ini
     ├── conftest.py
+    ├── pages/
+    │   └── release_notes_page.py
+    ├── utils/
+    │   └── helpers.py
     └── tests/
-        └── release_form/
-            ├── test_form_submission.py    # TC-001–005
-            ├── test_form_validation.py    # TC-006–012
-            ├── test_form_boundary.py      # TC-013–018
-            └── test_form_regression.py   # TC-019–024
+        └── release_notes/
+            ├── test_add_release_note.py     # TC-001–005
+            ├── test_edit_release_note.py    # TC-006–010
+            ├── test_delete_release_note.py  # TC-011–015
+            └── test_search_release_note.py  # TC-016–020
 ```
 
 The wrong way (never write this):

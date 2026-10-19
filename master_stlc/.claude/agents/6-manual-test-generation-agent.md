@@ -21,6 +21,7 @@ Author manual test cases from the approved test plan using Gherkin syntax and re
 
 ## Inputs
 - `artifacts/<story_id>/discovery/repository-discovery.md` — read `project_root` (the main application folder, e.g. `product_release_dashboard`)
+- `artifacts/<story_id>/requirements/requirement-analysis.md` — MANDATORY: read sub-functionalities and acceptance criteria to derive feature file names
 - `artifacts/<story_id>/test-plans/test-plan.md`
 - `artifacts/<story_id>/test-cases/test-case-inventory.md` (check for existing coverage before writing)
 
@@ -31,8 +32,8 @@ Never write `.feature`, `.py`, or any non-`.md` file under `artifacts/`.
 ## Path resolution — MANDATORY
 Read `project_root` from the discovery artifact (e.g. `product_release_dashboard`), then:
 ```
-manual test files → <project_root>/manual/<feature_area>/<scenario_group>.feature
-               e.g. product_release_dashboard/manual/release_form/form_submission.feature
+manual test files → <project_root>/manual/<feature_area>/<sub_functionality>.feature
+               e.g. product_release_dashboard/manual/release_notes/add_release_note.feature
 ```
 **Never** write `.feature` files to the STLC pipeline root, to `features/` at root, or to `artifacts/`.
 
@@ -43,13 +44,14 @@ Write Gherkin `.feature` files to `<project_root>/manual/<feature_area>/`:
 ```
 <project_root>/
 └── manual/
-    └── <feature_area>/                ← derive from requirement (e.g. release_form)
-        ├── <scenario_group>.feature   ← e.g. form_submission.feature
-        ├── <scenario_group>.feature   ← e.g. form_validation.feature
-        └── <scenario_group>.feature   ← e.g. form_boundary.feature
+    └── <feature_area>/                     ← derive from requirement (e.g. release_notes)
+        ├── <sub_functionality>.feature     ← e.g. add_release_note.feature
+        ├── <sub_functionality>.feature     ← e.g. edit_release_note.feature
+        └── <sub_functionality>.feature     ← e.g. delete_release_note.feature
 ```
-- One `.feature` file per logical scenario group (submission / validation / boundary / regression)
-- Group by behaviour, NOT by test type — do not create `positive.feature`, `negative.feature`
+- One `.feature` file per **sub-functionality** — derived from the requirement analysis artifact (business functions / acceptance criteria)
+- Sub-functionality names come from what the user **does** (add, edit, delete, search, filter, login, logout) — NOT from test categories
+- Test type (smoke, regression, boundary, sanity, positive, negative) goes as **tags on each scenario**, never in the file name
 - Every scenario in the `.feature` file carries its `@TC-NNN` tag
 
 ### 2. Inventory artifact — under `artifacts/<story_id>/` (reference / traceability index)
@@ -58,7 +60,7 @@ Write Gherkin `.feature` files to `<project_root>/manual/<feature_area>/`:
 - Does NOT duplicate the full Gherkin — link to the feature file instead
 - Example entry:
   ```
-  | TC-007 | REQ-001 | product_release_dashboard/manual/release_form/form_validation.feature | @negative @critical |
+  | TC-007 | REQ-001 | product_release_dashboard/manual/release_notes/add_release_note.feature | @negative @critical |
   ```
 
 ### Each test case must include
@@ -81,17 +83,29 @@ Organise feature files by **feature area** inside `<project_root>/manual/`. Test
         └── <scenario_group>.feature   # group related scenarios in one file
 ```
 
-Example for a release form story (project_root = `product_release_dashboard`):
+Example for a release notes story (project_root = `product_release_dashboard`):
 ```
 product_release_dashboard/
 └── manual/
-    └── release_form/
-        ├── form_submission.feature    # successful submission scenarios
-        ├── form_validation.feature    # inline error / negative scenarios
-        ├── form_boundary.feature      # edge cases and limit values
-        └── form_regression.feature   # regression + E2E flows
+    └── release_notes/
+        ├── add_release_note.feature      # all scenarios for adding a release note
+        ├── edit_release_note.feature     # all scenarios for editing a release note
+        ├── delete_release_note.feature   # all scenarios for deleting a release note
+        └── search_release_note.feature   # all scenarios for searching release notes
 ```
 
+Inside each file, every scenario has its test-type tags:
+```gherkin
+@TC-001 @REQ-001 @story_001 @smoke @positive @critical @ui
+Scenario: Successfully add a release note with all fields valid
+  ...
+
+@TC-013 @REQ-001 @story_001 @boundary @medium @ui
+Scenario: Add release note with title at maximum character limit
+  ...
+```
+
+**Never** use test-type names for feature files: `form_boundary.feature`, `form_regression.feature`, `positive.feature`, `negative.feature` are all wrong.
 **Never** use type-based folder names like `manual/positive/`, `manual/negative/`, `manual/boundary/`.
 **Never** write to a bare `features/` folder at the STLC pipeline root.
 
@@ -108,8 +122,8 @@ product_release_dashboard/
 
 ### Example scenario
 ```gherkin
-# product_release_dashboard/manual/release_form/form_validation.feature
-Feature: Release Note Form — Inline Validation Errors
+# product_release_dashboard/manual/release_notes/add_release_note.feature
+Feature: Release Notes — Add Release Note
 
   Background:
     Given the "releaseNotesDashboard.releases" key in localStorage has been cleared
@@ -139,9 +153,9 @@ Group by **feature area** (matching the folder), not by test type.
 
 | TC-ID  | Tags                         | Scenario Title                                    | Feature File |
 |--------|------------------------------|---------------------------------------------------|--------------|
-| TC-001 | @positive @smoke @critical   | Successful submission with all fields valid       | product_release_dashboard/manual/release_form/form_submission.feature |
-| TC-006 | @negative @smoke @critical   | Submit with empty product field shows inline error| product_release_dashboard/manual/release_form/form_validation.feature |
-| TC-013 | @boundary @high              | Title at minimum length (1 character)             | product_release_dashboard/manual/release_form/form_boundary.feature   |
+| TC-001 | @positive @smoke @critical   | Successfully add a release note with all fields valid       | product_release_dashboard/manual/release_notes/add_release_note.feature |
+| TC-006 | @negative @smoke @critical   | Add release note with empty product field shows inline error| product_release_dashboard/manual/release_notes/add_release_note.feature |
+| TC-013 | @boundary @high              | Add release note with title at minimum length (1 character) | product_release_dashboard/manual/release_notes/add_release_note.feature |
 ```
 
 Do **not** use sections like "Feature Group 1: Positive Scenarios" or "Feature Group 2: Negative Scenarios".

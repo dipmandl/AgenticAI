@@ -16,14 +16,14 @@ automation/
 │   ├── base_page.py                   # shared navigation and wait helpers
 │   └── release_form_page.py           # one file per page/component
 ├── tests/
-│   ├── release_form/                  # feature folder — maps to a user-facing area
-│   │   ├── test_form_submission.py    # happy path, valid flows
-│   │   ├── test_form_validation.py    # error display, inline messages
-│   │   └── test_form_boundary.py     # edge cases, max-length, date limits
+│   ├── release_notes/                 # feature folder — one per user-facing area
+│   │   ├── test_add_release_note.py   # all scenarios for adding a release note
+│   │   ├── test_edit_release_note.py  # all scenarios for editing a release note
+│   │   └── test_delete_release_note.py# all scenarios for deleting a release note
 │   ├── release_list/
 │   │   └── test_release_list.py
-│   └── regression/                   # cross-feature E2E flows only
-│       └── test_end_to_end.py
+│   └── search/                        # another feature area
+│       └── test_search_release_note.py
 └── utils/
     ├── helpers.py                     # shared constants, localStorage keys, field lists
     └── test_data.py                   # reusable test data factories
@@ -115,9 +115,9 @@ class ReleaseFormPage:
 ## Test file pattern
 
 ```python
-# tests/release_form/test_form_submission.py
+# tests/release_notes/test_add_release_note.py
 import pytest
-from pages.release_form_page import ReleaseFormPage
+from pages.release_notes_page import ReleaseNotesPage
 
 @pytest.mark.tc("TC-001")
 @pytest.mark.req("REQ-001")
@@ -164,8 +164,8 @@ pytest -m "regression and critical"
 pytest -m "negative and story_002"
 
 # By feature folder
-pytest tests/release_form/ -v
-pytest tests/release_form/test_form_validation.py -v
+pytest tests/release_notes/ -v
+pytest tests/release_notes/test_add_release_note.py -v
 
 # Full suite with report
 pytest automation/tests/ -v --html=automation/reports/report.html --self-contained-html

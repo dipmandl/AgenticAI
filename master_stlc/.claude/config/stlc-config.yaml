@@ -4,6 +4,12 @@ stlc:
 
 permissions:
   create_external_defects: false   # set true to allow defect-analysis-agent to create Jira/GitHub tickets
+  create_pr: true                  # set true to allow pr-generation-agent to create a GitHub PR
+
+integrations:
+  github:
+    create_pr: true                # must match permissions.create_pr
+    # repo, head_branch, base_branch are auto-detected by pr-generation-agent at runtime
 
 execution:
   require_user_scope: true         # prompt user to confirm test scope before every run

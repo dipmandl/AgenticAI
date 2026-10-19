@@ -106,6 +106,13 @@ body {
   font-size: 0.94rem;
 }
 
+.field-error {
+  min-height: 1em;
+  color: var(--danger);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
 .span-2 {
   grid-column: span 2;
 }
@@ -135,6 +142,11 @@ select:focus {
   border-color: var(--accent);
 }
 
+.input-error {
+  border-color: var(--danger) !important;
+  outline: 2px solid rgba(198, 60, 31, 0.2);
+}
+
 .checkbox-row {
   display: flex;
   align-items: center;
@@ -150,6 +162,7 @@ select:focus {
 .form-actions {
   display: flex;
   justify-content: flex-end;
+  gap: 8px;
 }
 
 button {
@@ -168,12 +181,27 @@ button:hover {
   filter: brightness(1.03);
 }
 
+.button-secondary {
+  color: var(--text);
+  background: #efe7d6;
+}
+
+.button-secondary:hover {
+  filter: brightness(0.98);
+}
+
 .panel-head {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 14px;
   flex-wrap: wrap;
+}
+
+.list-controls {
+  display: grid;
+  gap: 10px;
+  justify-items: end;
 }
 
 .filters {
@@ -188,6 +216,27 @@ button:hover {
   font-size: 0.88rem;
   color: var(--muted);
   min-width: 170px;
+}
+
+.transfer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.transfer-status {
+  margin: 8px 0 0;
+  color: var(--muted);
+  min-height: 1.2em;
+}
+
+.transfer-status.error {
+  color: #9b2d16;
+}
+
+.transfer-status.success {
+  color: #0a4a41;
 }
 
 .release-list {
@@ -209,6 +258,12 @@ button:hover {
 .release-card.breaking {
   border-left-color: var(--danger);
   background: #fff8f5;
+}
+
+.release-team {
+  margin: 0;
+  color: var(--accent-2);
+  font-weight: 700;
 }
 
 .card-top {
@@ -250,6 +305,22 @@ button:hover {
   color: var(--muted);
 }
 
+.card-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.card-action-btn {
+  padding: 7px 10px;
+  border-radius: 8px;
+  font-size: 0.84rem;
+}
+
+.danger-btn {
+  background: linear-gradient(130deg, #ce4c2f, #9b2d16);
+}
+
 .empty-state {
   margin: 0;
   color: var(--muted);
@@ -278,6 +349,15 @@ button:hover {
   }
 
   .form-actions button {
+    width: 100%;
+  }
+
+  .list-controls {
+    justify-items: stretch;
+    width: 100%;
+  }
+
+  .transfer-actions button {
     width: 100%;
   }
 }

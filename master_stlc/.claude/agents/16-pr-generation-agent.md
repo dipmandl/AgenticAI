@@ -4,6 +4,7 @@ description: Generate a high-level functional PR description from STLC artifacts
 tools:
   - Read
   - Write
+  - Bash
   - mcp__github__create_pull_request
   - mcp__github__list_branches
 model: claude-haiku-4-5-20251001
@@ -95,21 +96,42 @@ Assemble a clear, functional Pull Request description from completed STLC phase 
 Proceed only when ALL of the following are true:
 - `permissions.create_pr: true` in `.claude/config/stlc-config.yaml`
 - `integrations.github.create_pr: true` in `.claude/config/stlc-config.yaml`
-- `integrations.github.repo` is non-empty
-- `integrations.github.head_branch` is non-empty
 
 If any condition is false, write the local `pr-description.md` artifact only and stop.
 
-### Check available branches
-Call `mcp__github__list_branches` with the configured `owner` and `repo` to confirm that `integrations.github.head_branch` exists. If the branch is not found, log a warning under `## Integration Errors` in `pr-description.md` and stop.
+### Auto-detect repo and branches
+
+**Step 1 — Detect `owner/repo`** using Bash:
+```bash
+git remote get-url origin
+```
+Parse the output to extract `owner` and `repo`:
+- SSH format: `git@github.com:owner/repo.git` → split on `:`, strip `.git`
+- HTTPS format: `https://github.com/owner/repo.git` → split on `github.com/`, strip `.git`
+
+If the command fails or no remote named `origin` exists, log a warning under `## Integration Errors` in `pr-description.md` and stop.
+
+**Step 2 — Detect `base_branch`** using Bash:
+```bash
+git remote show origin | grep "HEAD branch" | awk '{print $NF}'
+```
+Fall back to `main` if the command fails.
+
+**Step 3 — Set `head_branch`**:
+Always use `feature/<story_id>` (e.g., `feature/REQ-001`).
+
+**Step 4 — Check if head branch exists**:
+Call `mcp__github__list_branches` with the detected `owner` and `repo`.
+- If `feature/<story_id>` is found in the list, proceed.
+- If not found, log a note under `## Notes` in `pr-description.md`: "Branch `feature/<story_id>` not yet pushed — PR description saved locally." Then stop without error.
 
 ### Create the PR
 Call `mcp__github__create_pull_request` with:
-- `owner` and `repo`: parsed from `integrations.github.repo` (split on `/`)
+- `owner` and `repo`: auto-detected from git remote
 - `title`: `"[<story_id>] <story title from requirement analysis>"`
 - `body`: full content of `pr-description.md` (markdown)
-- `head`: value of `integrations.github.head_branch`
-- `base`: value of `integrations.github.base_branch` (default: `"main"`)
+- `head`: `feature/<story_id>`
+- `base`: auto-detected base branch
 - `draft`: `false`
 
 On success:

@@ -16,14 +16,14 @@ automation/
 │   ├── base_page.py                   # shared driver helpers, explicit wait wrappers
 │   └── release_form_page.py           # one file per page/component
 ├── tests/
-│   ├── release_form/                  # feature folder
-│   │   ├── test_form_submission.py
-│   │   ├── test_form_validation.py
-│   │   └── test_form_boundary.py
+│   ├── release_notes/                 # feature folder — one per user-facing area
+│   │   ├── test_add_release_note.py
+│   │   ├── test_edit_release_note.py
+│   │   └── test_delete_release_note.py
 │   ├── release_list/
 │   │   └── test_release_list.py
-│   └── regression/
-│       └── test_end_to_end.py
+│   └── search/
+│       └── test_search_release_note.py
 └── utils/
     └── helpers.py                     # shared constants, test data
 ```
@@ -110,9 +110,9 @@ class ReleaseFormPage(BasePage):
 ## Test file pattern
 
 ```python
-# tests/release_form/test_form_validation.py
+# tests/release_notes/test_add_release_note.py
 import pytest
-from pages.release_form_page import ReleaseFormPage
+from pages.release_notes_page import ReleaseNotesPage
 
 @pytest.mark.tc("TC-007")
 @pytest.mark.req("REQ-002")
@@ -153,7 +153,7 @@ pytest -m story_002
 pytest -m "story_002 or story_003"
 pytest -m smoke
 pytest -m "negative and critical"
-pytest tests/release_form/ -v
+pytest tests/release_notes/ -v
 ```
 
 ## Evidence on failure

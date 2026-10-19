@@ -10,10 +10,10 @@
 ```
 automation/
 ├── features/
-│   ├── release_form/              # feature folder — one per user-facing area
-│   │   ├── form_submission.feature
-│   │   ├── form_validation.feature
-│   │   └── form_boundary.feature
+│   ├── release_notes/             # feature folder — one per user-facing area
+│   │   ├── add_release_note.feature
+│   │   ├── edit_release_note.feature
+│   │   └── delete_release_note.feature
 │   ├── release_list/
 │   │   └── release_list.feature
 │   └── environment.py             # browser setup, hooks, teardown
@@ -53,8 +53,8 @@ automation/
 ## Feature file pattern
 
 ```gherkin
-# features/release_form/form_validation.feature
-Feature: Release form inline validation errors
+# features/release_notes/add_release_note.feature
+Feature: Release Notes — Add Release Note
 
   @TC-007 @REQ-002 @story_002 @negative @critical @smoke
   Scenario: Submit with empty product field shows inline error
@@ -154,7 +154,7 @@ behave --tags=@smoke
 behave --tags="@negative and @critical"
 
 # By feature folder
-behave features/release_form/
+behave features/release_notes/
 
 # All tests
 behave

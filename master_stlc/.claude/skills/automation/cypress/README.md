@@ -25,14 +25,14 @@
 automation/
 ├── cypress/
 │   ├── e2e/
-│   │   ├── release_form/              # feature folder
-│   │   │   ├── form_submission.cy.js
-│   │   │   ├── form_validation.cy.js
-│   │   │   └── form_boundary.cy.js
+│   │   ├── release_notes/             # feature folder — one per user-facing area
+│   │   │   ├── add_release_note.cy.js
+│   │   │   ├── edit_release_note.cy.js
+│   │   │   └── delete_release_note.cy.js
 │   │   ├── release_list/
 │   │   │   └── release_list.cy.js
-│   │   └── regression/
-│   │       └── end_to_end.cy.js
+│   │   └── search/
+│   │       └── search_release_note.cy.js
 │   ├── pages/                         # Page Object Model
 │   │   ├── BasePage.js
 │   │   └── ReleaseFormPage.js
@@ -99,8 +99,8 @@ export default new ReleaseFormPage()
 ## Test file pattern
 
 ```javascript
-// cypress/e2e/release_form/form_validation.cy.js
-import form from '../../pages/ReleaseFormPage'
+// cypress/e2e/release_notes/add_release_note.cy.js
+import form from '../../pages/ReleaseNotesPage'
 
 describe('Release Form — Inline Validation', () => {
 
@@ -166,7 +166,7 @@ npx cypress run --env grepTags=smoke
 npx cypress run --env grepTags="negative+critical"     # AND
 
 # By feature folder
-npx cypress run --spec "cypress/e2e/release_form/**"
+npx cypress run --spec "cypress/e2e/release_notes/**"
 
 # All tests headless
 npx cypress run
