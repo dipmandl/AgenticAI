@@ -21,6 +21,14 @@ Instructions:
 6. Execute approved steps and report results.
 7. Stop at approval gates when required.
 8. After reporting, run `python .claude\scripts\token-usage.py` to record per-phase token usage in `artifacts/<story_id>/metrics/`.
+9. **Pipeline completion check (mandatory before marking status "complete"):**
+   After the reporting phase, read `artifacts/state/stlc-state.json` and verify every required phase is in `completed_phases`. The full required sequence is:
+   `repository_discovery → requirement_analysis → impact_analysis → test_planning → manual_test_generation → test_review → framework_selection → automation_generation → automation_review → execution → failure_analysis → reporting`
+   Plus conditionally:
+   - `self_healing` — required if any `AUTOMATION_FAILURE` was found in failure_analysis
+   - `pr_generation` — required if `create_pr: true` in `.claude/config/stlc-config.yaml`
+   - `defect_analysis` — required if `create_external_defects: true` in `.claude/config/stlc-config.yaml`
+   If any required phase is missing from `completed_phases`, run it before setting `status: "complete"`. Never set the pipeline to complete with outstanding required phases.
 
 Token efficiency:
 - Delegate every phase to its dedicated sub-agent via the Agent tool; never perform phase work inline in the main session.

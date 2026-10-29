@@ -46,6 +46,19 @@ ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_REPORT_JSON = ROOT / "artifacts" / "reports" / "final-stlc-report.json"
 
 
+def find_state_json() -> Path:
+    """Find stlc-state.json — per-story path first, legacy flat path as fallback."""
+    # Scan for artifacts/*/state/stlc-state.json (per-story pattern)
+    matches = sorted(
+        ROOT.glob("artifacts/*/state/stlc-state.json"),
+        key=lambda p: p.stat().st_mtime,
+        reverse=True,
+    )
+    if matches:
+        return matches[0]
+    return ROOT / "artifacts" / "state" / "stlc-state.json"
+
+
 def default_project_dir() -> Path:
     cwd = Path.cwd().resolve()
     sanitized = str(cwd).replace("\\", "-").replace("/", "-").replace(":", "").replace(".", "-").replace("_", "-")
@@ -76,6 +89,9 @@ def load_json(path: Path) -> dict:
 
 
 def resolve_story_id() -> str:
+    state = load_json(find_state_json())
+    if state.get("story_id"):
+        return str(state["story_id"])
     report = load_json(DEFAULT_REPORT_JSON)
     return str(report.get("story_id") or "general")
 

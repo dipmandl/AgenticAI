@@ -17,5 +17,5 @@ execution:
   max_self_healing_iterations: 2
 
 state:
-  file: "artifacts/state/stlc-state.json"
+  file: "artifacts/{story_id}/state/stlc-state.json"
   auto_resume: true

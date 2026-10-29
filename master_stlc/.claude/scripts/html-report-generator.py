@@ -11,7 +11,80 @@ from pathlib import Path
 from datetime import datetime
 
 ROOT = Path(__file__).resolve().parents[2]
-REPORT_JSON = ROOT / "artifacts" / "reports" / "final-stlc-report.json"
+_FLAT_REPORT_JSON = ROOT / "artifacts" / "reports" / "final-stlc-report.json"
+
+
+def resolve_state_json(story_id: str) -> Path:
+    """Return per-story state path, falling back to legacy flat path."""
+    per_story = ROOT / "artifacts" / story_id / "state" / "stlc-state.json"
+    if per_story.exists():
+        return per_story
+    return ROOT / "artifacts" / "state" / "stlc-state.json"
+
+
+def extract_phase_models(state: dict) -> dict[str, str]:
+    """Return {metrics_phase_name: model_id} from stlc-state.json artifacts section.
+
+    stlc-state.json uses snake_case phase keys; the metrics table uses the names
+    produced by token-usage.py AGENT_TO_PHASE. This mapping aligns them.
+    """
+    # state key → metrics phase name (only where they differ)
+    STATE_TO_METRICS = {
+        "test_planning":       "test-plan",
+        "test_review_fixes":   "test-review",   # merged into test-review phase
+        "framework_selection": "automation-generation",  # framework-selection-agent maps here
+        "automation_fixes":    "automation-review",      # merged into automation-review phase
+        "failure_analysis":    "execution",              # failure-analysis-agent maps to execution
+    }
+
+    models: dict[str, str] = {}
+    for phase, data in state.get("artifacts", {}).items():
+        model = data.get("model_id", "")
+        if not model:
+            continue
+        metrics_key = STATE_TO_METRICS.get(phase, phase.replace("_", "-"))
+        # Keep the first (earliest) model seen for a merged phase
+        models.setdefault(metrics_key, model)
+
+    # orchestrator is not a tracked artifact phase in state — derive its model
+    # from the agent definition frontmatter if not already found
+    if "orchestrator" not in models:
+        agent_def = ROOT / ".claude" / "agents" / "1-stlc-orchestrator.md"
+        try:
+            for line in agent_def.read_text(encoding="utf-8").splitlines():
+                if line.strip().startswith("model:"):
+                    models["orchestrator"] = line.split(":", 1)[1].strip()
+                    break
+        except OSError:
+            pass
+
+    return models
+
+
+def find_state_json() -> Path:
+    """Find stlc-state.json — per-story path first, legacy flat path as fallback."""
+    matches = sorted(
+        ROOT.glob("artifacts/*/state/stlc-state.json"),
+        key=lambda p: p.stat().st_mtime,
+        reverse=True,
+    )
+    if matches:
+        return matches[0]
+    return ROOT / "artifacts" / "state" / "stlc-state.json"
+
+
+def resolve_report_json() -> Path:
+    """Return the per-story report JSON path, falling back to the legacy flat path."""
+    try:
+        state = json.loads(find_state_json().read_text(encoding="utf-8"))
+        story_id = state.get("story_id")
+        if story_id:
+            candidate = ROOT / "artifacts" / story_id / "reports" / "final-stlc-report.json"
+            if candidate.exists():
+                return candidate
+    except (OSError, json.JSONDecodeError):
+        pass
+    return _FLAT_REPORT_JSON
 
 
 def load_json(path: Path) -> dict:
@@ -290,9 +363,12 @@ code {
 </div>
 """
 
-    # Status & Summary
-    status = report.get("status", "UNKNOWN")
-    status_class = "pass" if "PASS" in status else "fail" if "FAIL" in status else "warn"
+    # Status & Summary — handle both new flat-field format and legacy nested format
+    status = (report.get("release_readiness_verdict")
+              or report.get("status", "UNKNOWN"))
+    status_class = "pass" if "PASS" in status or "APPROVED" in status else "fail" if "FAIL" in status else "warn"
+    test_cases_total = (report.get("test_cases_planned")
+                        or report.get("test_cases_total", 0))
 
     html += f"""
 <div class="stat-box">
@@ -305,7 +381,7 @@ code {
     <div class="stat-label">Requirements</div>
   </div>
   <div class="stat">
-    <div class="stat-value">{report.get("test_cases_total", 0)}</div>
+    <div class="stat-value">{test_cases_total}</div>
     <div class="stat-label">Total Test Cases</div>
   </div>
   <div class="stat">
@@ -315,12 +391,15 @@ code {
 </div>
 """
 
-    # Execution Results
-    passed = report.get("passed", 0)
-    failed = report.get("failed", 0)
-    xfailed = report.get("xfailed", 0)
+    # Execution Results — new JSON uses tests_passed/tests_failed; legacy uses passed/failed
+    passed = report.get("tests_passed") if report.get("tests_passed") is not None else report.get("passed", 0)
+    failed = report.get("tests_failed") if report.get("tests_failed") is not None else report.get("failed", 0)
+    xfailed = (report.get("tests_skipped")
+               if report.get("tests_skipped") is not None
+               else report.get("xfailed", 0))
     total_executed = report.get("tests_executed", 0)
-    pass_rate = report.get("pass_rate_percent", 0)
+    pass_rate = (report.get("pass_rate_percentage")
+                 or report.get("pass_rate_percent", 0))
 
     html += f"""
 <h2>Execution Results</h2>
@@ -348,8 +427,18 @@ code {
 </div>
 """
 
-    # Test Groups
+    # Test Groups — support both nested dict format and flat test_group_<name>_<field> format
     test_groups = report.get("test_groups", {})
+    if not test_groups:
+        # Build from flat fields: test_group_positive_passed, test_group_positive_failed, etc.
+        for grp in ("positive", "negative", "boundary", "regression", "filter_persistence"):
+            p = report.get(f"test_group_{grp}_passed", 0)
+            f = report.get(f"test_group_{grp}_failed", 0)
+            s = report.get(f"test_group_{grp}_skipped", 0)
+            if p or f or s:
+                test_groups[grp] = {"passed": p, "failed": f, "skipped": s,
+                                    "total": p + f + s,
+                                    "status": "PASS" if f == 0 else "FAIL"}
     if test_groups:
         html += """
 <h3>Test Groups Breakdown</h3>
@@ -359,7 +448,7 @@ code {
   <th>Total</th>
   <th>Passed</th>
   <th>Failed</th>
-  <th>Expected Fail</th>
+  <th>Skipped</th>
   <th>Status</th>
 </tr></thead>
 <tbody>
@@ -367,12 +456,13 @@ code {
         for category, data in test_groups.items():
             status_badge = data.get("status", "UNKNOWN")
             badge_class = "pass" if "PASS" in status_badge else "fail" if "FAIL" in status_badge else "xfail"
+            skipped = data.get("skipped", data.get("xfailed", 0))
             html += f"""<tr>
-  <td><strong>{category.title()}</strong></td>
+  <td><strong>{category.replace("_", " ").title()}</strong></td>
   <td>{data.get("total", 0)}</td>
   <td class="pass"><strong>{data.get("passed", 0)}</strong></td>
   <td class="fail"><strong>{data.get("failed", 0)}</strong></td>
-  <td class="xfail">{data.get("xfailed", 0)}</td>
+  <td class="xfail">{skipped}</td>
   <td><span class="badge badge-{badge_class}">{status_badge}</span></td>
 </tr>
 """
@@ -428,12 +518,14 @@ code {
 """
 
         # Per Phase Metrics
+        phase_models = metrics.get("phase_models", {})
         if per_phase:
             html += """
 <div id="metrics-phase" class="tab-content active">
 <table>
 <thead><tr>
   <th>Phase</th>
+  <th>Model</th>
   <th>Input Tokens</th>
   <th>Output Tokens</th>
   <th>Cache Creation</th>
@@ -453,6 +545,7 @@ code {
                 cache_read = data.get("cache_read_input_tokens", 0)
                 messages = data.get("messages", 0)
                 invocations = data.get("invocations", 0)
+                model = phase_models.get(phase, "n/a")
 
                 total_input += input_tokens
                 total_output += output_tokens
@@ -463,6 +556,7 @@ code {
 
                 html += f"""<tr>
   <td><strong>{phase}</strong></td>
+  <td><code>{model}</code></td>
   <td>{format_number(input_tokens)}</td>
   <td>{format_number(output_tokens)}</td>
   <td>{format_number(cache_creation)}</td>
@@ -474,6 +568,7 @@ code {
 
             html += f"""<tr style="background: var(--surface-2); font-weight: 600; border-top: 2px solid var(--border);">
   <td>TOTAL</td>
+  <td></td>
   <td>{format_number(total_input)}</td>
   <td>{format_number(total_output)}</td>
   <td>{format_number(total_cache_creation)}</td>
@@ -545,23 +640,32 @@ code {
 </div>
 """
 
-    # Environment
-    environment = report.get("environment", "N/A")
-    framework = report.get("framework", "N/A")
-    browser = report.get("browser", "N/A")
-    execution_start = report.get("execution_start_time", "N/A")
+    # Environment — new JSON uses test_framework / primary_browser / execution_timestamp
+    framework = (report.get("test_framework")
+                 or report.get("framework", "N/A"))
+    browser = (report.get("primary_browser")
+               or report.get("browser", "N/A"))
+    execution_start = (report.get("execution_timestamp")
+                       or report.get("execution_start_time")
+                       or report.get("execution_date", "N/A"))
     execution_end = report.get("execution_end_time", "N/A")
     duration = report.get("duration_seconds", 0)
+    app_path = report.get("application_path", "N/A")
+    test_root = report.get("test_root", "N/A")
+    healed = report.get("healed", report.get("defects_automation_healed", 0))
+    app_defects = report.get("defects_application", 0)
 
     html += f"""
 <h2>Environment & Execution</h2>
 <table>
-<tr><td><strong>Environment</strong></td><td>{environment}</td></tr>
 <tr><td><strong>Framework</strong></td><td>{framework}</td></tr>
 <tr><td><strong>Browser</strong></td><td>{browser}</td></tr>
-<tr><td><strong>Execution Start</strong></td><td>{execution_start}</td></tr>
-<tr><td><strong>Execution End</strong></td><td>{execution_end}</td></tr>
-<tr><td><strong>Duration</strong></td><td>{duration:.2f} seconds</td></tr>
+<tr><td><strong>Application</strong></td><td>{app_path}</td></tr>
+<tr><td><strong>Test Root</strong></td><td>{test_root}</td></tr>
+<tr><td><strong>Execution Date</strong></td><td>{execution_start}</td></tr>
+<tr><td><strong>Duration</strong></td><td>{f"{duration:.2f} seconds" if duration else "N/A"}</td></tr>
+<tr><td><strong>Application Defects</strong></td><td>{app_defects}</td></tr>
+<tr><td><strong>Self-Healed</strong></td><td>{healed}</td></tr>
 </table>
 """
 
@@ -595,10 +699,11 @@ function switchTab(event, tabId) {{
 
 
 def main():
-    report = load_json(REPORT_JSON)
+    report_json = resolve_report_json()
+    report = load_json(report_json)
 
     if not report:
-        print(f"[ERROR] {REPORT_JSON} not found or empty")
+        print(f"[ERROR] {report_json} not found or empty")
         return 1
 
     story_id = str(report.get("story_id") or "general")
@@ -607,6 +712,10 @@ def main():
 
     if not metrics:
         print(f"[WARN] {metrics_json} not found or empty")
+
+    state = load_json(resolve_state_json(story_id))
+    phase_models = extract_phase_models(state)
+    metrics["phase_models"] = phase_models
 
     html = generate_html(report, metrics)
 
