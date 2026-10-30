@@ -1,0 +1,33 @@
+{
+  "pipeline_id": "COD-7-execution-20261030T095221Z",
+  "story_id": "COD-7",
+  "start_time": "2026-10-30T09:52:21Z",
+  "end_time": "2026-10-30T09:52:48Z",
+  "duration_seconds": 27,
+  "command": "npx playwright test --reporter=list,json",
+  "environment": "local (Windows 11, Node v24.15.0, npm v11.12.1, chromium headless)",
+  "framework": "playwright",
+  "scope": "all",
+  "total": 51,
+  "passed": 46,
+  "failed": 0,
+  "skipped": 5,
+  "blocked": 0,
+  "retries": 0,
+  "exit_code": 0,
+  "previous_run": {
+    "pipeline_id": "COD-7-execution-20261030T070741Z",
+    "start_time": "2026-10-30T07:07:41Z",
+    "end_time": "2026-10-30T07:14:59Z",
+    "duration_seconds": 437.88,
+    "total": 51,
+    "passed": 0,
+    "failed": 46,
+    "skipped": 5,
+    "exit_code": 0
+  },
+  "self_healing_applied": [
+    "tests/helpers/storage.ts: page.goto('/') -> page.goto('') (file:// URL resolution fix)",
+    "tests/positive/edit-positive.spec.ts TC-015: search term 'v1' -> 'export' (matches DEFAULT_SEED)"
+  ]
+}

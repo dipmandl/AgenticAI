@@ -1,0 +1,19 @@
+{
+  "name": "release-notes-automation",
+  "version": "1.0.0",
+  "description": "Playwright TypeScript automation suite for COD-7 Edit Existing Release Note",
+  "devDependencies": {
+    "@playwright/test": "^1.44.0",
+    "typescript": "^5.4.0"
+  },
+  "scripts": {
+    "test": "npx playwright test",
+    "test:positive": "npx playwright test tests/positive/",
+    "test:negative": "npx playwright test tests/negative/",
+    "test:boundary": "npx playwright test tests/boundary/",
+    "test:regression": "npx playwright test --grep @regression",
+    "test:smoke": "npx playwright test --grep @smoke",
+    "test:headed": "npx playwright test --headed",
+    "test:debug": "npx playwright test --debug"
+  }
+}

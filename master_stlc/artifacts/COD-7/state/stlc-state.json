@@ -1,0 +1,38 @@
+{
+  "story_id": "COD-7",
+  "story_url": "https://mandlikdipak52.atlassian.net/browse/COD-7",
+  "status": "in_progress",
+  "started_at": "2026-10-30T00:00:00Z",
+  "completed_phases": ["repository_discovery", "requirement_analysis", "impact_analysis", "test_planning", "manual_test_generation", "test_review", "framework_selection", "automation_generation", "automation_review", "execution", "failure_analysis", "self_healing", "reporting", "pr_generation"],
+  "current_phase": "complete",
+  "status": "complete",
+  "tc015_fix": "AUTOMATION_FAILURE — search term 'v1' does not match title/description in DEFAULT_SEED; changed to 'export'",
+  "final_execution_result": {"total": 51, "passed": 46, "failed": 0, "skipped": 5, "duration_s": 27},
+  "self_healing_result": {"healed": 45, "still_failing": 1, "tc_still_failing": "TC-015"},
+  "execution_scope": "all",
+  "execution_result": {"total": 51, "passed": 0, "failed": 46, "skipped": 5},
+  "execution_rerun_result": {"total": 51, "passed": 46, "failed": 0, "skipped": 5, "timestamp": "2026-10-30T09:52:21Z"},
+  "automation_review_verdict": "APPROVED_WITH_FIXES",
+  "automation_fixes_applied": ["F-001: TC-012 localStorage assertion added", "F-003: toContainText comment added for release-team prefix", "F-004: @regression removed from TC-030 boundary title", "F-005: beforeEach added to filter describe block"],
+  "framework": "playwright",
+  "test_review_verdict": "APPROVED_WITH_AMENDMENTS",
+  "test_review_amendments": ["F-001: TC-030 non-deterministic assertion", "F-002: 7 TCs missing secondary REQ tags", "F-003: TC-001 to TC-039 missing @regression scope tag"],
+  "artifacts": {
+    "discovery":          {"path": "artifacts/COD-7/discovery/repository-discovery.md",     "model_id": "claude-sonnet-4-6"},
+    "requirement":        {"path": "artifacts/COD-7/requirements/requirement-analysis.md",   "model_id": "claude-sonnet-4-6"},
+    "impact":             {"path": "artifacts/COD-7/impact/impact-analysis.md",              "model_id": "claude-sonnet-4-6"},
+    "test_planning":      {"path": "artifacts/COD-7/test-plans/test-plan.md",                "model_id": "claude-sonnet-4-6"},
+    "manual_tests":       {"path": "artifacts/COD-7/manual-tests/test-cases.md",             "model_id": "claude-sonnet-4-6"},
+    "test_review":        {"path": "artifacts/COD-7/manual-tests/test-review.md",            "model_id": "claude-sonnet-4-6"},
+    "framework_selection":{"path": "artifacts/COD-7/automation/framework-selection.md",      "model_id": "claude-sonnet-4-6"},
+    "automation":         {"path": "artifacts/COD-7/automation/automation-suite.md",         "model_id": "claude-sonnet-4-6"},
+    "automation_review":  {"path": "artifacts/COD-7/automation/automation-review.md",        "model_id": "claude-sonnet-4-6"},
+    "execution":          {"path": "artifacts/COD-7/execution/execution-report.md",          "model_id": "claude-sonnet-4-6"},
+    "failure_analysis":   {"path": "artifacts/COD-7/execution/failure-analysis.md",          "model_id": "claude-sonnet-4-6"},
+    "report":             {"path": "artifacts/COD-7/reports/stlc-report.md",                 "model_id": "claude-sonnet-4-6"}
+  },
+  "config": {
+    "create_external_defects": false,
+    "create_pr": true
+  }
+}

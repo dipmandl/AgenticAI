@@ -1,0 +1,79 @@
+{
+  "story_id": "COD-7",
+  "story_title": "Edit Existing Release Note",
+  "story_url": "https://mandlikdipak52.atlassian.net/browse/COD-7",
+  "pipeline_status": "complete",
+  "framework": "Playwright (TypeScript)",
+  "environment": "local / file://",
+  "executed_at": "2026-10-30",
+
+  "tests_total": 51,
+  "tests_executed": 46,
+  "passed": 46,
+  "failed": 0,
+  "xfailed": 5,
+  "pass_rate_percentage": 100,
+
+  "test_groups": {
+    "positive": {
+      "total": 18, "passed": 18, "failed": 0, "skipped": 0,
+      "status": "PASS"
+    },
+    "negative": {
+      "total": 9, "passed": 8, "failed": 0, "skipped": 1,
+      "status": "PASS"
+    },
+    "boundary": {
+      "total": 12, "passed": 10, "failed": 0, "skipped": 2,
+      "status": "PASS"
+    },
+    "regression": {
+      "total": 12, "passed": 10, "failed": 0, "skipped": 2,
+      "status": "PASS"
+    }
+  },
+
+  "defects": [],
+
+  "self_healing": [
+    {
+      "id": "HEAL-001",
+      "classification": "AUTOMATION_FAILURE",
+      "file": "product_release_dashboard/automation/tests/helpers/storage.ts",
+      "description": "page.goto('/') resolves to filesystem root under file:// baseURL",
+      "fix": "Changed page.goto('/') to page.goto('') — resolves to baseURL itself",
+      "tcs_affected": 45,
+      "status": "HEALED"
+    },
+    {
+      "id": "HEAL-002",
+      "classification": "AUTOMATION_FAILURE",
+      "file": "product_release_dashboard/automation/tests/positive/edit-positive.spec.ts",
+      "description": "TC-015 search term 'v1' does not match title/description in DEFAULT_SEED (script.js searches title+description only)",
+      "fix": "Changed search term from 'v1' to 'export' (matches SEED_BILLING title)",
+      "tcs_affected": 1,
+      "status": "HEALED"
+    }
+  ],
+
+  "requirements_covered": 12,
+  "requirements_total": 12,
+  "acceptance_criteria_covered": 4,
+  "acceptance_criteria_total": 4,
+
+  "phases": [
+    {"name": "repository_discovery",   "status": "completed"},
+    {"name": "requirement_analysis",   "status": "completed"},
+    {"name": "impact_analysis",        "status": "completed"},
+    {"name": "test_planning",          "status": "completed"},
+    {"name": "manual_test_generation", "status": "completed"},
+    {"name": "test_review",            "status": "completed"},
+    {"name": "framework_selection",    "status": "completed"},
+    {"name": "automation_generation",  "status": "completed"},
+    {"name": "automation_review",      "status": "completed"},
+    {"name": "execution",              "status": "completed"},
+    {"name": "failure_analysis",       "status": "completed"},
+    {"name": "self_healing",           "status": "completed"},
+    {"name": "reporting",              "status": "completed"}
+  ]
+}
