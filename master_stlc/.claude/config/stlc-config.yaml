@@ -7,8 +7,10 @@ permissions:
   create_pr: false                 # set true to allow pr-generation-agent to create a GitHub PR
 
 integrations:
+  jira:
+    enabled: true                 # enables requirement-analysis-agent to fetch stories via MCP
   github:
-    create_pr: true               # must match permissions.create_pr
+    create_pr: false              # must match permissions.create_pr
     # repo, head_branch, base_branch are auto-detected by pr-generation-agent at runtime
 
 execution:

@@ -3,238 +3,74 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>STLC Report</title>
+<title>STLC Report — COD-7</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
 :root {
-  --bg:        #EEF2F7;
-  --surface:   #FFFFFF;
-  --surface-2: #F5F8FC;
-  --border:    #CDD7E3;
-  --text:      #1C2B3A;
-  --muted:     #546E8A;
-  --accent:    #2B5EA7;
-  --accent-bg: #EAF0FA;
-  --pass:      #0E7A55;
-  --pass-bg:   #E5F5EF;
-  --fail:      #C4362A;
-  --fail-bg:   #FAEAE8;
-  --xfail:     #8B6200;
-  --xfail-bg:  #FDF3DC;
-  --warn:      #9A4E00;
-  --warn-bg:   #FEF0E0;
-  --shadow:    0 4px 12px rgba(28,43,58,.08);
-  --radius:    8px;
+  --bg: #EEF2F7; --surface: #FFFFFF; --surface-2: #F5F8FC;
+  --border: #CDD7E3; --text: #1C2B3A; --muted: #546E8A;
+  --accent: #2B5EA7; --accent-bg: #EAF0FA;
+  --pass: #0E7A55; --pass-bg: #E5F5EF;
+  --fail: #C4362A; --fail-bg: #FAEAE8;
+  --xfail: #8B6200; --xfail-bg: #FDF3DC;
+  --warn: #9A4E00; --warn-bg: #FEF0E0;
+  --shadow: 0 4px 12px rgba(28,43,58,.08); --radius: 8px;
 }
-
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg:        #111D2C;
-    --surface:   #192435;
-    --surface-2: #1F2E42;
-    --border:    #253650;
-    --text:      #DCE8F5;
-    --muted:     #7A90A8;
-    --accent:    #5B8FD8;
-    --accent-bg: #1A2F50;
-    --pass:      #34C68A;
-    --pass-bg:   #0C2D20;
-    --fail:      #E8685E;
-    --fail-bg:   #2D1210;
-    --xfail:     #D4A830;
-    --xfail-bg:  #2B2000;
-    --warn:      #E09050;
-    --warn-bg:   #2A1800;
+    --bg: #111D2C; --surface: #192435; --surface-2: #1F2E42;
+    --border: #253650; --text: #DCE8F5; --muted: #7A90A8;
+    --accent: #5B8FD8; --accent-bg: #1A2F50;
+    --pass: #34C68A; --pass-bg: #0C2D20;
+    --fail: #E8685E; --fail-bg: #2D1210;
+    --xfail: #D4A830; --xfail-bg: #2B2000;
+    --warn: #E09050; --warn-bg: #2A1800;
   }
 }
-
 * { box-sizing: border-box; }
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: "Source Sans 3", system-ui, sans-serif;
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-.container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-
-h1, h2, h3 {
-  font-family: "Figtree", sans-serif;
-  margin: 1.5rem 0 0.75rem 0;
-}
-
+body { margin: 0; background: var(--bg); color: var(--text);
+  font-family: "Source Sans 3", system-ui, sans-serif; font-size: 14px; line-height: 1.6; }
+.container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+h1, h2, h3 { font-family: "Figtree", sans-serif; margin: 1.5rem 0 0.75rem 0; }
 h1 { font-size: 2rem; margin-top: 0; }
 h2 { font-size: 1.5rem; border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; }
 h3 { font-size: 1.1rem; }
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1rem 0;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-}
-
-th {
-  background: var(--surface-2);
-  padding: 0.75rem;
-  text-align: left;
-  font-weight: 600;
-  border-bottom: 2px solid var(--border);
-  color: var(--accent);
-}
-
-td {
-  padding: 0.75rem;
-  border-bottom: 1px solid var(--border);
-}
-
+table { width: 100%; border-collapse: collapse; margin: 1rem 0;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden; }
+th { background: var(--surface-2); padding: 0.75rem; text-align: left;
+  font-weight: 600; border-bottom: 2px solid var(--border); color: var(--accent); }
+td { padding: 0.75rem; border-bottom: 1px solid var(--border); }
 tr:last-child td { border-bottom: none; }
 tr:hover { background: var(--surface-2); }
-
-.stat-box {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  margin: 1rem 0;
-}
-
-.stat {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1rem;
-  box-shadow: var(--shadow);
-}
-
-.stat-value {
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: var(--accent);
-  font-family: "JetBrains Mono";
-}
-
-.stat-label {
-  font-size: 0.85rem;
-  color: var(--muted);
-  margin-top: 0.25rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.pass { color: var(--pass); }
-.fail { color: var(--fail); }
-.xfail { color: var(--xfail); }
-.warn { color: var(--warn); }
-
-.badge {
-  display: inline-block;
-  padding: 0.25rem 0.75rem;
-  border-radius: 1rem;
-  font-size: 0.85rem;
-  font-weight: 500;
-}
-
+.stat-box { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem; margin: 1rem 0; }
+.stat { background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1rem; box-shadow: var(--shadow); }
+.stat-value { font-size: 1.75rem; font-weight: 700; color: var(--accent);
+  font-family: "JetBrains Mono"; }
+.stat-label { font-size: 0.85rem; color: var(--muted); margin-top: 0.25rem;
+  text-transform: uppercase; letter-spacing: 0.5px; }
+.pass { color: var(--pass); } .fail { color: var(--fail); }
+.xfail { color: var(--xfail); } .warn { color: var(--warn); }
+.badge { display: inline-block; padding: 0.25rem 0.75rem;
+  border-radius: 1rem; font-size: 0.85rem; font-weight: 500; }
 .badge-pass { background: var(--pass-bg); color: var(--pass); }
 .badge-fail { background: var(--fail-bg); color: var(--fail); }
 .badge-xfail { background: var(--xfail-bg); color: var(--xfail); }
 .badge-warn { background: var(--warn-bg); color: var(--warn); }
-
-.tabs {
-  display: flex;
-  gap: 0;
-  border-bottom: 2px solid var(--border);
-  margin: 1.5rem 0 1rem 0;
-}
-
-.tab-btn {
-  padding: 0.75rem 1.5rem;
-  background: none;
-  border: none;
-  border-bottom: 3px solid transparent;
-  cursor: pointer;
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--muted);
-  transition: all 0.2s;
-}
-
+.tabs { display: flex; border-bottom: 2px solid var(--border); margin: 1.5rem 0 1rem 0; }
+.tab-btn { padding: 0.75rem 1.5rem; background: none; border: none;
+  border-bottom: 3px solid transparent; cursor: pointer; font-size: 0.95rem;
+  font-weight: 500; color: var(--muted); transition: all 0.2s; }
 .tab-btn:hover { color: var(--accent); }
-.tab-btn.active {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
-}
-
-.tab-content {
-  display: none;
-}
-
-.tab-content.active {
-  display: block;
-}
-
-.metric-row {
-  display: grid;
-  grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr;
-  gap: 1rem;
-  padding: 1rem;
-  border-bottom: 1px solid var(--border);
-}
-
-.metric-row.header {
-  font-weight: 600;
-  background: var(--surface-2);
-  border-bottom: 2px solid var(--border);
-}
-
-.metric-cell {
-  font-family: "JetBrains Mono";
-  font-size: 0.9rem;
-}
-
-.summary-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1rem;
-}
-
-.summary-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.5rem;
-  box-shadow: var(--shadow);
-}
-
-.summary-card h3 {
-  margin-top: 0;
-}
-
-.footer {
-  text-align: center;
-  color: var(--muted);
-  margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 1px solid var(--border);
-  font-size: 0.9rem;
-}
-
-code {
-  background: var(--surface-2);
-  padding: 0.2rem 0.5rem;
-  border-radius: 3px;
-  font-family: "JetBrains Mono";
-  font-size: 0.9rem;
-}
+.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+.tab-content { display: none; } .tab-content.active { display: block; }
+code { background: var(--surface-2); padding: 0.2rem 0.5rem;
+  border-radius: 3px; font-family: "JetBrains Mono"; font-size: 0.9rem; }
+.footer { text-align: center; color: var(--muted); margin-top: 3rem;
+  padding-top: 2rem; border-top: 1px solid var(--border); font-size: 0.9rem; }
 </style>
 </head>
 <body>
@@ -242,33 +78,37 @@ code {
 
 <h1>STLC Report: COD-7-2026-11-03</h1>
 <div style="color: var(--muted); margin-bottom: 2rem;">
-  <strong>Story:</strong> COD-7 — N/A<br>
-  <strong>Report Date:</strong> N/A
+  <strong>Story:</strong> COD-7<br>
+  <strong>Report Date:</strong> 2026-11-03
 </div>
 
 <div class="stat-box">
   <div class="stat">
-    <div class="stat-value warn">UNKNOWN</div>
+    <div class="stat-value pass">PASS</div>
     <div class="stat-label">Pipeline Status</div>
   </div>
   <div class="stat">
-    <div class="stat-value">{'functional': 9, 'non_functional': 4, 'acceptance_criteria': 4, 'total': 13}</div>
+    <div class="stat-value">13</div>
     <div class="stat-label">Requirements</div>
   </div>
   <div class="stat">
-    <div class="stat-value">0</div>
+    <div class="stat-value">42</div>
     <div class="stat-label">Total Test Cases</div>
   </div>
   <div class="stat">
-    <div class="stat-value">0</div>
-    <div class="stat-label">Automated Tests</div>
+    <div class="stat-value">39</div>
+    <div class="stat-label">Automated</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">3</div>
+    <div class="stat-label">Manual</div>
   </div>
 </div>
 
 <h2>Execution Results</h2>
 <div class="stat-box">
   <div class="stat">
-    <div class="stat-value pass">0</div>
+    <div class="stat-value pass">117</div>
     <div class="stat-label">Passed</div>
   </div>
   <div class="stat">
@@ -277,396 +117,311 @@ code {
   </div>
   <div class="stat">
     <div class="stat-value xfail">0</div>
-    <div class="stat-label">Expected Failures</div>
+    <div class="stat-label">Skipped</div>
   </div>
   <div class="stat">
-    <div class="stat-value">0</div>
-    <div class="stat-label">Total Executed</div>
+    <div class="stat-value">117</div>
+    <div class="stat-label">Total Runs</div>
   </div>
   <div class="stat">
-    <div class="stat-value pass">0%</div>
+    <div class="stat-value pass">100.0%</div>
     <div class="stat-label">Pass Rate</div>
   </div>
 </div>
 
-<h2>Agent Metrics</h2>
-<div class="tabs">
-  <button class="tab-btn active" onclick="switchTab(event, 'metrics-phase')">Per Phase</button>
-  <button class="tab-btn" onclick="switchTab(event, 'metrics-agent')">Per Agent</button>
-</div>
-
-<div id="metrics-phase" class="tab-content active">
+<h3>Test Group Breakdown</h3>
 <table>
 <thead><tr>
-  <th>Phase</th>
-  <th>Model</th>
-  <th>Input Tokens</th>
-  <th>Output Tokens</th>
-  <th>Cache Creation</th>
-  <th>Cache Read</th>
-  <th>Messages</th>
-  <th>Invocations</th>
+  <th>Group</th><th>Total</th><th>Passed</th><th>Failed</th><th>Status</th>
 </tr></thead>
 <tbody>
 <tr>
-  <td><strong>automation-generation</strong></td>
-  <td><code>claude-haiku-4-5-20250605</code></td>
-  <td>284</td>
-  <td>357,477</td>
-  <td>1,003,800</td>
-  <td>5,379,230</td>
-  <td>127</td>
-  <td>10</td>
+  <td><strong>Positive</strong></td>
+  <td>14</td>
+  <td class="pass"><strong>14</strong></td>
+  <td class="fail"><strong>0</strong></td>
+  <td><span class="badge badge-pass">PASS</span></td>
 </tr>
 <tr>
-  <td><strong>automation-review</strong></td>
-  <td><code>claude-sonnet-4-6</code></td>
-  <td>92</td>
-  <td>94,536</td>
-  <td>364,290</td>
-  <td>2,653,244</td>
-  <td>80</td>
-  <td>5</td>
-</tr>
-<tr>
-  <td><strong>execution</strong></td>
-  <td><code>claude-sonnet-5 (unresolved)</code></td>
-  <td>334</td>
-  <td>105,884</td>
-  <td>422,302</td>
-  <td>4,529,001</td>
-  <td>157</td>
-  <td>10</td>
-</tr>
-<tr>
-  <td><strong>impact-analysis</strong></td>
-  <td><code>claude-haiku-4-5-20250605</code></td>
-  <td>76</td>
-  <td>32,514</td>
-  <td>153,066</td>
-  <td>101,414</td>
-  <td>16</td>
-  <td>5</td>
-</tr>
-<tr>
-  <td><strong>manual-test-generation</strong></td>
-  <td><code>claude-sonnet-4-6</code></td>
-  <td>59</td>
-  <td>178,492</td>
-  <td>456,846</td>
-  <td>1,164,502</td>
-  <td>44</td>
-  <td>5</td>
-</tr>
-<tr>
-  <td><strong>orchestrator</strong></td>
-  <td><code>sonnet</code></td>
-  <td>1,210</td>
-  <td>498,114</td>
-  <td>3,988,859</td>
-  <td>55,673,595</td>
-  <td>808</td>
-  <td>27</td>
-</tr>
-<tr>
-  <td><strong>other</strong></td>
-  <td><code>n/a</code></td>
-  <td>163</td>
-  <td>27,719</td>
-  <td>191,286</td>
-  <td>1,229,512</td>
-  <td>49</td>
-  <td>3</td>
-</tr>
-<tr>
-  <td><strong>reporting</strong></td>
-  <td><code>claude-haiku-4-5-20251001</code></td>
-  <td>188</td>
-  <td>52,582</td>
-  <td>540,875</td>
-  <td>1,103,651</td>
-  <td>31</td>
-  <td>4</td>
-</tr>
-<tr>
-  <td><strong>repository-discovery</strong></td>
-  <td><code>claude-haiku-4-5-20250605</code></td>
-  <td>604</td>
-  <td>48,963</td>
-  <td>357,647</td>
-  <td>1,527,378</td>
-  <td>99</td>
-  <td>5</td>
-</tr>
-<tr>
-  <td><strong>requirement-analysis</strong></td>
-  <td><code>claude-sonnet-4-5</code></td>
-  <td>48</td>
-  <td>34,902</td>
-  <td>143,170</td>
-  <td>206,466</td>
-  <td>33</td>
+  <td><strong>Negative</strong></td>
   <td>7</td>
+  <td class="pass"><strong>7</strong></td>
+  <td class="fail"><strong>0</strong></td>
+  <td><span class="badge badge-pass">PASS</span></td>
 </tr>
 <tr>
-  <td><strong>self-healing</strong></td>
-  <td><code>n/a</code></td>
-  <td>60</td>
-  <td>17,271</td>
-  <td>120,597</td>
-  <td>721,723</td>
-  <td>30</td>
-  <td>3</td>
+  <td><strong>Boundary</strong></td>
+  <td>7</td>
+  <td class="pass"><strong>7</strong></td>
+  <td class="fail"><strong>0</strong></td>
+  <td><span class="badge badge-pass">PASS</span></td>
 </tr>
 <tr>
-  <td><strong>test-plan</strong></td>
-  <td><code>claude-sonnet-4-5-20251001</code></td>
-  <td>28</td>
-  <td>70,985</td>
-  <td>126,748</td>
-  <td>142,506</td>
-  <td>18</td>
-  <td>5</td>
+  <td><strong>Regression</strong></td>
+  <td>11</td>
+  <td class="pass"><strong>11</strong></td>
+  <td class="fail"><strong>0</strong></td>
+  <td><span class="badge badge-pass">PASS</span></td>
 </tr>
-<tr>
-  <td><strong>test-review</strong></td>
-  <td><code>claude-sonnet-4-6</code></td>
-  <td>43</td>
-  <td>108,286</td>
-  <td>442,858</td>
-  <td>497,065</td>
-  <td>30</td>
-  <td>6</td>
-</tr>
-<tr style="background: var(--surface-2); font-weight: 600; border-top: 2px solid var(--border);">
-  <td>TOTAL</td>
-  <td></td>
-  <td>3,189</td>
-  <td>1,627,725</td>
-  <td>8,312,344</td>
-  <td>74,929,287</td>
-  <td>1522</td>
-  <td>95</td>
-</tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 
+<h2>Failure Analysis</h2>
+<p style="color: var(--pass);">No failures found. All test executions passed.</p>
+
+<h2>Known Warnings</h2>
+<table>
+<thead><tr><th>ID</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td><strong>W-001</strong></td><td>Stale metadata in framework-selection.json and manual-tests.md (37 AUTO / 5 MANUAL should be 39 / 3)</td></tr>
+<tr><td><strong>W-002</strong></td><td>TC-025 missing toHaveCount(0) assertion; updateProductFilterOptions() auto-resets filter to "all" (behavioral discrepancy)</td></tr>
+<tr><td><strong>W-003</strong></td><td>TC-021 weaker array equality check</td></tr>
+<tr><td><strong>W-004</strong></td><td>CANCEL_EDIT_BUTTON imported but unused in boundary.spec.ts</td></tr>
+<tr><td><strong>W-005</strong></td><td>STORAGE_KEY imported but unused in regression.spec.ts</td></tr>
+<tr><td><strong>W-006</strong></td><td>TC-034 inline selector instead of constant</td></tr>
+<tr><td><strong>W-007</strong></td><td>clickEditOnCard uses page: any in 3 files</td></tr>
+</tbody></table>
+
+<h2>Agent Metrics</h2>
+<div class="tabs">
+  <button class="tab-btn active" onclick="switchTab(event,'metrics-phase')">Per Phase</button>
+  <button class="tab-btn" onclick="switchTab(event,'metrics-agent')">Per Agent</button>
+</div>
+<div id="metrics-phase" class="tab-content active">
+<table>
+<thead><tr>
+  <th>Phase</th><th>Model</th><th>Input Tokens</th><th>Output Tokens</th>
+  <th>Cache Creation</th><th>Cache Read</th><th>Messages</th><th>Invocations</th>
+</tr></thead>
+<tbody>
+<tr>
+  <td><strong>automation-generation</strong></td><td><code>claude-sonnet-4-6</code></td>
+  <td>284</td><td>357,477</td>
+  <td>1,003,800</td><td>5,379,230</td>
+  <td>127</td><td>10</td>
+</tr>
+<tr>
+  <td><strong>automation-review</strong></td><td><code>claude-sonnet-4-6</code></td>
+  <td>92</td><td>94,536</td>
+  <td>364,290</td><td>2,653,244</td>
+  <td>80</td><td>5</td>
+</tr>
+<tr>
+  <td><strong>execution</strong></td><td><code>claude-sonnet-5 (unresolved)</code></td>
+  <td>334</td><td>105,884</td>
+  <td>422,302</td><td>4,529,001</td>
+  <td>157</td><td>10</td>
+</tr>
+<tr>
+  <td><strong>impact-analysis</strong></td><td><code>claude-haiku-4-5-20250605</code></td>
+  <td>76</td><td>32,514</td>
+  <td>153,066</td><td>101,414</td>
+  <td>16</td><td>5</td>
+</tr>
+<tr>
+  <td><strong>manual-test-generation</strong></td><td><code>claude-sonnet-4-6</code></td>
+  <td>59</td><td>178,492</td>
+  <td>456,846</td><td>1,164,502</td>
+  <td>44</td><td>5</td>
+</tr>
+<tr>
+  <td><strong>orchestrator</strong></td><td><code>n/a</code></td>
+  <td>1,317</td><td>540,322</td>
+  <td>4,436,319</td><td>63,778,920</td>
+  <td>886</td><td>27</td>
+</tr>
+<tr>
+  <td><strong>other</strong></td><td><code>n/a</code></td>
+  <td>163</td><td>27,719</td>
+  <td>191,286</td><td>1,229,512</td>
+  <td>49</td><td>3</td>
+</tr>
+<tr>
+  <td><strong>reporting</strong></td><td><code>claude-haiku-4-5-20251001</code></td>
+  <td>188</td><td>52,582</td>
+  <td>540,875</td><td>1,103,651</td>
+  <td>31</td><td>4</td>
+</tr>
+<tr>
+  <td><strong>repository-discovery</strong></td><td><code>claude-haiku-4-5-20250605</code></td>
+  <td>604</td><td>48,963</td>
+  <td>357,647</td><td>1,527,378</td>
+  <td>99</td><td>5</td>
+</tr>
+<tr>
+  <td><strong>requirement-analysis</strong></td><td><code>claude-sonnet-4-5</code></td>
+  <td>48</td><td>34,902</td>
+  <td>143,170</td><td>206,466</td>
+  <td>33</td><td>7</td>
+</tr>
+<tr>
+  <td><strong>self-healing</strong></td><td><code>n/a</code></td>
+  <td>60</td><td>17,271</td>
+  <td>120,597</td><td>721,723</td>
+  <td>30</td><td>3</td>
+</tr>
+<tr>
+  <td><strong>test-plan</strong></td><td><code>n/a</code></td>
+  <td>28</td><td>70,985</td>
+  <td>126,748</td><td>142,506</td>
+  <td>18</td><td>5</td>
+</tr>
+<tr>
+  <td><strong>test-review</strong></td><td><code>claude-sonnet-4-6</code></td>
+  <td>43</td><td>108,286</td>
+  <td>442,858</td><td>497,065</td>
+  <td>30</td><td>6</td>
+</tr>
+<tr style="background:var(--surface-2);font-weight:600;border-top:2px solid var(--border);">
+  <td>TOTAL</td><td></td>
+  <td>3,296</td><td>1,669,933</td>
+  <td>8,759,804</td><td>83,034,612</td>
+  <td>1600</td><td>95</td>
+</tr>
+</tbody></table></div>
 <div id="metrics-agent" class="tab-content">
 <table>
 <thead><tr>
-  <th>Agent</th>
-  <th>Input Tokens</th>
-  <th>Output Tokens</th>
-  <th>Cache Creation</th>
-  <th>Cache Read</th>
-  <th>Messages</th>
-  <th>Invocations</th>
+  <th>Agent</th><th>Input Tokens</th><th>Output Tokens</th>
+  <th>Cache Creation</th><th>Cache Read</th><th>Messages</th><th>Invocations</th>
 </tr></thead>
 <tbody>
 <tr>
   <td><strong>automation-generation-agent</strong></td>
-  <td>119</td>
-  <td>337,361</td>
-  <td>702,702</td>
-  <td>5,019,988</td>
-  <td>97</td>
-  <td>5</td>
+  <td>119</td><td>337,361</td>
+  <td>702,702</td><td>5,019,988</td>
+  <td>97</td><td>5</td>
 </tr>
 <tr>
   <td><strong>automation-review-agent</strong></td>
-  <td>92</td>
-  <td>94,536</td>
-  <td>364,290</td>
-  <td>2,653,244</td>
-  <td>80</td>
-  <td>5</td>
+  <td>92</td><td>94,536</td>
+  <td>364,290</td><td>2,653,244</td>
+  <td>80</td><td>5</td>
 </tr>
 <tr>
   <td><strong>defect-analysis-agent</strong></td>
-  <td>32</td>
-  <td>7,630</td>
-  <td>51,994</td>
-  <td>88,622</td>
-  <td>6</td>
-  <td>1</td>
+  <td>32</td><td>7,630</td>
+  <td>51,994</td><td>88,622</td>
+  <td>6</td><td>1</td>
 </tr>
 <tr>
   <td><strong>execution-agent</strong></td>
-  <td>262</td>
-  <td>76,168</td>
-  <td>260,354</td>
-  <td>4,117,752</td>
-  <td>131</td>
-  <td>5</td>
+  <td>262</td><td>76,168</td>
+  <td>260,354</td><td>4,117,752</td>
+  <td>131</td><td>5</td>
 </tr>
 <tr>
   <td><strong>failure-analysis-agent</strong></td>
-  <td>40</td>
-  <td>22,086</td>
-  <td>109,954</td>
-  <td>322,627</td>
-  <td>20</td>
-  <td>4</td>
+  <td>40</td><td>22,086</td>
+  <td>109,954</td><td>322,627</td>
+  <td>20</td><td>4</td>
 </tr>
 <tr>
   <td><strong>framework-selection-agent</strong></td>
-  <td>165</td>
-  <td>20,116</td>
-  <td>301,098</td>
-  <td>359,242</td>
-  <td>30</td>
-  <td>5</td>
+  <td>165</td><td>20,116</td>
+  <td>301,098</td><td>359,242</td>
+  <td>30</td><td>5</td>
 </tr>
 <tr>
   <td><strong>general-purpose</strong></td>
-  <td>33</td>
-  <td>17,045</td>
-  <td>85,401</td>
-  <td>907,942</td>
-  <td>27</td>
-  <td>1</td>
+  <td>33</td><td>17,045</td>
+  <td>85,401</td><td>907,942</td>
+  <td>27</td><td>1</td>
 </tr>
 <tr>
   <td><strong>impact-analysis-agent</strong></td>
-  <td>76</td>
-  <td>32,514</td>
-  <td>153,066</td>
-  <td>101,414</td>
-  <td>16</td>
-  <td>5</td>
+  <td>76</td><td>32,514</td>
+  <td>153,066</td><td>101,414</td>
+  <td>16</td><td>5</td>
 </tr>
 <tr>
   <td><strong>main-session (orchestrator)</strong></td>
-  <td>792</td>
-  <td>330,111</td>
-  <td>3,073,275</td>
-  <td>47,272,047</td>
-  <td>523</td>
-  <td>12</td>
+  <td>882</td><td>366,480</td>
+  <td>3,478,685</td><td>54,759,292</td>
+  <td>584</td><td>12</td>
 </tr>
 <tr>
   <td><strong>manual-test-generation-agent</strong></td>
-  <td>59</td>
-  <td>178,492</td>
-  <td>456,846</td>
-  <td>1,164,502</td>
-  <td>44</td>
-  <td>5</td>
+  <td>59</td><td>178,492</td>
+  <td>456,846</td><td>1,164,502</td>
+  <td>44</td><td>5</td>
 </tr>
 <tr>
   <td><strong>pr-generation-agent</strong></td>
-  <td>130</td>
-  <td>10,674</td>
-  <td>105,885</td>
-  <td>321,570</td>
-  <td>22</td>
-  <td>2</td>
+  <td>130</td><td>10,674</td>
+  <td>105,885</td><td>321,570</td>
+  <td>22</td><td>2</td>
 </tr>
 <tr>
   <td><strong>reporting-agent</strong></td>
-  <td>188</td>
-  <td>52,582</td>
-  <td>540,875</td>
-  <td>1,103,651</td>
-  <td>31</td>
-  <td>4</td>
+  <td>188</td><td>52,582</td>
+  <td>540,875</td><td>1,103,651</td>
+  <td>31</td><td>4</td>
 </tr>
 <tr>
   <td><strong>repository-discovery-agent</strong></td>
-  <td>604</td>
-  <td>48,963</td>
-  <td>357,647</td>
-  <td>1,527,378</td>
-  <td>99</td>
-  <td>5</td>
+  <td>604</td><td>48,963</td>
+  <td>357,647</td><td>1,527,378</td>
+  <td>99</td><td>5</td>
 </tr>
 <tr>
   <td><strong>requirement-analysis-agent</strong></td>
-  <td>48</td>
-  <td>34,902</td>
-  <td>143,170</td>
-  <td>206,466</td>
-  <td>33</td>
-  <td>7</td>
+  <td>48</td><td>34,902</td>
+  <td>143,170</td><td>206,466</td>
+  <td>33</td><td>7</td>
 </tr>
 <tr>
   <td><strong>self-healing-agent</strong></td>
-  <td>60</td>
-  <td>17,271</td>
-  <td>120,597</td>
-  <td>721,723</td>
-  <td>30</td>
-  <td>3</td>
+  <td>60</td><td>17,271</td>
+  <td>120,597</td><td>721,723</td>
+  <td>30</td><td>3</td>
 </tr>
 <tr>
   <td><strong>stlc-orchestrator</strong></td>
-  <td>418</td>
-  <td>168,003</td>
-  <td>915,584</td>
-  <td>8,401,548</td>
-  <td>285</td>
-  <td>15</td>
+  <td>435</td><td>173,842</td>
+  <td>957,634</td><td>9,019,628</td>
+  <td>302</td><td>15</td>
 </tr>
 <tr>
   <td><strong>test-planning-agent</strong></td>
-  <td>28</td>
-  <td>70,985</td>
-  <td>126,748</td>
-  <td>142,506</td>
-  <td>18</td>
-  <td>5</td>
+  <td>28</td><td>70,985</td>
+  <td>126,748</td><td>142,506</td>
+  <td>18</td><td>5</td>
 </tr>
 <tr>
   <td><strong>test-review-agent</strong></td>
-  <td>43</td>
-  <td>108,286</td>
-  <td>442,858</td>
-  <td>497,065</td>
-  <td>30</td>
-  <td>6</td>
+  <td>43</td><td>108,286</td>
+  <td>442,858</td><td>497,065</td>
+  <td>30</td><td>6</td>
 </tr>
-<tr style="background: var(--surface-2); font-weight: 600; border-top: 2px solid var(--border);">
+<tr style="background:var(--surface-2);font-weight:600;border-top:2px solid var(--border);">
   <td>TOTAL</td>
-  <td>3,189</td>
-  <td>1,627,725</td>
-  <td>8,312,344</td>
-  <td>74,929,287</td>
-  <td>1522</td>
-  <td>95</td>
+  <td>3,296</td><td>1,669,933</td>
+  <td>8,759,804</td><td>83,034,612</td>
+  <td>1600</td><td>95</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table></div>
 
-<h2>Environment & Execution</h2>
+<h2>Environment &amp; Execution</h2>
 <table>
-<tr><td><strong>Framework</strong></td><td>N/A</td></tr>
-<tr><td><strong>Browser</strong></td><td>N/A</td></tr>
-<tr><td><strong>Application</strong></td><td>N/A</td></tr>
-<tr><td><strong>Test Root</strong></td><td>N/A</td></tr>
-<tr><td><strong>Execution Date</strong></td><td>N/A</td></tr>
-<tr><td><strong>Duration</strong></td><td>N/A</td></tr>
-<tr><td><strong>Application Defects</strong></td><td>0</td></tr>
-<tr><td><strong>Self-Healed</strong></td><td>0</td></tr>
+<tr><td><strong>Framework</strong></td><td>Playwright (TypeScript)</td></tr>
+<tr><td><strong>Browsers</strong></td><td>chromium, firefox, webkit</td></tr>
+<tr><td><strong>Execution Timestamp</strong></td><td>2026-11-03T08:53:31.449Z</td></tr>
+<tr><td><strong>Duration</strong></td><td>62.7s</td></tr>
+<tr><td><strong>Unique Test Cases</strong></td><td>39</td></tr>
+<tr><td><strong>Total Executions</strong></td><td>117</td></tr>
+<tr><td><strong>Self-Healing Required</strong></td><td>No</td></tr>
+<tr><td><strong>Completed Phases</strong></td><td>12</td></tr>
 </table>
 
 <div class="footer">
-  <p>Generated on 2026-11-03 14:42:30 UTC</p>
+  <p>Generated on 2026-11-03 15:52:41 UTC</p>
 </div>
 </div>
 
 <script>
 function switchTab(event, tabId) {
-  // Hide all tabs
-  const tabs = document.querySelectorAll('.tab-content');
-  tabs.forEach(t => t.classList.remove('active'));
-
-  // Remove active class from all buttons
-  const buttons = document.querySelectorAll('.tab-btn');
-  buttons.forEach(b => b.classList.remove('active'));
-
-  // Show selected tab and mark button active
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById(tabId).classList.add('active');
   event.target.classList.add('active');
 }

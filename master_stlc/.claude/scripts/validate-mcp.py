@@ -39,10 +39,13 @@ def load_stlc_config() -> dict:
         return config
     for line in config_path.read_text(encoding="utf-8").splitlines():
         line = line.strip()
-        if line.startswith("create_pr:"):
-            config["create_pr"] = "true" in line.lower()
-        elif line.startswith("create_external_defects:"):
-            config["create_external_defects"] = "true" in line.lower()
+        # Strip inline comments before checking value to avoid false positives
+        # e.g. "create_pr: false   # set true to..." must NOT match as true
+        value_part = line.split("#")[0].strip()
+        if value_part.startswith("create_pr:"):
+            config["create_pr"] = value_part.split(":", 1)[1].strip().lower() == "true"
+        elif value_part.startswith("create_external_defects:"):
+            config["create_external_defects"] = value_part.split(":", 1)[1].strip().lower() == "true"
     return config
 
 
@@ -114,17 +117,17 @@ def main():
         # Same credentials as Jira for cloud accounts; reuse the Jira check result
         results["Confluence"] = results["Jira (Atlassian)"]
 
-    # # GitHub — required if create_pr: true
-    # if config["create_pr"]:
-    #     ok, msg = validate_github(env)
-    #     results["GitHub"] = ("PASS" if ok else "FAIL", msg, True)
-    #     if not ok:
-    #         failed_required.append("GitHub")
-    # else:
-    #     ok, msg = validate_github(env)
-    #     status = "PASS" if ok else "SKIP"
-    #     note = msg if ok else f"Not required (create_pr=false); {msg}"
-    #     results["GitHub"] = (status, note, False)
+    # GitHub — required if create_pr: true
+    if config["create_pr"]:
+        ok, msg = validate_github(env)
+        results["GitHub"] = ("PASS" if ok else "FAIL", msg, True)
+        if not ok:
+            failed_required.append("GitHub")
+    else:
+        ok, msg = validate_github(env)
+        status = "PASS" if ok else "SKIP"
+        note = msg if ok else f"Not required (create_pr=false); {msg}"
+        results["GitHub"] = (status, note, False)
 
     # ── Print report ──────────────────────────────────────────────────────────
     print("\n" + "=" * 56)

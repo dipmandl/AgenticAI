@@ -6,7 +6,7 @@ Source: `C:\Users\DipakMandlik\.claude\projects\C--Users-DipakMandlik-Desktop-Ag
 
 | Phase | Input | Output | Cache Write | Cache Read | Total | Msgs | Runs |
 |---|---|---|---|---|---|---|---|
-| orchestrator | 1,234 | 507,589 | 4,091,244 | 56,625,855 | 61,225,922 | 830 | 27 |
+| orchestrator | 1,329 | 543,019 | 4,451,278 | 65,610,503 | 70,606,129 | 896 | 27 |
 | automation-generation | 284 | 357,477 | 1,003,800 | 5,379,230 | 6,740,791 | 127 | 10 |
 | execution | 334 | 105,884 | 422,302 | 4,529,001 | 5,057,521 | 157 | 10 |
 | automation-review | 92 | 94,536 | 364,290 | 2,653,244 | 3,112,162 | 80 | 5 |
@@ -19,13 +19,13 @@ Source: `C:\Users\DipakMandlik\.claude\projects\C--Users-DipakMandlik-Desktop-Ag
 | requirement-analysis | 48 | 34,902 | 143,170 | 206,466 | 384,586 | 33 | 7 |
 | test-plan | 28 | 70,985 | 126,748 | 142,506 | 340,267 | 18 | 5 |
 | impact-analysis | 76 | 32,514 | 153,066 | 101,414 | 287,070 | 16 | 5 |
-| **TOTAL** | **3,213** | **1,637,200** | **8,414,729** | **75,881,547** | **85,936,689** | **1544** | **95** |
+| **TOTAL** | **3,308** | **1,672,630** | **8,774,763** | **84,866,195** | **95,316,896** | **1610** | **95** |
 
 ## Per Agent
 
 | Agent | Input | Output | Cache Write | Cache Read | Total | Msgs | Runs |
 |---|---|---|---|---|---|---|---|
-| main-session (orchestrator) | 799 | 333,747 | 3,133,610 | 47,606,227 | 51,074,383 | 528 | 12 |
+| main-session (orchestrator) | 894 | 369,177 | 3,493,644 | 56,590,875 | 60,454,590 | 594 | 12 |
 | stlc-orchestrator | 435 | 173,842 | 957,634 | 9,019,628 | 10,151,539 | 302 | 15 |
 | automation-generation-agent | 119 | 337,361 | 702,702 | 5,019,988 | 6,060,170 | 97 | 5 |
 | execution-agent | 262 | 76,168 | 260,354 | 4,117,752 | 4,454,536 | 131 | 5 |
@@ -43,4 +43,4 @@ Source: `C:\Users\DipakMandlik\.claude\projects\C--Users-DipakMandlik-Desktop-Ag
 | test-planning-agent | 28 | 70,985 | 126,748 | 142,506 | 340,267 | 18 | 5 |
 | impact-analysis-agent | 76 | 32,514 | 153,066 | 101,414 | 287,070 | 16 | 5 |
 | defect-analysis-agent | 32 | 7,630 | 51,994 | 88,622 | 148,278 | 6 | 1 |
-| **TOTAL** | **3,213** | **1,637,200** | **8,414,729** | **75,881,547** | **85,936,689** | **1544** | **95** |
+| **TOTAL** | **3,308** | **1,672,630** | **8,774,763** | **84,866,195** | **95,316,896** | **1610** | **95** |

@@ -2,11 +2,11 @@
   "source": "C:\\Users\\DipakMandlik\\.claude\\projects\\C--Users-DipakMandlik-Desktop-AgenticAI-Final-implementation-AgenticAI-master-stlc",
   "per_phase": {
     "orchestrator": {
-      "input_tokens": 1234,
-      "output_tokens": 507589,
-      "cache_creation_input_tokens": 4091244,
-      "cache_read_input_tokens": 56625855,
-      "messages": 830,
+      "input_tokens": 1329,
+      "output_tokens": 543019,
+      "cache_creation_input_tokens": 4451278,
+      "cache_read_input_tokens": 65610503,
+      "messages": 896,
       "invocations": 27
     },
     "requirement-analysis": {
@@ -108,11 +108,11 @@
   },
   "per_agent": {
     "main-session (orchestrator)": {
-      "input_tokens": 799,
-      "output_tokens": 333747,
-      "cache_creation_input_tokens": 3133610,
-      "cache_read_input_tokens": 47606227,
-      "messages": 528,
+      "input_tokens": 894,
+      "output_tokens": 369177,
+      "cache_creation_input_tokens": 3493644,
+      "cache_read_input_tokens": 56590875,
+      "messages": 594,
       "invocations": 12
     },
     "stlc-orchestrator": {
