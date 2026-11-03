@@ -38,7 +38,16 @@ def extract_phase_models(state: dict) -> dict[str, str]:
     }
 
     models: dict[str, str] = {}
-    for phase, data in state.get("artifacts", {}).items():
+    # Model IDs live in state["phases"][phase]["model_id"].
+    # state["artifacts"] holds plain string paths — not dicts — so we must
+    # read from "phases" instead.
+    phases_data = state.get("phases", {})
+    if not phases_data:
+        # Legacy fallback: try "artifacts" in case it carries full dicts
+        phases_data = state.get("artifacts", {})
+    for phase, data in phases_data.items():
+        if not isinstance(data, dict):
+            continue
         model = data.get("model_id", "")
         if not model:
             continue
@@ -471,7 +480,9 @@ code {
 """
 
     # Defects
-    defects = report.get("defects", [])
+    # defects may be a list of defect objects OR a summary dict (total_found etc.)
+    defects_raw = report.get("defects", [])
+    defects: list = defects_raw if isinstance(defects_raw, list) else []
     if defects:
         html += """
 <h2>Defects Found</h2>

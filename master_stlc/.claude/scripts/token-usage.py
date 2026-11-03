@@ -61,18 +61,31 @@ def find_state_json() -> Path:
 
 def default_project_dir() -> Path:
     cwd = Path.cwd().resolve()
-    sanitized = str(cwd).replace("\\", "-").replace("/", "-").replace(":", "").replace(".", "-").replace("_", "-")
-    if not sanitized.startswith("-"):
-        sanitized = sanitized[0].lower() + sanitized[1:]
+    cwd_str = str(cwd)
+
+    # Match Claude Code's actual naming scheme:
+    # C:\Users\Foo\Bar  →  C--Users-Foo-Bar  (":\" → "--", "\" → "-", "_" → "-")
+    if len(cwd_str) >= 2 and cwd_str[1] == ":":
+        # Windows absolute path: keep drive letter case, replace :\ with --
+        sanitized = cwd_str[0] + "--" + cwd_str[3:]
+    else:
+        sanitized = cwd_str.lstrip("/")
+    sanitized = sanitized.replace("\\", "-").replace("/", "-").replace(".", "-").replace("_", "-")
+
     candidate = Path.home() / ".claude" / "projects" / sanitized
     if candidate.is_dir():
         return candidate
-    # fallback: pick the projects dir whose name ends with the cwd folder name
+    # fallback: case-insensitive match on the sanitized name
     projects = Path.home() / ".claude" / "projects"
-    tail = cwd.name.replace("_", "-").lower()
-    matches = [p for p in projects.iterdir() if p.is_dir() and p.name.lower().endswith(tail)]
-    if len(matches) == 1:
-        return matches[0]
+    if projects.is_dir():
+        for p in projects.iterdir():
+            if p.is_dir() and p.name.lower() == sanitized.lower():
+                return p
+        # last resort: match on the trailing folder name only
+        tail = cwd.name.replace("_", "-").lower()
+        matches = [p for p in projects.iterdir() if p.is_dir() and p.name.lower().endswith(tail)]
+        if len(matches) == 1:
+            return matches[0]
     sys.exit(
         f"Could not locate transcript dir (tried {candidate}). "
         "Pass it explicitly with --project-dir."
