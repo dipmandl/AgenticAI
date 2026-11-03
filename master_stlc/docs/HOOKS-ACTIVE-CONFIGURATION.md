@@ -39,7 +39,7 @@ User runs: /1-stlc "story"
 ### 1. **stlc-pre-task-validation**
 - **Trigger:** Before any STLC task
 - **Action:** Validate repository structure and state
-- **Checks:** `.claude/config/` exists, `artifacts/state/stlc-state.json` present
+- **Checks:** `.claude/config/` exists, `artifacts/<story_id>/state/stlc-state.json` present
 - **Token Cost:** Zero
 
 ### 2. **stlc-pre-task-safety-check**
@@ -181,7 +181,7 @@ Hooks respect the permissions block:
 7. Post-task: stlc-state-persistence
    └─ Verify state.json updated ✓
 
-[RESULT] HTML report ready at artifacts/reports/stlc-report.html
+[RESULT] HTML report ready at artifacts/<story_id>/reports/stlc-report.html
 ```
 
 ---

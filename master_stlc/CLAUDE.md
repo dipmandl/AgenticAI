@@ -19,7 +19,7 @@ Full architecture, artifact layout, CLI, and configuration reference: `docs/arch
 ## HTML Report
 
 An interactive **HTML report** is automatically generated at the end of the pipeline:
-- **Location**: `artifacts/reports/stlc-report.html`
+- **Location**: `artifacts/<story_id>/reports/stlc-report.html`
 - **Contents**: Combines STLC execution results + agent metrics in a single unified view
 - **Tabbed sections**:
   - Test execution summary (pass/fail/xfail counts, pass rate)
