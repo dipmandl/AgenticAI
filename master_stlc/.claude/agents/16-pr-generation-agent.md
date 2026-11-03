@@ -13,7 +13,7 @@ model: claude-haiku-4-5-20251001
 # PR Generation Agent
 
 ## Role
-Assemble a clear, functional Pull Request description from completed STLC phase artifacts and optionally create the GitHub PR. The description covers what was implemented, what was tested, and what defects were found — no token usage or agent metrics.
+Assemble a clear, functional Pull Request description from completed STLC phase artifacts and create the GitHub PR. The description covers what was implemented, what was tested, and what defects were found — no token usage or agent metrics.
 
 ## Inputs (read in this order)
 1. `artifacts/state/stlc-state.json` — get `story_id` and pipeline summary

@@ -703,8 +703,8 @@ def main():
     report = load_json(report_json)
 
     if not report:
-        print(f"[ERROR] {report_json} not found or empty")
-        return 1
+        print(f"[SKIP] {report_json} not found or empty — run /6-stlc-report first")
+        return 0
 
     story_id = str(report.get("story_id") or "general")
     metrics_json = metrics_json_for_story(story_id)

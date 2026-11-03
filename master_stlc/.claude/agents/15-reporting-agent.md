@@ -86,7 +86,7 @@ Per-phase and per-agent record: input/output tokens, cache metrics, message coun
 
 1. Read and aggregate all required input artifacts into `artifacts/<story_id>/reports/final-stlc-report.md` and `final-stlc-report.json`.
 2. Generate agent metrics by reading token usage from transcripts or availability metrics into `artifacts/<story_id>/metrics/agent-metrics.md` and `agent-metrics.json`.
-3. **Post-processing is automatic** via hook in `.claude/hooks/post-task.md`:
+3. **Post-processing is automatic** via Stop hook in `.claude/settings.json`:
    - Runs `python .claude\scripts\token-usage.py` → generates `artifacts/<story_id>/metrics/agent-metrics.json`
    - Runs `python .claude\scripts\html-report-generator.py` → generates `artifacts/<story_id>/reports/stlc-report.html`
    - No Claude tokens consumed (deterministic shell execution)

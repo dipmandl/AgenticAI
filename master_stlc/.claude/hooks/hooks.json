@@ -15,7 +15,7 @@
       "trigger": "before-task",
       "condition": "task.command && (task.command.includes('stlc') || task.command.includes('/1') || task.command.includes('/2') || task.command.includes('/3') || task.command.includes('/4') || task.command.includes('/5') || task.command.includes('/6'))",
       "action": "shell",
-      "script": "echo '[STLC Pre-Task] Validating repository context...' && test -d .claude/config && test -f artifacts/state/stlc-state.json && echo '[OK] Repository and state validated' || echo '[WARN] State file may need initialization'",
+      "script": "echo '[STLC Pre-Task] Validating repository context...' && test -d .claude/config && (ls artifacts/*/state/stlc-state.json 2>/dev/null | head -1 | grep -q . && echo '[OK] Repository and state validated' || echo '[WARN] State file may need initialization')",
       "description": "Pre-task: Validate repository structure, configuration, and STLC state before phase execution",
       "severity": "warning",
       "continue_on_error": true
@@ -62,7 +62,7 @@
       "trigger": "after-task",
       "condition": "task.command && (task.command.includes('automate') || task.command.includes('run'))",
       "action": "shell",
-      "script": "echo '[STLC Traceability] Validating requirement-test-execution linkage...' && test -f artifacts/traceability/traceability-matrix.md && echo '[OK] Traceability matrix exists' || echo '[WARN] Traceability matrix not found'",
+      "script": "echo '[STLC Traceability] Validating requirement-test-execution linkage...' && (ls artifacts/*/traceability/traceability-matrix.md 2>/dev/null | head -1 | grep -q . && echo '[OK] Traceability matrix exists' || echo '[WARN] Traceability matrix not found')",
       "description": "Post-phase: Validate end-to-end traceability from REQ to TC to execution",
       "severity": "warning",
       "continue_on_error": true
@@ -81,7 +81,7 @@
       "trigger": "after-task",
       "condition": "task.command && task.command.includes('stlc')",
       "action": "shell",
-      "script": "echo '[STLC State] Persisting phase state...' && test -f artifacts/state/stlc-state.json && echo '[OK] State persisted for resumability' || echo '[WARN] State file not found'",
+      "script": "echo '[STLC State] Persisting phase state...' && (ls artifacts/*/state/stlc-state.json 2>/dev/null | head -1 | grep -q . && echo '[OK] State persisted for resumability' || echo '[WARN] State file not found')",
       "description": "Post-phase: Ensure state is persisted for resumable pipelines",
       "severity": "info",
       "continue_on_error": true

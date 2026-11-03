@@ -1,0 +1,33 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Agent",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python .claude/scripts/log-agent-model.py"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python .claude/scripts/validate-artifacts.py"
+          },
+          {
+            "type": "command",
+            "command": "python .claude/scripts/token-usage.py"
+          },
+          {
+            "type": "command",
+            "command": "python .claude/scripts/html-report-generator.py"
+          }
+        ]
+      }
+    ]
+  }
+}

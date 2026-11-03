@@ -200,7 +200,8 @@ def main():
     per_agent, per_phase = collect(project_dir)
 
     if not per_agent:
-        sys.exit(f"No transcripts with usage data found in {project_dir}")
+        print(f"[SKIP] No transcripts with usage data found in {project_dir}")
+        return
 
     phase_table = fmt_table("Phase", per_phase)
     agent_table = fmt_table("Agent", per_agent)
