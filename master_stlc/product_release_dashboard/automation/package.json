@@ -1,0 +1,15 @@
+{
+  "name": "cod-7-automation",
+  "version": "1.0.0",
+  "description": "Playwright automation for COD-7 Edit Release Note story",
+  "scripts": {
+    "test": "playwright test",
+    "test:positive": "playwright test tests/edit_release_notes/positive.spec.ts",
+    "test:negative": "playwright test tests/edit_release_notes/negative.spec.ts",
+    "test:boundary": "playwright test tests/edit_release_notes/boundary.spec.ts",
+    "test:regression": "playwright test tests/edit_release_notes/regression.spec.ts"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.0"
+  }
+}

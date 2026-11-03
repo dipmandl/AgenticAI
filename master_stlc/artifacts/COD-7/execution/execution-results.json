@@ -1,0 +1,1102 @@
+{
+  "execution_timestamp": "2026-11-03T08:53:31.449Z",
+  "story_id": "COD-7",
+  "scope": "all",
+  "total_tests": 117,
+  "passed": 117,
+  "failed": 0,
+  "skipped": 0,
+  "pass_rate": 100.0,
+  "unique_test_cases": 39,
+  "browsers": [
+    "chromium",
+    "firefox",
+    "webkit"
+  ],
+  "suite_duration_ms": 62690.181000000004,
+  "test_results": [
+    {
+      "tc_id": "TC-023",
+      "title": "TC-023: Edit the only release note in the list",
+      "spec_file": "edit_release_notes/boundary.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 1361,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-023",
+      "title": "TC-023: Edit the only release note in the list",
+      "spec_file": "edit_release_notes/boundary.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 6717,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-023",
+      "title": "TC-023: Edit the only release note in the list",
+      "spec_file": "edit_release_notes/boundary.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 6382,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-024",
+      "title": "TC-024: Edit with no active filters applied",
+      "spec_file": "edit_release_notes/boundary.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 1183,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-024",
+      "title": "TC-024: Edit with no active filters applied",
+      "spec_file": "edit_release_notes/boundary.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 15131,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-024",
+      "title": "TC-024: Edit with no active filters applied",
+      "spec_file": "edit_release_notes/boundary.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 5920,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-025",
+      "title": "TC-025: Edited entry disappears when it no longer matches active product filter",
+      "spec_file": "edit_release_notes/boundary.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 1166,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-025",
+      "title": "TC-025: Edited entry disappears when it no longer matches active product filter",
+      "spec_file": "edit_release_notes/boundary.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 6594,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-025",
+      "title": "TC-025: Edited entry disappears when it no longer matches active product filter",
+      "spec_file": "edit_release_notes/boundary.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 6071,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-026",
+      "title": "TC-026: Edit entry with isBreaking=true \u2014 checkbox pre-fills as checked",
+      "spec_file": "edit_release_notes/boundary.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 2112,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-026",
+      "title": "TC-026: Edit entry with isBreaking=true \u2014 checkbox pre-fills as checked",
+      "spec_file": "edit_release_notes/boundary.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 6452,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-026",
+      "title": "TC-026: Edit entry with isBreaking=true \u2014 checkbox pre-fills as checked",
+      "spec_file": "edit_release_notes/boundary.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 4764,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-027",
+      "title": "TC-027: Edit entry with releaseDate \"1970-01-01\" \u2014 date pre-fills correctly",
+      "spec_file": "edit_release_notes/boundary.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 1173,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-027",
+      "title": "TC-027: Edit entry with releaseDate \"1970-01-01\" \u2014 date pre-fills correctly",
+      "spec_file": "edit_release_notes/boundary.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 6563,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-027",
+      "title": "TC-027: Edit entry with releaseDate \"1970-01-01\" \u2014 date pre-fills correctly",
+      "spec_file": "edit_release_notes/boundary.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 4622,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-028",
+      "title": "TC-028: Edit entry with releaseDate = today's date \u2014 date pre-fills correctly",
+      "spec_file": "edit_release_notes/boundary.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 1199,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-028",
+      "title": "TC-028: Edit entry with releaseDate = today's date \u2014 date pre-fills correctly",
+      "spec_file": "edit_release_notes/boundary.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 6960,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-028",
+      "title": "TC-028: Edit entry with releaseDate = today's date \u2014 date pre-fills correctly",
+      "spec_file": "edit_release_notes/boundary.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 4166,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-029",
+      "title": "TC-029: All three filters active simultaneously \u2014 all persist after Save",
+      "spec_file": "edit_release_notes/boundary.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 1705,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-029",
+      "title": "TC-029: All three filters active simultaneously \u2014 all persist after Save",
+      "spec_file": "edit_release_notes/boundary.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 9486,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-029",
+      "title": "TC-029: All three filters active simultaneously \u2014 all persist after Save",
+      "spec_file": "edit_release_notes/boundary.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 7266,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-015",
+      "title": "TC-015: Save blocked when required field product is cleared",
+      "spec_file": "edit_release_notes/negative.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 1231,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-015",
+      "title": "TC-015: Save blocked when required field product is cleared",
+      "spec_file": "edit_release_notes/negative.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 15797,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-015",
+      "title": "TC-015: Save blocked when required field product is cleared",
+      "spec_file": "edit_release_notes/negative.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 5814,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-016",
+      "title": "TC-016: Save blocked when required field version is cleared",
+      "spec_file": "edit_release_notes/negative.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 1445,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-016",
+      "title": "TC-016: Save blocked when required field version is cleared",
+      "spec_file": "edit_release_notes/negative.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 3852,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-016",
+      "title": "TC-016: Save blocked when required field version is cleared",
+      "spec_file": "edit_release_notes/negative.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 5620,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-017",
+      "title": "TC-017: Save blocked when required field title is cleared",
+      "spec_file": "edit_release_notes/negative.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 1241,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-017",
+      "title": "TC-017: Save blocked when required field title is cleared",
+      "spec_file": "edit_release_notes/negative.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 17057,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-017",
+      "title": "TC-017: Save blocked when required field title is cleared",
+      "spec_file": "edit_release_notes/negative.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 5283,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-018",
+      "title": "TC-018: Save blocked when required field description is cleared",
+      "spec_file": "edit_release_notes/negative.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 900,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-018",
+      "title": "TC-018: Save blocked when required field description is cleared",
+      "spec_file": "edit_release_notes/negative.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 2324,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-018",
+      "title": "TC-018: Save blocked when required field description is cleared",
+      "spec_file": "edit_release_notes/negative.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 5672,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-019",
+      "title": "TC-019: Save blocked when required field releaseDate is cleared",
+      "spec_file": "edit_release_notes/negative.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 1116,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-019",
+      "title": "TC-019: Save blocked when required field releaseDate is cleared",
+      "spec_file": "edit_release_notes/negative.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 2982,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-019",
+      "title": "TC-019: Save blocked when required field releaseDate is cleared",
+      "spec_file": "edit_release_notes/negative.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 6338,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-020",
+      "title": "TC-020: Save blocked with custom error when teamName is cleared",
+      "spec_file": "edit_release_notes/negative.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 851,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-020",
+      "title": "TC-020: Save blocked with custom error when teamName is cleared",
+      "spec_file": "edit_release_notes/negative.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 2162,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-020",
+      "title": "TC-020: Save blocked with custom error when teamName is cleared",
+      "spec_file": "edit_release_notes/negative.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 5618,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-021",
+      "title": "TC-021: Save without modifying any field succeeds and preserves data",
+      "spec_file": "edit_release_notes/negative.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 1027,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-021",
+      "title": "TC-021: Save without modifying any field succeeds and preserves data",
+      "spec_file": "edit_release_notes/negative.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 3404,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-021",
+      "title": "TC-021: Save without modifying any field succeeds and preserves data",
+      "spec_file": "edit_release_notes/negative.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 5367,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-001",
+      "title": "TC-001: Edit button present and triggers form pre-fill",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 767,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-001",
+      "title": "TC-001: Edit button present and triggers form pre-fill",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 2433,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-001",
+      "title": "TC-001: Edit button present and triggers form pre-fill",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 4095,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-002",
+      "title": "TC-002: Save after modifying product field updates localStorage",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 890,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-002",
+      "title": "TC-002: Save after modifying product field updates localStorage",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 2939,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-002",
+      "title": "TC-002: Save after modifying product field updates localStorage",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 5050,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-003",
+      "title": "TC-003: Save after modifying version field updates localStorage",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 895,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-003",
+      "title": "TC-003: Save after modifying version field updates localStorage",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 3874,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-003",
+      "title": "TC-003: Save after modifying version field updates localStorage",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 5069,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-004",
+      "title": "TC-004: Save after modifying title and description updates both fields",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 1669,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-004",
+      "title": "TC-004: Save after modifying title and description updates both fields",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 2886,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-004",
+      "title": "TC-004: Save after modifying title and description updates both fields",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 5231,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-005",
+      "title": "TC-005: Save after modifying releaseDate updates date in localStorage",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 1327,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-005",
+      "title": "TC-005: Save after modifying releaseDate updates date in localStorage",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 2669,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-005",
+      "title": "TC-005: Save after modifying releaseDate updates date in localStorage",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 4698,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-006",
+      "title": "TC-006: Save after modifying teamName updates teamName in localStorage",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 765,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-006",
+      "title": "TC-006: Save after modifying teamName updates teamName in localStorage",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 2692,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-006",
+      "title": "TC-006: Save after modifying teamName updates teamName in localStorage",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 4645,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-007",
+      "title": "TC-007: Save with breaking flag toggled from false to true",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 1712,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-007",
+      "title": "TC-007: Save with breaking flag toggled from false to true",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 2616,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-007",
+      "title": "TC-007: Save with breaking flag toggled from false to true",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 5143,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-008",
+      "title": "TC-008: Save with breaking flag toggled from true to false",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 982,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-008",
+      "title": "TC-008: Save with breaking flag toggled from true to false",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 1806,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-008",
+      "title": "TC-008: Save with breaking flag toggled from true to false",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 5460,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-009",
+      "title": "TC-009: Save after modifying all editable fields; id remains unchanged",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 857,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-009",
+      "title": "TC-009: Save after modifying all editable fields; id remains unchanged",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 2413,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-009",
+      "title": "TC-009: Save after modifying all editable fields; id remains unchanged",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 6130,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-010",
+      "title": "TC-010: Cancel after modifying fields discards all changes",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 879,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-010",
+      "title": "TC-010: Cancel after modifying fields discards all changes",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 6292,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-010",
+      "title": "TC-010: Cancel after modifying fields discards all changes",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 5998,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-011",
+      "title": "TC-011: Form returns to create mode after Save",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 1417,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-011",
+      "title": "TC-011: Form returns to create mode after Save",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 5901,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-011",
+      "title": "TC-011: Form returns to create mode after Save",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 5112,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-012",
+      "title": "TC-012: Form returns to create mode after Cancel",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 1461,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-012",
+      "title": "TC-012: Form returns to create mode after Cancel",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 7974,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-012",
+      "title": "TC-012: Form returns to create mode after Cancel",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 5268,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-013",
+      "title": "TC-013: Active product filter persists after Save",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 842,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-013",
+      "title": "TC-013: Active product filter persists after Save",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 9202,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-013",
+      "title": "TC-013: Active product filter persists after Save",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 5151,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-014",
+      "title": "TC-014: Active search filter persists after Cancel",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 1375,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-014",
+      "title": "TC-014: Active search filter persists after Cancel",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 1874,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-014",
+      "title": "TC-014: Active search filter persists after Cancel",
+      "spec_file": "edit_release_notes/positive.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 5726,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-031",
+      "title": "TC-031: Create \u2192 Edit \u2192 Create: second create adds new entry with blank form",
+      "spec_file": "edit_release_notes/regression.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 879,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-031",
+      "title": "TC-031: Create \u2192 Edit \u2192 Create: second create adds new entry with blank form",
+      "spec_file": "edit_release_notes/regression.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 2155,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-031",
+      "title": "TC-031: Create \u2192 Edit \u2192 Create: second create adds new entry with blank form",
+      "spec_file": "edit_release_notes/regression.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 7224,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-032",
+      "title": "TC-032: Edit \u2192 Save \u2192 Delete: delete removes correct entry and list re-renders",
+      "spec_file": "edit_release_notes/regression.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 812,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-032",
+      "title": "TC-032: Edit \u2192 Save \u2192 Delete: delete removes correct entry and list re-renders",
+      "spec_file": "edit_release_notes/regression.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 2207,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-032",
+      "title": "TC-032: Edit \u2192 Save \u2192 Delete: delete removes correct entry and list re-renders",
+      "spec_file": "edit_release_notes/regression.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 7403,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-033",
+      "title": "TC-033: Edit \u2192 Save \u2192 Export: CSV export reflects updated values",
+      "spec_file": "edit_release_notes/regression.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 1276,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-033",
+      "title": "TC-033: Edit \u2192 Save \u2192 Export: CSV export reflects updated values",
+      "spec_file": "edit_release_notes/regression.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 3088,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-033",
+      "title": "TC-033: Edit \u2192 Save \u2192 Export: CSV export reflects updated values",
+      "spec_file": "edit_release_notes/regression.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 6430,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-034",
+      "title": "TC-034: Edit \u2192 Cancel \u2192 Create: create form is blank and adds new entry",
+      "spec_file": "edit_release_notes/regression.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 1066,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-034",
+      "title": "TC-034: Edit \u2192 Cancel \u2192 Create: create form is blank and adds new entry",
+      "spec_file": "edit_release_notes/regression.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 3135,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-034",
+      "title": "TC-034: Edit \u2192 Cancel \u2192 Create: create form is blank and adds new entry",
+      "spec_file": "edit_release_notes/regression.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 6553,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-035",
+      "title": "TC-035: Edit one entry \u2014 all other entries remain unchanged in localStorage",
+      "spec_file": "edit_release_notes/regression.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 826,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-035",
+      "title": "TC-035: Edit one entry \u2014 all other entries remain unchanged in localStorage",
+      "spec_file": "edit_release_notes/regression.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 2760,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-035",
+      "title": "TC-035: Edit one entry \u2014 all other entries remain unchanged in localStorage",
+      "spec_file": "edit_release_notes/regression.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 5037,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-036",
+      "title": "TC-036: Edit product value \u2014 product filter returns correct results afterward",
+      "spec_file": "edit_release_notes/regression.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 645,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-036",
+      "title": "TC-036: Edit product value \u2014 product filter returns correct results afterward",
+      "spec_file": "edit_release_notes/regression.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 2492,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-036",
+      "title": "TC-036: Edit product value \u2014 product filter returns correct results afterward",
+      "spec_file": "edit_release_notes/regression.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 4832,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-037",
+      "title": "TC-037: Edit same entry twice \u2014 second edit pre-fills values from first save",
+      "spec_file": "edit_release_notes/regression.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 727,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-037",
+      "title": "TC-037: Edit same entry twice \u2014 second edit pre-fills values from first save",
+      "spec_file": "edit_release_notes/regression.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 3102,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-037",
+      "title": "TC-037: Edit same entry twice \u2014 second edit pre-fills values from first save",
+      "spec_file": "edit_release_notes/regression.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 5605,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-038",
+      "title": "TC-038: Seed data: edit one seed record \u2014 other seed record unchanged",
+      "spec_file": "edit_release_notes/regression.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 635,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-038",
+      "title": "TC-038: Seed data: edit one seed record \u2014 other seed record unchanged",
+      "spec_file": "edit_release_notes/regression.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 2198,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-038",
+      "title": "TC-038: Seed data: edit one seed record \u2014 other seed record unchanged",
+      "spec_file": "edit_release_notes/regression.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 3613,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-039",
+      "title": "TC-039: Edit entry to isBreaking=true \u2014 breaking filter shows it correctly",
+      "spec_file": "edit_release_notes/regression.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 1497,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-039",
+      "title": "TC-039: Edit entry to isBreaking=true \u2014 breaking filter shows it correctly",
+      "spec_file": "edit_release_notes/regression.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 3071,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-039",
+      "title": "TC-039: Edit entry to isBreaking=true \u2014 breaking filter shows it correctly",
+      "spec_file": "edit_release_notes/regression.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 5632,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-040",
+      "title": "TC-040: Edit title to include search keyword \u2014 search returns updated entry",
+      "spec_file": "edit_release_notes/regression.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 724,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-040",
+      "title": "TC-040: Edit title to include search keyword \u2014 search returns updated entry",
+      "spec_file": "edit_release_notes/regression.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 2929,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-040",
+      "title": "TC-040: Edit title to include search keyword \u2014 search returns updated entry",
+      "spec_file": "edit_release_notes/regression.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 5443,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-041",
+      "title": "TC-041: Two sequential edits on different entries \u2014 both updated independently",
+      "spec_file": "edit_release_notes/regression.spec.ts",
+      "browser": "chromium",
+      "status": "PASS",
+      "duration_ms": 699,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-041",
+      "title": "TC-041: Two sequential edits on different entries \u2014 both updated independently",
+      "spec_file": "edit_release_notes/regression.spec.ts",
+      "browser": "firefox",
+      "status": "PASS",
+      "duration_ms": 2864,
+      "error_message": null
+    },
+    {
+      "tc_id": "TC-041",
+      "title": "TC-041: Two sequential edits on different entries \u2014 both updated independently",
+      "spec_file": "edit_release_notes/regression.spec.ts",
+      "browser": "webkit",
+      "status": "PASS",
+      "duration_ms": 5866,
+      "error_message": null
+    }
+  ],
+  "known_warnings": [
+    {
+      "id": "W-001",
+      "description": "Stale metadata in framework-selection.json and manual-tests.md (37 AUTO / 5 MANUAL should be 39 / 3)"
+    },
+    {
+      "id": "W-002",
+      "description": "TC-025 missing toHaveCount(0) assertion; updateProductFilterOptions() auto-resets filter to \"all\" (behavioral discrepancy)"
+    },
+    {
+      "id": "W-003",
+      "description": "TC-021 weaker array equality check"
+    },
+    {
+      "id": "W-004",
+      "description": "CANCEL_EDIT_BUTTON imported but unused in boundary.spec.ts"
+    },
+    {
+      "id": "W-005",
+      "description": "STORAGE_KEY imported but unused in regression.spec.ts"
+    },
+    {
+      "id": "W-006",
+      "description": "TC-034 inline selector instead of constant"
+    },
+    {
+      "id": "W-007",
+      "description": "clickEditOnCard uses page: any in 3 files"
+    }
+  ]
+}

@@ -13,6 +13,11 @@ Usage:
 - Execution mode: run approved automation when available.
 
 Instructions:
+0. **MCP Validation (enforced automatically by PreToolUse hook):**
+   MCP connectivity is validated automatically before the first agent launches via the `pre-agent-check.py` hook. If validation fails the harness will block the Agent tool and print the failure — do not attempt to proceed. Tell the user which integration failed and what to fix.
+   To manually re-check at any time: `python .claude/scripts/validate-mcp.py`
+   if its Atlassian is failing try with direct API call to fetch user story details.
+
 1. Review the repository and current state.
 2. Analyze the requirement or story.
 3. Determine impact and classification.
