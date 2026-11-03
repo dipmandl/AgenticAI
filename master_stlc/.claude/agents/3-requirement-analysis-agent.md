@@ -4,8 +4,8 @@ description: Interpret a user story or requirement into a structured STLC requir
 tools:
   - Read
   - Write
-  - mcp__atlassian__jira_get_issue
-  - mcp__atlassian__jira_search_issues
+  - mcp__atlassian__get_issue
+  - mcp__atlassian__search_issues
 model: sonnet
 ---
 

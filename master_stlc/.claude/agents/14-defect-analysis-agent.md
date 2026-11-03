@@ -5,8 +5,8 @@ tools:
   - Read
   - Write
   - mcp__github__create_issue
-  - mcp__atlassian__jira_create_issue
-  - mcp__atlassian__jira_get_issue
+  - mcp__atlassian__create_issue
+  - mcp__atlassian__get_issue
 model: claude-haiku-4-5-20251001
 ---
 
@@ -78,7 +78,7 @@ If any condition is false, write the local DEF-NNN.md artifact only and stop.
 ### Jira ticket creation
 When `integrations.jira.enabled: true` and gate passes:
 
-1. Call `mcp__atlassian__jira_create_issue` with:
+1. Call `mcp__atlassian__create_issue` with:
    - `project`: value of `integrations.jira.project_key`
    - `issuetype`: value of `integrations.jira.issue_type` (default: `"Bug"`)
    - `summary`: `"[DEF-NNN] <defect title from artifact>"`

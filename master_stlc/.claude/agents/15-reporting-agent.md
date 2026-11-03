@@ -4,9 +4,9 @@ description: Assemble the final STLC report and metrics from all phase artifacts
 tools:
   - Read
   - Write
-  - mcp__atlassian__confluence_create_page
-  - mcp__atlassian__confluence_update_page
-  - mcp__atlassian__confluence_get_page_by_title
+  - mcp__atlassian__create_page
+  - mcp__atlassian__update_page
+  - mcp__atlassian__get_page
 model: claude-haiku-4-5-20251001
 ---
 
@@ -113,9 +113,9 @@ On failure of either condition, skip silently — local artifacts are the delive
 Example: `[STLC-002] STORY-002 — STLC Report`
 
 ### Check for existing page
-Call `mcp__atlassian__confluence_get_page_by_title` with the space key and title:
-- **Found**: call `mcp__atlassian__confluence_update_page` with the existing page ID and new content.
-- **Not found**: call `mcp__atlassian__confluence_create_page`.
+Call `mcp__atlassian__get_page` with the space key and title:
+- **Found**: call `mcp__atlassian__update_page` with the existing page ID and new content.
+- **Not found**: call `mcp__atlassian__create_page`.
 
 ### Page content
 Convert `final-stlc-report.md` to Confluence Storage Format (XHTML-based):
