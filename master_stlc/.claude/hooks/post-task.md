@@ -40,7 +40,7 @@ python .claude\scripts\token-usage.py
 ```bash
 python .claude\scripts\html-report-generator.py
 ```
-- Reads `artifacts/reports/final-stlc-report.json` + `artifacts/<story_id>/metrics/agent-metrics.json`
+- Reads `artifacts/<story_id>/reports/final-stlc-report.json` + `artifacts/<story_id>/metrics/agent-metrics.json`
 - Generates `artifacts/<story_id>/reports/stlc-report.html`
 - **Token cost**: Zero (deterministic JSON processing)
 

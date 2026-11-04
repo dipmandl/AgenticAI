@@ -1,0 +1,255 @@
+{
+  "source": "C:\\Users\\DipakMandlik\\.claude\\projects\\C--Users-DipakMandlik-Desktop-AgenticAI-Final-implementation-AgenticAI-master-stlc",
+  "per_phase": {
+    "orchestrator": {
+      "input_tokens": 835,
+      "output_tokens": 374220,
+      "cache_creation_input_tokens": 3307143,
+      "cache_read_input_tokens": 37908078,
+      "messages": 551,
+      "invocations": 18
+    },
+    "requirement-analysis": {
+      "input_tokens": 28,
+      "output_tokens": 22961,
+      "cache_creation_input_tokens": 94011,
+      "cache_read_input_tokens": 98563,
+      "messages": 18,
+      "invocations": 4
+    },
+    "repository-discovery": {
+      "input_tokens": 286,
+      "output_tokens": 28203,
+      "cache_creation_input_tokens": 208420,
+      "cache_read_input_tokens": 698767,
+      "messages": 45,
+      "invocations": 3
+    },
+    "automation-review": {
+      "input_tokens": 82,
+      "output_tokens": 65037,
+      "cache_creation_input_tokens": 278210,
+      "cache_read_input_tokens": 2445211,
+      "messages": 72,
+      "invocations": 4
+    },
+    "test-plan": {
+      "input_tokens": 19,
+      "output_tokens": 39172,
+      "cache_creation_input_tokens": 73716,
+      "cache_read_input_tokens": 98519,
+      "messages": 12,
+      "invocations": 3
+    },
+    "automation-generation": {
+      "input_tokens": 181,
+      "output_tokens": 184337,
+      "cache_creation_input_tokens": 710948,
+      "cache_read_input_tokens": 3097255,
+      "messages": 79,
+      "invocations": 6
+    },
+    "test-review": {
+      "input_tokens": 32,
+      "output_tokens": 76505,
+      "cache_creation_input_tokens": 292126,
+      "cache_read_input_tokens": 432243,
+      "messages": 23,
+      "invocations": 4
+    },
+    "execution": {
+      "input_tokens": 250,
+      "output_tokens": 84317,
+      "cache_creation_input_tokens": 329241,
+      "cache_read_input_tokens": 3019722,
+      "messages": 115,
+      "invocations": 8
+    },
+    "impact-analysis": {
+      "input_tokens": 47,
+      "output_tokens": 19684,
+      "cache_creation_input_tokens": 77089,
+      "cache_read_input_tokens": 89274,
+      "messages": 10,
+      "invocations": 3
+    },
+    "manual-test-generation": {
+      "input_tokens": 43,
+      "output_tokens": 127304,
+      "cache_creation_input_tokens": 324694,
+      "cache_read_input_tokens": 877306,
+      "messages": 32,
+      "invocations": 3
+    },
+    "reporting": {
+      "input_tokens": 109,
+      "output_tokens": 32142,
+      "cache_creation_input_tokens": 385516,
+      "cache_read_input_tokens": 492152,
+      "messages": 19,
+      "invocations": 3
+    },
+    "self-healing": {
+      "input_tokens": 60,
+      "output_tokens": 17271,
+      "cache_creation_input_tokens": 120597,
+      "cache_read_input_tokens": 721723,
+      "messages": 30,
+      "invocations": 3
+    },
+    "other": {
+      "input_tokens": 76,
+      "output_tokens": 21172,
+      "cache_creation_input_tokens": 171471,
+      "cache_read_input_tokens": 975395,
+      "messages": 34,
+      "invocations": 2
+    }
+  },
+  "per_agent": {
+    "main-session (orchestrator)": {
+      "input_tokens": 553,
+      "output_tokens": 254568,
+      "cache_creation_input_tokens": 2653643,
+      "cache_read_input_tokens": 32222321,
+      "messages": 364,
+      "invocations": 9
+    },
+    "stlc-orchestrator": {
+      "input_tokens": 282,
+      "output_tokens": 119652,
+      "cache_creation_input_tokens": 653500,
+      "cache_read_input_tokens": 5685757,
+      "messages": 187,
+      "invocations": 9
+    },
+    "requirement-analysis-agent": {
+      "input_tokens": 28,
+      "output_tokens": 22961,
+      "cache_creation_input_tokens": 94011,
+      "cache_read_input_tokens": 98563,
+      "messages": 18,
+      "invocations": 4
+    },
+    "repository-discovery-agent": {
+      "input_tokens": 286,
+      "output_tokens": 28203,
+      "cache_creation_input_tokens": 208420,
+      "cache_read_input_tokens": 698767,
+      "messages": 45,
+      "invocations": 3
+    },
+    "automation-review-agent": {
+      "input_tokens": 82,
+      "output_tokens": 65037,
+      "cache_creation_input_tokens": 278210,
+      "cache_read_input_tokens": 2445211,
+      "messages": 72,
+      "invocations": 4
+    },
+    "test-planning-agent": {
+      "input_tokens": 19,
+      "output_tokens": 39172,
+      "cache_creation_input_tokens": 73716,
+      "cache_read_input_tokens": 98519,
+      "messages": 12,
+      "invocations": 3
+    },
+    "framework-selection-agent": {
+      "input_tokens": 108,
+      "output_tokens": 12068,
+      "cache_creation_input_tokens": 207282,
+      "cache_read_input_tokens": 222330,
+      "messages": 20,
+      "invocations": 3
+    },
+    "test-review-agent": {
+      "input_tokens": 32,
+      "output_tokens": 76505,
+      "cache_creation_input_tokens": 292126,
+      "cache_read_input_tokens": 432243,
+      "messages": 23,
+      "invocations": 4
+    },
+    "execution-agent": {
+      "input_tokens": 188,
+      "output_tokens": 58722,
+      "cache_creation_input_tokens": 204364,
+      "cache_read_input_tokens": 2692432,
+      "messages": 94,
+      "invocations": 4
+    },
+    "impact-analysis-agent": {
+      "input_tokens": 47,
+      "output_tokens": 19684,
+      "cache_creation_input_tokens": 77089,
+      "cache_read_input_tokens": 89274,
+      "messages": 10,
+      "invocations": 3
+    },
+    "automation-generation-agent": {
+      "input_tokens": 73,
+      "output_tokens": 172269,
+      "cache_creation_input_tokens": 503666,
+      "cache_read_input_tokens": 2874925,
+      "messages": 59,
+      "invocations": 3
+    },
+    "manual-test-generation-agent": {
+      "input_tokens": 43,
+      "output_tokens": 127304,
+      "cache_creation_input_tokens": 324694,
+      "cache_read_input_tokens": 877306,
+      "messages": 32,
+      "invocations": 3
+    },
+    "failure-analysis-agent": {
+      "input_tokens": 30,
+      "output_tokens": 17965,
+      "cache_creation_input_tokens": 72883,
+      "cache_read_input_tokens": 238668,
+      "messages": 15,
+      "invocations": 3
+    },
+    "reporting-agent": {
+      "input_tokens": 109,
+      "output_tokens": 32142,
+      "cache_creation_input_tokens": 385516,
+      "cache_read_input_tokens": 492152,
+      "messages": 19,
+      "invocations": 3
+    },
+    "self-healing-agent": {
+      "input_tokens": 60,
+      "output_tokens": 17271,
+      "cache_creation_input_tokens": 120597,
+      "cache_read_input_tokens": 721723,
+      "messages": 30,
+      "invocations": 3
+    },
+    "general-purpose": {
+      "input_tokens": 33,
+      "output_tokens": 17045,
+      "cache_creation_input_tokens": 85401,
+      "cache_read_input_tokens": 907942,
+      "messages": 27,
+      "invocations": 1
+    },
+    "pr-generation-agent": {
+      "input_tokens": 43,
+      "output_tokens": 4127,
+      "cache_creation_input_tokens": 86070,
+      "cache_read_input_tokens": 67453,
+      "messages": 7,
+      "invocations": 1
+    },
+    "defect-analysis-agent": {
+      "input_tokens": 32,
+      "output_tokens": 7630,
+      "cache_creation_input_tokens": 51994,
+      "cache_read_input_tokens": 88622,
+      "messages": 6,
+      "invocations": 1
+    }
+  }
+}

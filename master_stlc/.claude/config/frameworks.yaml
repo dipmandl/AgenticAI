@@ -24,8 +24,8 @@ frameworks:
     file_name_examples:
       - "test_form_submission.py"
       - "test_form_validation.py"
-      - "test_form_boundary.py"
-      - "test_form_regression.py"
+      - "test_form_edit.py"
+      - "test_form_create.py"
 
   behave:
     label: "Behave"
@@ -52,8 +52,8 @@ frameworks:
     file_naming: "feature-based"
     file_name_examples:
       - "form-submission.spec.ts"
-      - "form-validation.spec.ts"
-      - "form-boundary.spec.ts"
+      - "form-edit.spec.ts"
+      - "form-create.spec.ts"
 
   selenium:
     label: "Selenium"
@@ -79,8 +79,8 @@ frameworks:
     documentation: "JavaScript E2E automation framework with real-time browser feedback"
     file_naming: "feature-based"
     file_name_examples:
-      - "form-submission.cy.js"
-      - "form-validation.cy.js"
+      - "form-create.cy.js"
+      - "form-edit.cy.js"
 
   api:
     label: "API Automation"

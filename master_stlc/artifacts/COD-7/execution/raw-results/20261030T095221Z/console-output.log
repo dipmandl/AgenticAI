@@ -1,0 +1,2298 @@
+
+Running 51 tests using 1 worker
+
+  ✓   1 [chromium] › tests\boundary\edit-boundary.spec.ts:28:7 › Boundary scenarios (TC-028 to TC-039) › TC-028 @REQ-002 @REQ-006 @boundary @high Edit all 7 fields then Save persists every change (457ms)
+  ✓   2 [chromium] › tests\boundary\edit-boundary.spec.ts:65:7 › Boundary scenarios (TC-028 to TC-039) › TC-029 @REQ-006 @boundary @medium Edit exactly one field; all others remain intact (254ms)
+  ✓   3 [chromium] › tests\boundary\edit-boundary.spec.ts:83:7 › Boundary scenarios (TC-028 to TC-039) › TC-030 @REQ-002 @REQ-003 @boundary @medium Edit with teamName cleared shows validation error and does not save (284ms)
+  ✓   4 [chromium] › tests\boundary\edit-boundary.spec.ts:104:7 › Boundary scenarios (TC-028 to TC-039) › TC-031 @REQ-002 @boundary @medium Edit with minimum single-character values in all mandatory fields succeeds (341ms)
+  ✓   5 [chromium] › tests\boundary\edit-boundary.spec.ts:127:7 › Boundary scenarios (TC-028 to TC-039) › TC-032 @REQ-002 @REQ-009 @boundary @high Edit then Cancel then re-Edit shows original unchanged values (354ms)
+  ✓   6 [chromium] › tests\boundary\edit-boundary.spec.ts:140:7 › Boundary scenarios (TC-028 to TC-039) › TC-033 @REQ-002 @boundary @high Edit card A then Cancel then Edit card B shows only card B values (407ms)
+  -   7 [chromium] › tests\boundary\edit-boundary.spec.ts:160:8 › Boundary scenarios (TC-028 to TC-039) › TC-034 @REQ-003 @boundary @low @manual_only Edit title/description with 500-char text does not crash
+  -   8 [chromium] › tests\boundary\edit-boundary.spec.ts:166:8 › Boundary scenarios (TC-028 to TC-039) › TC-035 @REQ-003 @boundary @low @manual_only Edit text fields with special characters are stored and rendered safely
+  ✓   9 [chromium] › tests\boundary\edit-boundary.spec.ts:171:7 › Boundary scenarios (TC-028 to TC-039) › TC-036 @REQ-002 @REQ-006 @boundary @high Toggle isBreaking from true to false and Save persists the change (1.2s)
+  ✓  10 [chromium] › tests\boundary\edit-boundary.spec.ts:192:7 › Boundary scenarios (TC-028 to TC-039) › TC-037 @REQ-002 @REQ-006 @boundary @high Toggle isBreaking from false to true and Save persists the change (1.2s)
+  ✓  11 [chromium] › tests\boundary\edit-boundary.spec.ts:211:7 › Boundary scenarios (TC-028 to TC-039) › TC-038 @REQ-012 @boundary @medium Edit operates correctly when the list contains exactly one entry (391ms)
+  ✓  12 [chromium] › tests\boundary\edit-boundary.spec.ts:229:7 › Boundary scenarios (TC-028 to TC-039) › TC-039 @REQ-010 @boundary @medium Edit with no filters active leaves filter controls cleared after Save (306ms)
+  ✓  13 [chromium] › tests\negative\edit-negative.spec.ts:22:7 › Negative scenarios (TC-019 to TC-027) › TC-019 @REQ-009 @negative @high Cancel without modifying any field leaves list and localStorage unchanged (1.1s)
+  ✓  14 [chromium] › tests\negative\edit-negative.spec.ts:45:7 › Negative scenarios (TC-019 to TC-027) › TC-020 @REQ-004 @negative @high Save with teamName cleared shows validation error and preserves edit state (296ms)
+  ✓  15 [chromium] › tests\negative\edit-negative.spec.ts:69:7 › Negative scenarios (TC-019 to TC-027) › TC-021 @REQ-004 @negative @high Save with title cleared shows validation error (283ms)
+  ✓  16 [chromium] › tests\negative\edit-negative.spec.ts:88:7 › Negative scenarios (TC-019 to TC-027) › TC-022 @REQ-004 @negative @high Save with product cleared shows validation error (267ms)
+  ✓  17 [chromium] › tests\negative\edit-negative.spec.ts:104:7 › Negative scenarios (TC-019 to TC-027) › TC-023 @REQ-004 @negative @high Save with version cleared shows validation error (271ms)
+  ✓  18 [chromium] › tests\negative\edit-negative.spec.ts:120:7 › Negative scenarios (TC-019 to TC-027) › TC-024 @REQ-004 @negative @high Save with releaseDate cleared shows validation error (669ms)
+  -  19 [chromium] › tests\negative\edit-negative.spec.ts:138:8 › Negative scenarios (TC-019 to TC-027) › TC-025 @REQ-006 @negative @high @manual_only Calling startEdit with a non-existent id does not crash the application
+  ✓  20 [chromium] › tests\negative\edit-negative.spec.ts:143:7 › Negative scenarios (TC-019 to TC-027) › TC-026 @REQ-002 @negative @medium Clicking Edit on card B while card A is in edit mode replaces form with card B values (666ms)
+  ✓  21 [chromium] › tests\negative\edit-negative.spec.ts:163:7 › Negative scenarios (TC-019 to TC-027) › TC-027 @REQ-005 @REQ-009 @negative @high Cancel after a validation failure exits edit mode cleanly (361ms)
+  ✓  22 [chromium] › tests\positive\edit-positive.spec.ts:35:7 › Edit button and edit-mode UI (TC-001 to TC-006) › TC-001 @REQ-001 @positive @high Edit button is visible on every rendered release card (317ms)
+  ✓  23 [chromium] › tests\positive\edit-positive.spec.ts:44:7 › Edit button and edit-mode UI (TC-001 to TC-006) › TC-002 @REQ-002 @positive @critical Clicking Edit pre-fills all 7 form fields with the release data (372ms)
+  ✓  24 [chromium] › tests\positive\edit-positive.spec.ts:56:7 › Edit button and edit-mode UI (TC-001 to TC-006) › TC-003 @REQ-002 @positive @high isBreaking checkbox pre-fills as checked for a breaking release (225ms)
+  ✓  25 [chromium] › tests\positive\edit-positive.spec.ts:61:7 › Edit button and edit-mode UI (TC-001 to TC-006) › TC-004 @REQ-002 @positive @high isBreaking checkbox pre-fills as unchecked for a non-breaking release (242ms)
+  ✓  26 [chromium] › tests\positive\edit-positive.spec.ts:66:7 › Edit button and edit-mode UI (TC-001 to TC-006) › TC-005 @REQ-004 @positive @high Submit button label changes to "Update Release Note" in edit mode (346ms)
+  ✓  27 [chromium] › tests\positive\edit-positive.spec.ts:74:7 › Edit button and edit-mode UI (TC-001 to TC-006) › TC-006 @REQ-005 @positive @high Cancel Edit button becomes visible when edit mode is active (275ms)
+  ✓  28 [chromium] › tests\positive\edit-positive.spec.ts:93:7 › Save updates the correct entry (TC-007 to TC-011) › TC-007 @REQ-006 @positive @critical Save updates the specific release by its id (358ms)
+  ✓  29 [chromium] › tests\positive\edit-positive.spec.ts:109:7 › Save updates the correct entry (TC-007 to TC-011) › TC-008 @REQ-006 @positive @critical Save does not create a duplicate entry (321ms)
+  ✓  30 [chromium] › tests\positive\edit-positive.spec.ts:122:7 › Save updates the correct entry (TC-007 to TC-011) › TC-009 @REQ-006 @positive @high Save does not modify any other release entries (299ms)
+  ✓  31 [chromium] › tests\positive\edit-positive.spec.ts:134:7 › Save updates the correct entry (TC-007 to TC-011) › TC-010 @REQ-007 @positive @critical Updated release is persisted to localStorage after Save (362ms)
+  ✓  32 [chromium] › tests\positive\edit-positive.spec.ts:146:7 › Save updates the correct entry (TC-007 to TC-011) › TC-011 @REQ-008 @positive @high Release list re-renders immediately with updated values after Save (362ms)
+  ✓  33 [chromium] › tests\positive\edit-positive.spec.ts:166:7 › Cancel discards changes (TC-012 to TC-013) › TC-012 @REQ-009 @positive @critical Cancel discards in-progress changes and rendered list is unchanged (316ms)
+  ✓  34 [chromium] › tests\positive\edit-positive.spec.ts:186:7 › Cancel discards changes (TC-012 to TC-013) › TC-013 @REQ-009 @positive @high Cancel leaves localStorage unchanged (400ms)
+  ✓  35 [chromium] › tests\positive\edit-positive.spec.ts:208:7 › Filters remain applied after Save and Cancel (TC-014 to TC-015) › TC-014 @REQ-010 @positive @critical All active filters remain applied after Save (916ms)
+  ✓  36 [chromium] › tests\positive\edit-positive.spec.ts:241:7 › Filters remain applied after Save and Cancel (TC-014 to TC-015) › TC-015 @REQ-011 @positive @high All active filters remain applied after Cancel (880ms)
+  ✓  37 [chromium] › tests\positive\edit-positive.spec.ts:266:7 › Edit operates correctly at any list position (TC-016 to TC-018) › TC-016 @REQ-012 @positive @medium Edit operates correctly on the first card in the list (301ms)
+  ✓  38 [chromium] › tests\positive\edit-positive.spec.ts:282:7 › Edit operates correctly at any list position (TC-016 to TC-018) › TC-017 @REQ-012 @positive @medium Edit operates correctly on the last card in the list (308ms)
+  ✓  39 [chromium] › tests\positive\edit-positive.spec.ts:297:7 › Edit operates correctly at any list position (TC-016 to TC-018) › TC-018 @REQ-012 @positive @medium Edit operates correctly on a middle card in the list (324ms)
+  ✓  40 [chromium] › tests\regression\edit-regression.spec.ts:41:7 › Regression scenarios (TC-040 to TC-051) › TC-040 @REQ-006 @regression @high Create new release still works after Edit and Save (509ms)
+  ✓  41 [chromium] › tests\regression\edit-regression.spec.ts:75:7 › Regression scenarios (TC-040 to TC-051) › TC-041 @REQ-009 @regression @high Create new release still works after Edit and Cancel (601ms)
+  ✓  42 [chromium] › tests\regression\edit-regression.spec.ts:109:7 › Regression scenarios (TC-040 to TC-051) › TC-042 @REQ-006 @regression @high Delete a different release still works after Edit and Save (589ms)
+  ✓  43 [chromium] › tests\regression\edit-regression.spec.ts:138:7 › Regression scenarios (TC-040 to TC-051) › TC-043 @REQ-009 @regression @high Deleting the release currently in edit mode resets edit state (1.0s)
+  ✓  44 [chromium] › tests\regression\edit-regression.spec.ts:170:7 › Regression scenarios (TC-040 to TC-051) › TC-044 @REQ-010 @regression @high Product filter functions correctly before and after Edit and Save (787ms)
+  ✓  45 [chromium] › tests\regression\edit-regression.spec.ts:199:7 › Regression scenarios (TC-040 to TC-051) › TC-045 @REQ-010 @regression @high Breaking-change filter functions correctly after Edit and Save (780ms)
+  ✓  46 [chromium] › tests\regression\edit-regression.spec.ts:227:7 › Regression scenarios (TC-040 to TC-051) › TC-046 @REQ-010 @regression @high Keyword search filter functions correctly after Edit and Save (641ms)
+  ✓  47 [chromium] › tests\regression\edit-regression.spec.ts:262:7 › Regression scenarios (TC-040 to TC-051) › TC-047 @REQ-010 @regression @high Multi-filter combination persists correctly after Edit and Save (822ms)
+  ✓  48 [chromium] › tests\regression\edit-regression.spec.ts:293:7 › Regression scenarios (TC-040 to TC-051) › TC-048 @REQ-007 @regression @high Edited values persist after a full page reload (427ms)
+  -  49 [chromium] › tests\regression\edit-regression.spec.ts:311:8 › Regression scenarios (TC-040 to TC-051) › TC-049 @REQ-007 @regression @medium @manual_only Export CSV contains updated values after Edit and Save
+  -  50 [chromium] › tests\regression\edit-regression.spec.ts:317:8 › Regression scenarios (TC-040 to TC-051) › TC-050 @REQ-009 @regression @medium @manual_only Importing JSON while in edit mode resets edit state
+  ✓  51 [chromium] › tests\regression\edit-regression.spec.ts:322:7 › Regression scenarios (TC-040 to TC-051) › TC-051 @REQ-006 @regression @high Form in create mode creates a new entry and does not trigger an update (325ms)
+
+  5 skipped
+  46 passed (24.5s)
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\DipakMandlik\\Desktop\\AgenticAI\\Final_implementation\\AgenticAI\\master_stlc\\product_release_dashboard\\automation\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--reporter=list,json"
+    ],
+    "configFile": "C:\\Users\\DipakMandlik\\Desktop\\AgenticAI\\Final_implementation\\AgenticAI\\master_stlc\\product_release_dashboard\\automation\\playwright.config.ts",
+    "rootDir": "C:/Users/DipakMandlik/Desktop/AgenticAI/Final_implementation/AgenticAI/master_stlc/product_release_dashboard/automation/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/DipakMandlik/Desktop/AgenticAI/Final_implementation/AgenticAI/master_stlc/product_release_dashboard/automation/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "C:/Users/DipakMandlik/Desktop/AgenticAI/Final_implementation/AgenticAI/master_stlc/product_release_dashboard/automation/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "C:\\Users\\DipakMandlik\\Desktop\\AgenticAI\\Final_implementation\\AgenticAI\\master_stlc\\product_release_dashboard\\automation\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium",
+        "testDir": "C:\\Users\\DipakMandlik\\Desktop\\AgenticAI\\Final_implementation\\AgenticAI\\master_stlc\\product_release_dashboard\\automation\\tests",
+        "snapshotDir": "C:\\Users\\DipakMandlik\\Desktop\\AgenticAI\\Final_implementation\\AgenticAI\\master_stlc\\product_release_dashboard\\automation\\tests",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "file://C:\\Users\\DipakMandlik\\Desktop\\AgenticAI\\Final_implementation\\AgenticAI\\master_stlc\\product_release_dashboard\\index.html",
+          "headless": true,
+          "actionTimeout": 10000,
+          "navigationTimeout": 15000,
+          "browserName": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "boundary\\edit-boundary.spec.ts",
+      "file": "boundary/edit-boundary.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Boundary scenarios (TC-028 to TC-039)",
+          "file": "boundary/edit-boundary.spec.ts",
+          "line": 22,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-028 @REQ-002 @REQ-006 @boundary @high Edit all 7 fields then Save persists every change",
+              "ok": true,
+              "tags": [
+                "REQ-002",
+                "REQ-006",
+                "boundary",
+                "high"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 457,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:37.065Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "467edc3657d17774a2e7-73cf988e1f51077b7251",
+              "file": "boundary/edit-boundary.spec.ts",
+              "line": 28,
+              "column": 7
+            },
+            {
+              "title": "TC-029 @REQ-006 @boundary @medium Edit exactly one field; all others remain intact",
+              "ok": true,
+              "tags": [
+                "REQ-006",
+                "boundary",
+                "medium"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 254,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:37.702Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "467edc3657d17774a2e7-6a3f4727f1eec52f713e",
+              "file": "boundary/edit-boundary.spec.ts",
+              "line": 65,
+              "column": 7
+            },
+            {
+              "title": "TC-030 @REQ-002 @REQ-003 @boundary @medium Edit with teamName cleared shows validation error and does not save",
+              "ok": true,
+              "tags": [
+                "REQ-002",
+                "REQ-003",
+                "boundary",
+                "medium"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 284,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:37.969Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "467edc3657d17774a2e7-d640a57d6aed8168bc67",
+              "file": "boundary/edit-boundary.spec.ts",
+              "line": 83,
+              "column": 7
+            },
+            {
+              "title": "TC-031 @REQ-002 @boundary @medium Edit with minimum single-character values in all mandatory fields succeeds",
+              "ok": true,
+              "tags": [
+                "REQ-002",
+                "boundary",
+                "medium"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 341,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:38.261Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "467edc3657d17774a2e7-c9c3e8cade188288d633",
+              "file": "boundary/edit-boundary.spec.ts",
+              "line": 104,
+              "column": 7
+            },
+            {
+              "title": "TC-032 @REQ-002 @REQ-009 @boundary @high Edit then Cancel then re-Edit shows original unchanged values",
+              "ok": true,
+              "tags": [
+                "REQ-002",
+                "REQ-009",
+                "boundary",
+                "high"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 354,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:38.612Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "467edc3657d17774a2e7-b057bcfbb7012ec7bcc2",
+              "file": "boundary/edit-boundary.spec.ts",
+              "line": 127,
+              "column": 7
+            },
+            {
+              "title": "TC-033 @REQ-002 @boundary @high Edit card A then Cancel then Edit card B shows only card B values",
+              "ok": true,
+              "tags": [
+                "REQ-002",
+                "boundary",
+                "high"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 407,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:38.986Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "467edc3657d17774a2e7-b17f5b7afb9c319d834b",
+              "file": "boundary/edit-boundary.spec.ts",
+              "line": 140,
+              "column": 7
+            },
+            {
+              "title": "TC-034 @REQ-003 @boundary @low @manual_only Edit title/description with 500-char text does not crash",
+              "ok": true,
+              "tags": [
+                "REQ-003",
+                "boundary",
+                "low",
+                "manual_only"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "C:\\Users\\DipakMandlik\\Desktop\\AgenticAI\\Final_implementation\\AgenticAI\\master_stlc\\product_release_dashboard\\automation\\tests\\boundary\\edit-boundary.spec.ts",
+                        "line": 160,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:39.418Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "location": {
+                            "file": "C:\\Users\\DipakMandlik\\Desktop\\AgenticAI\\Final_implementation\\AgenticAI\\master_stlc\\product_release_dashboard\\automation\\tests\\boundary\\edit-boundary.spec.ts",
+                            "line": 160,
+                            "column": 8
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "467edc3657d17774a2e7-dc9d18af3bf423440dc9",
+              "file": "boundary/edit-boundary.spec.ts",
+              "line": 160,
+              "column": 8
+            },
+            {
+              "title": "TC-035 @REQ-003 @boundary @low @manual_only Edit text fields with special characters are stored and rendered safely",
+              "ok": true,
+              "tags": [
+                "REQ-003",
+                "boundary",
+                "low",
+                "manual_only"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "C:\\Users\\DipakMandlik\\Desktop\\AgenticAI\\Final_implementation\\AgenticAI\\master_stlc\\product_release_dashboard\\automation\\tests\\boundary\\edit-boundary.spec.ts",
+                        "line": 166,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:39.419Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "location": {
+                            "file": "C:\\Users\\DipakMandlik\\Desktop\\AgenticAI\\Final_implementation\\AgenticAI\\master_stlc\\product_release_dashboard\\automation\\tests\\boundary\\edit-boundary.spec.ts",
+                            "line": 166,
+                            "column": 8
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "467edc3657d17774a2e7-a79dbb94911df374be78",
+              "file": "boundary/edit-boundary.spec.ts",
+              "line": 166,
+              "column": 8
+            },
+            {
+              "title": "TC-036 @REQ-002 @REQ-006 @boundary @high Toggle isBreaking from true to false and Save persists the change",
+              "ok": true,
+              "tags": [
+                "REQ-002",
+                "REQ-006",
+                "boundary",
+                "high"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1227,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:39.419Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "467edc3657d17774a2e7-cb1c10c246d7bf33a2aa",
+              "file": "boundary/edit-boundary.spec.ts",
+              "line": 171,
+              "column": 7
+            },
+            {
+              "title": "TC-037 @REQ-002 @REQ-006 @boundary @high Toggle isBreaking from false to true and Save persists the change",
+              "ok": true,
+              "tags": [
+                "REQ-002",
+                "REQ-006",
+                "boundary",
+                "high"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1179,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:40.675Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "467edc3657d17774a2e7-b87a8f2a0661a44d8470",
+              "file": "boundary/edit-boundary.spec.ts",
+              "line": 192,
+              "column": 7
+            },
+            {
+              "title": "TC-038 @REQ-012 @boundary @medium Edit operates correctly when the list contains exactly one entry",
+              "ok": true,
+              "tags": [
+                "REQ-012",
+                "boundary",
+                "medium"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 391,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:41.869Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "467edc3657d17774a2e7-706ee8de5557411e17d2",
+              "file": "boundary/edit-boundary.spec.ts",
+              "line": 211,
+              "column": 7
+            },
+            {
+              "title": "TC-039 @REQ-010 @boundary @medium Edit with no filters active leaves filter controls cleared after Save",
+              "ok": true,
+              "tags": [
+                "REQ-010",
+                "boundary",
+                "medium"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 306,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:42.275Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "467edc3657d17774a2e7-7b337c7cf7391b0da058",
+              "file": "boundary/edit-boundary.spec.ts",
+              "line": 229,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "negative\\edit-negative.spec.ts",
+      "file": "negative/edit-negative.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Negative scenarios (TC-019 to TC-027)",
+          "file": "negative/edit-negative.spec.ts",
+          "line": 16,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-019 @REQ-009 @negative @high Cancel without modifying any field leaves list and localStorage unchanged",
+              "ok": true,
+              "tags": [
+                "REQ-009",
+                "negative",
+                "high"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1128,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:42.596Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "17c4199f333955d2d88b-934cc3330904d9fa3e93",
+              "file": "negative/edit-negative.spec.ts",
+              "line": 22,
+              "column": 7
+            },
+            {
+              "title": "TC-020 @REQ-004 @negative @high Save with teamName cleared shows validation error and preserves edit state",
+              "ok": true,
+              "tags": [
+                "REQ-004",
+                "negative",
+                "high"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 296,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:43.735Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "17c4199f333955d2d88b-64fa0cf7ce5713bb5afd",
+              "file": "negative/edit-negative.spec.ts",
+              "line": 45,
+              "column": 7
+            },
+            {
+              "title": "TC-021 @REQ-004 @negative @high Save with title cleared shows validation error",
+              "ok": true,
+              "tags": [
+                "REQ-004",
+                "negative",
+                "high"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 283,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:44.051Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "17c4199f333955d2d88b-f28fa86e25638bf91083",
+              "file": "negative/edit-negative.spec.ts",
+              "line": 69,
+              "column": 7
+            },
+            {
+              "title": "TC-022 @REQ-004 @negative @high Save with product cleared shows validation error",
+              "ok": true,
+              "tags": [
+                "REQ-004",
+                "negative",
+                "high"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 267,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:44.352Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "17c4199f333955d2d88b-03133426c649e09f58cb",
+              "file": "negative/edit-negative.spec.ts",
+              "line": 88,
+              "column": 7
+            },
+            {
+              "title": "TC-023 @REQ-004 @negative @high Save with version cleared shows validation error",
+              "ok": true,
+              "tags": [
+                "REQ-004",
+                "negative",
+                "high"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 271,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:44.641Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "17c4199f333955d2d88b-b22dd854c2d98433b800",
+              "file": "negative/edit-negative.spec.ts",
+              "line": 104,
+              "column": 7
+            },
+            {
+              "title": "TC-024 @REQ-004 @negative @high Save with releaseDate cleared shows validation error",
+              "ok": true,
+              "tags": [
+                "REQ-004",
+                "negative",
+                "high"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 669,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:44.926Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "17c4199f333955d2d88b-ada4f58df5503666fb67",
+              "file": "negative/edit-negative.spec.ts",
+              "line": 120,
+              "column": 7
+            },
+            {
+              "title": "TC-025 @REQ-006 @negative @high @manual_only Calling startEdit with a non-existent id does not crash the application",
+              "ok": true,
+              "tags": [
+                "REQ-006",
+                "negative",
+                "high",
+                "manual_only"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "C:\\Users\\DipakMandlik\\Desktop\\AgenticAI\\Final_implementation\\AgenticAI\\master_stlc\\product_release_dashboard\\automation\\tests\\negative\\edit-negative.spec.ts",
+                        "line": 138,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:45.619Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "location": {
+                            "file": "C:\\Users\\DipakMandlik\\Desktop\\AgenticAI\\Final_implementation\\AgenticAI\\master_stlc\\product_release_dashboard\\automation\\tests\\negative\\edit-negative.spec.ts",
+                            "line": 138,
+                            "column": 8
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "17c4199f333955d2d88b-3a0aec59ed207b8122a1",
+              "file": "negative/edit-negative.spec.ts",
+              "line": 138,
+              "column": 8
+            },
+            {
+              "title": "TC-026 @REQ-002 @negative @medium Clicking Edit on card B while card A is in edit mode replaces form with card B values",
+              "ok": true,
+              "tags": [
+                "REQ-002",
+                "negative",
+                "medium"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 666,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:45.620Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "17c4199f333955d2d88b-704228f1197613d60c07",
+              "file": "negative/edit-negative.spec.ts",
+              "line": 143,
+              "column": 7
+            },
+            {
+              "title": "TC-027 @REQ-005 @REQ-009 @negative @high Cancel after a validation failure exits edit mode cleanly",
+              "ok": true,
+              "tags": [
+                "REQ-005",
+                "REQ-009",
+                "negative",
+                "high"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 361,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:46.315Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "17c4199f333955d2d88b-7dca02a5434909efe698",
+              "file": "negative/edit-negative.spec.ts",
+              "line": 163,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "positive\\edit-positive.spec.ts",
+      "file": "positive/edit-positive.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Edit button and edit-mode UI (TC-001 to TC-006)",
+          "file": "positive/edit-positive.spec.ts",
+          "line": 30,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-001 @REQ-001 @positive @high Edit button is visible on every rendered release card",
+              "ok": true,
+              "tags": [
+                "REQ-001",
+                "positive",
+                "high"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 317,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:46.720Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b95b5901474baf0d6c16-02559029f6b1c3370214",
+              "file": "positive/edit-positive.spec.ts",
+              "line": 35,
+              "column": 7
+            },
+            {
+              "title": "TC-002 @REQ-002 @positive @critical Clicking Edit pre-fills all 7 form fields with the release data",
+              "ok": true,
+              "tags": [
+                "REQ-002",
+                "positive",
+                "critical"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 372,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:47.073Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b95b5901474baf0d6c16-2c0cbf59063638f5fd07",
+              "file": "positive/edit-positive.spec.ts",
+              "line": 44,
+              "column": 7
+            },
+            {
+              "title": "TC-003 @REQ-002 @positive @high isBreaking checkbox pre-fills as checked for a breaking release",
+              "ok": true,
+              "tags": [
+                "REQ-002",
+                "positive",
+                "high"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 225,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:47.486Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b95b5901474baf0d6c16-924f6ddf7860d8d4ed4a",
+              "file": "positive/edit-positive.spec.ts",
+              "line": 56,
+              "column": 7
+            },
+            {
+              "title": "TC-004 @REQ-002 @positive @high isBreaking checkbox pre-fills as unchecked for a non-breaking release",
+              "ok": true,
+              "tags": [
+                "REQ-002",
+                "positive",
+                "high"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 242,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:47.741Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b95b5901474baf0d6c16-f12c3a3f4ec93728a477",
+              "file": "positive/edit-positive.spec.ts",
+              "line": 61,
+              "column": 7
+            },
+            {
+              "title": "TC-005 @REQ-004 @positive @high Submit button label changes to \"Update Release Note\" in edit mode",
+              "ok": true,
+              "tags": [
+                "REQ-004",
+                "positive",
+                "high"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 346,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:48.012Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b95b5901474baf0d6c16-4964d96edc83251c9180",
+              "file": "positive/edit-positive.spec.ts",
+              "line": 66,
+              "column": 7
+            },
+            {
+              "title": "TC-006 @REQ-005 @positive @high Cancel Edit button becomes visible when edit mode is active",
+              "ok": true,
+              "tags": [
+                "REQ-005",
+                "positive",
+                "high"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 275,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:48.394Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b95b5901474baf0d6c16-83e222cd79d1dae0dc23",
+              "file": "positive/edit-positive.spec.ts",
+              "line": 74,
+              "column": 7
+            }
+          ]
+        },
+        {
+          "title": "Save updates the correct entry (TC-007 to TC-011)",
+          "file": "positive/edit-positive.spec.ts",
+          "line": 88,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-007 @REQ-006 @positive @critical Save updates the specific release by its id",
+              "ok": true,
+              "tags": [
+                "REQ-006",
+                "positive",
+                "critical"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 358,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:48.687Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b95b5901474baf0d6c16-468e40f526b0d7bbab6d",
+              "file": "positive/edit-positive.spec.ts",
+              "line": 93,
+              "column": 7
+            },
+            {
+              "title": "TC-008 @REQ-006 @positive @critical Save does not create a duplicate entry",
+              "ok": true,
+              "tags": [
+                "REQ-006",
+                "positive",
+                "critical"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 321,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:49.063Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b95b5901474baf0d6c16-10ad2c5ff3b2b229cc63",
+              "file": "positive/edit-positive.spec.ts",
+              "line": 109,
+              "column": 7
+            },
+            {
+              "title": "TC-009 @REQ-006 @positive @high Save does not modify any other release entries",
+              "ok": true,
+              "tags": [
+                "REQ-006",
+                "positive",
+                "high"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 299,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:49.404Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b95b5901474baf0d6c16-9d266706b912118e956d",
+              "file": "positive/edit-positive.spec.ts",
+              "line": 122,
+              "column": 7
+            },
+            {
+              "title": "TC-010 @REQ-007 @positive @critical Updated release is persisted to localStorage after Save",
+              "ok": true,
+              "tags": [
+                "REQ-007",
+                "positive",
+                "critical"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 362,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:49.729Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b95b5901474baf0d6c16-47b7cb5c7948df69371f",
+              "file": "positive/edit-positive.spec.ts",
+              "line": 134,
+              "column": 7
+            },
+            {
+              "title": "TC-011 @REQ-008 @positive @high Release list re-renders immediately with updated values after Save",
+              "ok": true,
+              "tags": [
+                "REQ-008",
+                "positive",
+                "high"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 362,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:50.120Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b95b5901474baf0d6c16-79847b5bb20695954e55",
+              "file": "positive/edit-positive.spec.ts",
+              "line": 146,
+              "column": 7
+            }
+          ]
+        },
+        {
+          "title": "Cancel discards changes (TC-012 to TC-013)",
+          "file": "positive/edit-positive.spec.ts",
+          "line": 161,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-012 @REQ-009 @positive @critical Cancel discards in-progress changes and rendered list is unchanged",
+              "ok": true,
+              "tags": [
+                "REQ-009",
+                "positive",
+                "critical"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 316,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:50.510Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b95b5901474baf0d6c16-1ab4608567a471d70220",
+              "file": "positive/edit-positive.spec.ts",
+              "line": 166,
+              "column": 7
+            },
+            {
+              "title": "TC-013 @REQ-009 @positive @high Cancel leaves localStorage unchanged",
+              "ok": true,
+              "tags": [
+                "REQ-009",
+                "positive",
+                "high"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 400,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:50.851Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b95b5901474baf0d6c16-a570e667575466d8c58a",
+              "file": "positive/edit-positive.spec.ts",
+              "line": 186,
+              "column": 7
+            }
+          ]
+        },
+        {
+          "title": "Filters remain applied after Save and Cancel (TC-014 to TC-015)",
+          "file": "positive/edit-positive.spec.ts",
+          "line": 203,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-014 @REQ-010 @positive @critical All active filters remain applied after Save",
+              "ok": true,
+              "tags": [
+                "REQ-010",
+                "positive",
+                "critical"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 916,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:51.281Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b95b5901474baf0d6c16-ff93a3415ac5ed8b25ce",
+              "file": "positive/edit-positive.spec.ts",
+              "line": 208,
+              "column": 7
+            },
+            {
+              "title": "TC-015 @REQ-011 @positive @high All active filters remain applied after Cancel",
+              "ok": true,
+              "tags": [
+                "REQ-011",
+                "positive",
+                "high"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 880,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:52.218Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b95b5901474baf0d6c16-120b68ce0a8884a3ec6a",
+              "file": "positive/edit-positive.spec.ts",
+              "line": 241,
+              "column": 7
+            }
+          ]
+        },
+        {
+          "title": "Edit operates correctly at any list position (TC-016 to TC-018)",
+          "file": "positive/edit-positive.spec.ts",
+          "line": 261,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-016 @REQ-012 @positive @medium Edit operates correctly on the first card in the list",
+              "ok": true,
+              "tags": [
+                "REQ-012",
+                "positive",
+                "medium"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 301,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:53.130Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b95b5901474baf0d6c16-73ca52a5ceda2f2a5a59",
+              "file": "positive/edit-positive.spec.ts",
+              "line": 266,
+              "column": 7
+            },
+            {
+              "title": "TC-017 @REQ-012 @positive @medium Edit operates correctly on the last card in the list",
+              "ok": true,
+              "tags": [
+                "REQ-012",
+                "positive",
+                "medium"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 308,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:53.454Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b95b5901474baf0d6c16-689bcffda42f2044298d",
+              "file": "positive/edit-positive.spec.ts",
+              "line": 282,
+              "column": 7
+            },
+            {
+              "title": "TC-018 @REQ-012 @positive @medium Edit operates correctly on a middle card in the list",
+              "ok": true,
+              "tags": [
+                "REQ-012",
+                "positive",
+                "medium"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 324,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:53.775Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b95b5901474baf0d6c16-e9d70884b84585ab16af",
+              "file": "positive/edit-positive.spec.ts",
+              "line": 297,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "regression\\edit-regression.spec.ts",
+      "file": "regression/edit-regression.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Regression scenarios (TC-040 to TC-051)",
+          "file": "regression/edit-regression.spec.ts",
+          "line": 35,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-040 @REQ-006 @regression @high Create new release still works after Edit and Save",
+              "ok": true,
+              "tags": [
+                "REQ-006",
+                "regression",
+                "high"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 509,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:54.127Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1749c8553b9c4590e1cd-c64ba353481231c89b9e",
+              "file": "regression/edit-regression.spec.ts",
+              "line": 41,
+              "column": 7
+            },
+            {
+              "title": "TC-041 @REQ-009 @regression @high Create new release still works after Edit and Cancel",
+              "ok": true,
+              "tags": [
+                "REQ-009",
+                "regression",
+                "high"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 601,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:54.658Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1749c8553b9c4590e1cd-6f55747dde4c3729332d",
+              "file": "regression/edit-regression.spec.ts",
+              "line": 75,
+              "column": 7
+            },
+            {
+              "title": "TC-042 @REQ-006 @regression @high Delete a different release still works after Edit and Save",
+              "ok": true,
+              "tags": [
+                "REQ-006",
+                "regression",
+                "high"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 589,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:55.290Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1749c8553b9c4590e1cd-69b0c7aa2df710d4936e",
+              "file": "regression/edit-regression.spec.ts",
+              "line": 109,
+              "column": 7
+            },
+            {
+              "title": "TC-043 @REQ-009 @regression @high Deleting the release currently in edit mode resets edit state",
+              "ok": true,
+              "tags": [
+                "REQ-009",
+                "regression",
+                "high"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1019,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:55.915Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1749c8553b9c4590e1cd-fca22a8366bfe11fbb80",
+              "file": "regression/edit-regression.spec.ts",
+              "line": 138,
+              "column": 7
+            },
+            {
+              "title": "TC-044 @REQ-010 @regression @high Product filter functions correctly before and after Edit and Save",
+              "ok": true,
+              "tags": [
+                "REQ-010",
+                "regression",
+                "high"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 787,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:56.974Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1749c8553b9c4590e1cd-dcc5d3fbfbf03156ecfa",
+              "file": "regression/edit-regression.spec.ts",
+              "line": 170,
+              "column": 7
+            },
+            {
+              "title": "TC-045 @REQ-010 @regression @high Breaking-change filter functions correctly after Edit and Save",
+              "ok": true,
+              "tags": [
+                "REQ-010",
+                "regression",
+                "high"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 780,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:57.793Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1749c8553b9c4590e1cd-36d2e0610f302188a5a5",
+              "file": "regression/edit-regression.spec.ts",
+              "line": 199,
+              "column": 7
+            },
+            {
+              "title": "TC-046 @REQ-010 @regression @high Keyword search filter functions correctly after Edit and Save",
+              "ok": true,
+              "tags": [
+                "REQ-010",
+                "regression",
+                "high"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 641,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:58.598Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1749c8553b9c4590e1cd-8c9d6ab07803276c363c",
+              "file": "regression/edit-regression.spec.ts",
+              "line": 227,
+              "column": 7
+            },
+            {
+              "title": "TC-047 @REQ-010 @regression @high Multi-filter combination persists correctly after Edit and Save",
+              "ok": true,
+              "tags": [
+                "REQ-010",
+                "regression",
+                "high"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 822,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:53:59.258Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1749c8553b9c4590e1cd-eb02190dee9decbd6929",
+              "file": "regression/edit-regression.spec.ts",
+              "line": 262,
+              "column": 7
+            },
+            {
+              "title": "TC-048 @REQ-007 @regression @high Edited values persist after a full page reload",
+              "ok": true,
+              "tags": [
+                "REQ-007",
+                "regression",
+                "high"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 427,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:54:00.118Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1749c8553b9c4590e1cd-e4dec9fd2ce7f0f0302f",
+              "file": "regression/edit-regression.spec.ts",
+              "line": 293,
+              "column": 7
+            },
+            {
+              "title": "TC-049 @REQ-007 @regression @medium @manual_only Export CSV contains updated values after Edit and Save",
+              "ok": true,
+              "tags": [
+                "REQ-007",
+                "regression",
+                "medium",
+                "manual_only"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "C:\\Users\\DipakMandlik\\Desktop\\AgenticAI\\Final_implementation\\AgenticAI\\master_stlc\\product_release_dashboard\\automation\\tests\\regression\\edit-regression.spec.ts",
+                        "line": 311,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:54:00.582Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "location": {
+                            "file": "C:\\Users\\DipakMandlik\\Desktop\\AgenticAI\\Final_implementation\\AgenticAI\\master_stlc\\product_release_dashboard\\automation\\tests\\regression\\edit-regression.spec.ts",
+                            "line": 311,
+                            "column": 8
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1749c8553b9c4590e1cd-585426c70f005ed83e26",
+              "file": "regression/edit-regression.spec.ts",
+              "line": 311,
+              "column": 8
+            },
+            {
+              "title": "TC-050 @REQ-009 @regression @medium @manual_only Importing JSON while in edit mode resets edit state",
+              "ok": true,
+              "tags": [
+                "REQ-009",
+                "regression",
+                "medium",
+                "manual_only"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "C:\\Users\\DipakMandlik\\Desktop\\AgenticAI\\Final_implementation\\AgenticAI\\master_stlc\\product_release_dashboard\\automation\\tests\\regression\\edit-regression.spec.ts",
+                        "line": 317,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:54:00.582Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "location": {
+                            "file": "C:\\Users\\DipakMandlik\\Desktop\\AgenticAI\\Final_implementation\\AgenticAI\\master_stlc\\product_release_dashboard\\automation\\tests\\regression\\edit-regression.spec.ts",
+                            "line": 317,
+                            "column": 8
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1749c8553b9c4590e1cd-a7ddddfb8a23326bc969",
+              "file": "regression/edit-regression.spec.ts",
+              "line": 317,
+              "column": 8
+            },
+            {
+              "title": "TC-051 @REQ-006 @regression @high Form in create mode creates a new entry and does not trigger an update",
+              "ok": true,
+              "tags": [
+                "REQ-006",
+                "regression",
+                "high"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 325,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T09:54:00.583Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1749c8553b9c4590e1cd-afc4d06a3fc50d46e512",
+              "file": "regression/edit-regression.spec.ts",
+              "line": 322,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-30T09:53:36.575Z",
+    "duration": 24466.927,
+    "expected": 46,
+    "skipped": 5,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
