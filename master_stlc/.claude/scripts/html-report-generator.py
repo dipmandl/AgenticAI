@@ -65,7 +65,8 @@ def extract_from_state(state: dict) -> dict:
     fail_summary = phases.get("failure_analysis", {}).get("summary", {})
     review_totals = phases.get("automation_review", {}).get("totals", {})
 
-    completed = state.get("completed_phases", [])
+    raw_phases = state.get("completed_phases", [])
+    completed = [p if isinstance(p, str) else p.get("phase", "") for p in raw_phases]
     required = [
         "repository_discovery", "requirement_analysis", "impact_analysis",
         "test_planning", "manual_test_generation", "test_review",
@@ -563,7 +564,9 @@ def main():
 
     # Only generate when reporting phase is complete — skip silently otherwise
     state_check = load_json(story_dir / "state" / "stlc-state.json")
-    if "reporting" not in state_check.get("completed_phases", []):
+    _raw = state_check.get("completed_phases", [])
+    _completed_names = [p if isinstance(p, str) else p.get("phase", "") for p in _raw]
+    if "reporting" not in _completed_names:
         print("[SKIP] Reporting phase not complete yet — skipping HTML generation.")
         return 0
 
@@ -592,7 +595,7 @@ def main():
     out = story_dir / "reports" / "stlc-report.html"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(html, encoding="utf-8")
-    print(f"[OK] HTML report → {out}")
+    print(f"[OK] HTML report -> {out}")
     return 0
 
 
