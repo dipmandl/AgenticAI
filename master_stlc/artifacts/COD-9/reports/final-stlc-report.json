@@ -1,0 +1,93 @@
+{
+  "story_id": "COD-9",
+  "pipeline_id": "COD-9-20261103",
+  "story_title": "Export release notes to JSON file",
+  "total_test_cases": 29,
+  "automated": 24,
+  "manual_only": 5,
+  "passed": 0,
+  "failed": 0,
+  "untested": 29,
+  "pass_rate": 0,
+  "environment_failures": 29,
+  "application_failures": 0,
+  "automation_failures": 0,
+  "defects_raised": 0,
+  "execution_status": "ENVIRONMENT_FAILURE",
+  "recommendation": "Resolve WebDriver environment blocker (msedgedriver v156), then re-run",
+  "requirements_count": 5,
+  "acceptance_criteria_count": 3,
+  "feature_files": 2,
+  "step_definition_files": 2,
+  "automation_coverage_percent": 82.8,
+  "requirements_coverage_percent": 100,
+  "test_categories": {
+    "smoke": 7,
+    "positive": 8,
+    "negative": 6,
+    "boundary": 8,
+    "regression": 7
+  },
+  "execution_history": [
+    {
+      "run_number": 1,
+      "timestamp": "2026-11-03T01:00:00Z",
+      "driver": "Chrome / ChromeDriver",
+      "outcome": "BLOCKED",
+      "blocking_reason": "Chrome not installed on execution host"
+    },
+    {
+      "run_number": 2,
+      "timestamp": "2026-11-03T15:48:45Z",
+      "driver": "Edge / EdgeChromiumDriver (webdriver-manager)",
+      "outcome": "BLOCKED",
+      "blocking_reason": "No outbound network access to download msedgedriver"
+    },
+    {
+      "run_number": 3,
+      "timestamp": "2026-11-03T15:53:15Z",
+      "driver": "Edge / selenium-manager (cached driver)",
+      "outcome": "BLOCKED",
+      "blocking_reason": "Cached msedgedriver v150.0.4078.99 incompatible with installed Edge v156.0.4314.58"
+    }
+  ],
+  "root_cause": {
+    "failure_type": "ENVIRONMENT_FAILURE",
+    "classification": "All 29 scenarios blocked before execution",
+    "error": "SessionNotCreatedException in Behave before_all hook",
+    "environment_detail": {
+      "installed_edge_version": "156.0.4314.58",
+      "installed_edge_path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+      "cached_msedgedriver_version": "150.0.4078.99",
+      "cached_msedgedriver_path": "C:\\Users\\DipakMandlik\\.cache\\selenium\\msedgedriver\\win64\\150.0.4078.99"
+    },
+    "eligible_for_self_healing": false,
+    "reason_not_eligible": "ENVIRONMENT_FAILURE is not eligible for self-healing per project safety rules; self-healing only applies to AUTOMATION_FAILURE"
+  },
+  "phase_status": {
+    "repository_discovery": "completed",
+    "requirement_analysis": "completed",
+    "impact_analysis": "completed",
+    "test_planning": "completed",
+    "manual_test_generation": "completed",
+    "test_review": "completed",
+    "framework_selection": "completed",
+    "automation_generation": "completed",
+    "automation_review": "completed",
+    "execution": "completed_blocked",
+    "failure_analysis": "completed",
+    "defect_analysis": "completed",
+    "reporting": "completed"
+  },
+  "traceability": {
+    "requirements_mapped": 5,
+    "test_cases_mapped": 29,
+    "feature_files": 2,
+    "step_files": 2,
+    "coverage_percent": 100
+  },
+  "report_date": "2026-11-04",
+  "report_status": "COMPLETED",
+  "confluence_page_url": null,
+  "next_phase": "pr_generation"
+}

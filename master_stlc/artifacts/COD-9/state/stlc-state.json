@@ -1,0 +1,135 @@
+{
+  "story_id": "COD-9",
+  "pipeline_id": "COD-9-20261103",
+  "status": "complete",
+  "current_phase": "complete",
+  "completed_phases": [
+    {
+      "phase": "repository_discovery",
+      "status": "completed",
+      "timestamp": "2026-11-03T00:05:00Z",
+      "model_id": "claude-haiku-4-5-20251001",
+      "artifact": "artifacts/COD-9/discovery/repository-discovery.md"
+    },
+    {
+      "phase": "requirement_analysis",
+      "status": "completed",
+      "timestamp": "2026-11-03T00:10:00Z",
+      "model_id": "claude-sonnet-4-6[1m]",
+      "artifact": "artifacts/COD-9/requirements/requirement-analysis.md",
+      "notes": "Jira MCP unavailable — requirements inferred from agent definition files (agents 3, 14, 15) and stlc-config.yaml. Actual Jira story content not retrieved."
+    },
+    {
+      "phase": "impact_analysis",
+      "status": "completed",
+      "timestamp": "2026-11-03T00:15:00Z",
+      "model_id": "claude-haiku-4-5-20251001",
+      "artifact": "artifacts/COD-9/test-planning/impact-analysis.md"
+    },
+    {
+      "phase": "test_planning",
+      "status": "completed",
+      "timestamp": "2026-11-03T00:20:00Z",
+      "model_id": "claude-sonnet-4-6[1m]",
+      "artifact": "artifacts/COD-9/test-planning/test-plan.md"
+    },
+    {
+      "phase": "manual_test_generation",
+      "status": "completed",
+      "timestamp": "2026-11-03T00:25:00Z",
+      "model_id": "claude-sonnet-4-6[1m]",
+      "artifact": "artifacts/COD-9/test-cases/test-case-inventory.md"
+    },
+    {
+      "phase": "test_review",
+      "status": "completed",
+      "timestamp": "2026-11-03T00:30:00Z",
+      "model_id": "claude-sonnet-4-6[1m]",
+      "artifact": "artifacts/COD-9/test-cases/test-case-review.md"
+    },
+    {
+      "phase": "framework_selection",
+      "status": "completed",
+      "timestamp": "2026-11-03T00:35:00Z",
+      "model_id": "claude-haiku-4-5-20251001",
+      "artifact": "artifacts/COD-9/automation/framework-selection.md",
+      "notes": "Framework: Behave (Python BDD). Decision basis: EXISTING_CONFIRMED. Evidence: Gherkin feature files pre-generated (export_release_note.feature, release_notes_stability.feature). Browser driver: Selenium with ChromeDriver. 29 scenarios across two feature areas."
+    },
+    {
+      "phase": "automation_generation",
+      "status": "completed",
+      "timestamp": "2026-11-03T00:40:00Z",
+      "model_id": "claude-sonnet-4-6[1m]",
+      "artifact": "artifacts/COD-9/automation/automation-review-input.md",
+      "notes": "Generated 8 files under product_release_dashboard/automation/. 24 automated (TC-001 to TC-010, TC-012, TC-014 to TC-020, TC-023 to TC-028). 5 skipped as manual_only (TC-011, TC-013, TC-021, TC-022, TC-029). Framework: Behave + Selenium. Export button ID: export-json-button."
+    },
+    {
+      "phase": "automation_review",
+      "status": "completed",
+      "timestamp": "2026-11-03T00:50:00Z",
+      "model_id": "claude-sonnet-4-6[1m]",
+      "artifact": "artifacts/COD-9/automation/automation-review.md",
+      "notes": "Recommended action: REVISE — resolved. Fixes applied: F-01/F-02 duplicate step defs removed from step_regression.py; W-05/W-06/W-07 trivially-true assertions replaced with concrete count checks; W-03/W-04 invalid behave.ini keys corrected. Automation is ready for execution."
+    },
+    {
+      "phase": "execution",
+      "status": "completed",
+      "timestamp": "2026-11-03T15:53:16Z",
+      "artifact": "artifacts/COD-9/execution/execution-summary.md",
+      "notes": "Third consecutive re-run, this time switching environment.py to rely purely on Selenium's built-in selenium-manager (webdriver.Edge(options=options), no explicit Service) instead of webdriver-manager, to avoid the prior network-dependent download. Approved scope: all (24 automated scenarios, excludes 5 @manual_only). Run again BLOCKED before any scenario executed — a third, distinct ENVIRONMENT_FAILURE: before_all raised SessionNotCreatedException because the only msedgedriver build cached locally by selenium-manager (150.0.4078.99, at C:\\Users\\DipakMandlik\\.cache\\selenium\\msedgedriver\\win64\\150.0.4078.99\\) only supports Edge major version 150, while the installed Microsoft Edge browser is version 156.0.4314.58. 0 passed / 0 failed / 29 untested (same pattern as prior two runs). No APPLICATION_FAILURE evidence collected yet for the expected missing export-json-button. Not eligible for self-healing (ENVIRONMENT_FAILURE). This is the third consecutive blocked run for COD-9 (run 1: missing Chrome; run 2: no network for Edge driver download; run 3: cached msedgedriver version mismatch with installed Edge). execution.max_reruns (2) in stlc-config.yaml has now been reached without any scenario executing — further automated re-runs require explicit user direction on remediation (supply a version-matched msedgedriver build, restore network access for selenium-manager to fetch one, or approve a manual Service-path override in environment.py)."
+    },
+    {
+      "phase": "failure_analysis",
+      "status": "completed",
+      "timestamp": "2026-11-03T01:10:00Z",
+      "artifact": "artifacts/COD-9/execution/failure-analysis.md",
+      "notes": "All 29 scenarios (TC-001 through TC-029) classified as ENVIRONMENT_FAILURE — before_all hook SessionNotCreatedException due to msedgedriver v150 (cached) vs installed Edge v156 mismatch, compounded by lack of network access for auto-resolution. Not eligible for self-healing. Recommended action for all: INVESTIGATE (install matching msedgedriver v156.x or restore network access). No APPLICATION_FAILURE evidence exists since no scenario was ever collected or executed across all 3 runs. execution.max_reruns (2) reached — further automated re-runs require explicit user direction."
+    },
+    {
+      "phase": "defect_analysis",
+      "status": "completed",
+      "timestamp": "2026-11-03T01:15:00Z",
+      "model_id": "claude-haiku-4-5-20251001",
+      "artifact": "artifacts/COD-9/defects/defect-analysis-summary.md",
+      "notes": "All 29 test cases classified as ENVIRONMENT_FAILURE. Zero APPLICATION_FAILURE items detected. Zero defects created (DEF-NNN.md files not generated). Zero external tickets created (Jira/GitHub). No functional defect evidence exists because execution never reached the application under test. Recommended action: Environment team to resolve msedgedriver version mismatch or restore network access before re-run. Not eligible for self-healing per project safety rules."
+    },
+    {
+      "phase": "reporting",
+      "status": "completed",
+      "timestamp": "2026-11-04T00:00:00Z",
+      "model_id": "claude-haiku-4-5-20251001",
+      "artifact": "artifacts/COD-9/reports/final-stlc-report.md",
+      "notes": "Final STLC report assembled. All phases completed. Execution blocked by ENVIRONMENT_FAILURE (msedgedriver v150 vs Edge v156 mismatch). 0/29 scenarios executed. 0 defects created. Recommendation: resolve WebDriver environment blocker, then re-run. Next phase: pr_generation."
+    },
+    {
+      "phase": "pr_generation",
+      "status": "completed",
+      "timestamp": "2026-11-04T00:05:00Z",
+      "model_id": "claude-haiku-4-5-20251001",
+      "artifact": "artifacts/COD-9/reports/pr-description.md",
+      "notes": "PR description generated. Feature branch feature/COD-9 does not yet exist on remote — PR creation deferred. Description documents test plan, automation readiness, execution blocker (ENVIRONMENT_FAILURE), and immediate actions required. 0/29 scenarios executed. 0 defects created."
+    }
+  ],
+  "failed_phases": [],
+  "artifacts": {
+    "repository_discovery": "artifacts/COD-9/discovery/repository-discovery.md",
+    "requirement_analysis": "artifacts/COD-9/requirements/requirement-analysis.md",
+    "impact_analysis": "artifacts/COD-9/test-planning/impact-analysis.md",
+    "test_plan": "artifacts/COD-9/test-planning/test-plan.md",
+    "test_case_inventory": "artifacts/COD-9/test-cases/test-case-inventory.md",
+    "test_case_review": "artifacts/COD-9/test-cases/test-case-review.md",
+    "framework_selection": "artifacts/COD-9/automation/framework-selection.md",
+    "automation_generation": "artifacts/COD-9/automation/automation-review-input.md",
+    "traceability_matrix": "artifacts/COD-9/traceability/traceability-matrix.md",
+    "automation_review": "artifacts/COD-9/automation/automation-review.md",
+    "execution_summary": "artifacts/COD-9/execution/execution-summary.md",
+    "execution_metadata": "artifacts/COD-9/execution/execution-metadata.json",
+    "failure_analysis": "artifacts/COD-9/execution/failure-analysis.md",
+    "defect_analysis_summary": "artifacts/COD-9/defects/defect-analysis-summary.md",
+    "final_stlc_report": "artifacts/COD-9/reports/final-stlc-report.md",
+    "final_stlc_report_json": "artifacts/COD-9/reports/final-stlc-report.json",
+    "pr_description": "artifacts/COD-9/reports/pr-description.md"
+  },
+  "created_at": "2026-11-03T00:00:00Z",
+  "updated_at": "2026-11-04T00:05:00Z"
+}

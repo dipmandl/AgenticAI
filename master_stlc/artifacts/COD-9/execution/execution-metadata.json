@@ -1,0 +1,41 @@
+{
+  "pipeline_id": "COD-9-20261103",
+  "story_id": "COD-9",
+  "start_time": "2026-11-03T15:53:15Z",
+  "end_time": "2026-11-03T15:53:16Z",
+  "duration_seconds": 1,
+  "command": "cd product_release_dashboard/automation && behave --tags=~@manual_only --no-capture 2>&1",
+  "environment": "local-windows",
+  "framework": "Behave + Selenium + Edge (selenium-manager)",
+  "scope": "all",
+  "total": 29,
+  "passed": 0,
+  "failed": 0,
+  "skipped": 0,
+  "blocked": 29,
+  "retries": 2,
+  "exit_code": 1,
+  "blocking_reason": "ENVIRONMENT_FAILURE: before_all hook raised SessionNotCreatedException. selenium-manager used the only cached msedgedriver build (150.0.4078.99 at C:\\Users\\DipakMandlik\\.cache\\selenium\\msedgedriver\\win64\\150.0.4078.99\\msedgedriver.exe), which only supports Edge major version 150, but the installed Microsoft Edge browser is version 156.0.4314.58. No scenario was collected or executed.",
+  "self_healing_eligible": false,
+  "max_reruns_reached": true,
+  "run_history": [
+    {
+      "run": 1,
+      "timestamp": "2026-11-03T01:00:00Z",
+      "driver": "Chrome / ChromeDriver",
+      "blocking_reason": "ENVIRONMENT_FAILURE: ChromeDriverManager().install() AttributeError — Google Chrome not installed on host"
+    },
+    {
+      "run": 2,
+      "timestamp": "2026-11-03T15:48:45Z",
+      "driver": "Edge / EdgeChromiumDriver (webdriver-manager)",
+      "blocking_reason": "ENVIRONMENT_FAILURE: ConnectionError — no outbound network access to download msedgedriver"
+    },
+    {
+      "run": 3,
+      "timestamp": "2026-11-03T15:53:15Z",
+      "driver": "Edge / selenium-manager (cached driver)",
+      "blocking_reason": "ENVIRONMENT_FAILURE: cached msedgedriver 150.0.4078.99 incompatible with installed Edge 156.0.4314.58 (SessionNotCreatedException)"
+    }
+  ]
+}

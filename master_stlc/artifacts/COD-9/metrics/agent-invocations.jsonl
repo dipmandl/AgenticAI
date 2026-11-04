@@ -1,0 +1,19 @@
+{"timestamp": "2026-11-03T14:36:04.057866+00:00", "agent_type": "repository-discovery-agent", "agent_name": "", "description": "Repository discovery for COD-9", "model": "default", "result_summary": ""}
+{"timestamp": "2026-11-03T14:40:57.673257+00:00", "agent_type": "requirement-analysis-agent", "agent_name": "", "description": "Requirement analysis for COD-9", "model": "default", "result_summary": ""}
+{"timestamp": "2026-11-03T14:56:37.094757+00:00", "agent_type": "requirement-analysis-agent", "agent_name": "", "description": "Requirement analysis for COD-9", "model": "default", "result_summary": ""}
+{"timestamp": "2026-11-03T14:59:36.316024+00:00", "agent_type": "impact-analysis-agent", "agent_name": "", "description": "Impact analysis for COD-9", "model": "default", "result_summary": ""}
+{"timestamp": "2026-11-03T15:00:36.434763+00:00", "agent_type": "test-planning-agent", "agent_name": "", "description": "Test planning for COD-9", "model": "default", "result_summary": ""}
+{"timestamp": "2026-11-03T15:02:55.269846+00:00", "agent_type": "manual-test-generation-agent", "agent_name": "", "description": "Manual test generation for COD-9", "model": "default", "result_summary": ""}
+{"timestamp": "2026-11-03T15:07:08.785109+00:00", "agent_type": "test-review-agent", "agent_name": "", "description": "Test review for COD-9", "model": "default", "result_summary": ""}
+{"timestamp": "2026-11-03T15:09:26.492082+00:00", "agent_type": "framework-selection-agent", "agent_name": "", "description": "Framework selection for COD-9", "model": "default", "result_summary": ""}
+{"timestamp": "2026-11-03T15:16:40.589816+00:00", "agent_type": "framework-selection-agent", "agent_name": "", "description": "Finalize framework selection as Behave", "model": "default", "result_summary": ""}
+{"timestamp": "2026-11-03T15:18:21.851118+00:00", "agent_type": "automation-generation-agent", "agent_name": "", "description": "Automation generation for COD-9", "model": "default", "result_summary": ""}
+{"timestamp": "2026-11-03T15:33:26.557955+00:00", "agent_type": "automation-review-agent", "agent_name": "", "description": "Automation review for COD-9", "model": "default", "result_summary": ""}
+{"timestamp": "2026-11-03T15:37:54.277149+00:00", "agent_type": "execution-agent", "agent_name": "", "description": "Execute all COD-9 automation", "model": "default", "result_summary": ""}
+{"timestamp": "2026-11-03T15:48:23.462146+00:00", "agent_type": "execution-agent", "agent_name": "", "description": "Re-execute COD-9 automation with Edge", "model": "default", "result_summary": ""}
+{"timestamp": "2026-11-03T15:52:55.112401+00:00", "agent_type": "execution-agent", "agent_name": "", "description": "Re-execute COD-9 with selenium-manager cache", "model": "default", "result_summary": ""}
+{"timestamp": "2026-11-03T15:57:46.474737+00:00", "agent_type": "failure-analysis-agent", "agent_name": "", "description": "Failure analysis for COD-9 environment failure", "model": "default", "result_summary": ""}
+{"timestamp": "2026-11-03T15:59:43.445114+00:00", "agent_type": "defect-analysis-agent", "agent_name": "", "description": "Defect analysis for COD-9", "model": "default", "result_summary": ""}
+{"timestamp": "2026-11-03T16:00:31.272191+00:00", "agent_type": "reporting-agent", "agent_name": "", "description": "Final reporting for COD-9", "model": "default", "result_summary": ""}
+{"timestamp": "2026-11-04T04:35:02.321394+00:00", "agent_type": "reporting-agent", "agent_name": "", "description": "Final reporting for COD-9 (retry)", "model": "default", "result_summary": ""}
+{"timestamp": "2026-11-04T04:54:25.738466+00:00", "agent_type": "pr-generation-agent", "agent_name": "", "description": "PR generation for COD-9", "model": "default", "result_summary": ""}
