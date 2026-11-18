@@ -12,7 +12,7 @@ App:   file:///C:/Users/DipakMandlik/Desktop/AgenticAI/Final_implementation/Agen
 import time
 from typing import List, Optional
 
-from selenium.common.exceptions import NoSuchElementException, TimeoutException
+from selenium.common.exceptions import NoSuchElementException, NoAlertPresentException, TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
@@ -49,6 +49,13 @@ class ReleaseDashboardPage:
     RELEASE_CARDS     = (By.CSS_SELECTOR, "#release-list .release-card")
     EDIT_BTNS         = (By.CSS_SELECTOR, ".edit-btn")
     DELETE_BTNS       = (By.CSS_SELECTOR, ".delete-btn")
+
+    # Filter controls (COD-8)
+    SEARCH_FILTER     = (By.ID, "search-filter")
+    PRODUCT_FILTER    = (By.ID, "product-filter")
+
+    # Empty state (COD-8)
+    EMPTY_STATE       = (By.CSS_SELECTOR, ".empty-state")
 
     # Misc
     TRANSFER_STATUS   = (By.ID, "transfer-status")
@@ -216,3 +223,126 @@ class ReleaseDashboardPage:
         self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         time.sleep(0.3)
         self.driver.execute_script("window.scrollTo(0, 0);")
+
+    # ------------------------------------------------------------------
+    # Delete-specific helpers — COD-8
+    # ------------------------------------------------------------------
+
+    def click_delete_button_on_first_card(self) -> None:
+        """Click Delete on the first release card WITHOUT handling the alert.
+
+        Use this when the test needs to independently accept or dismiss the
+        confirmation dialog (TC-002, TC-003, TC-004, TC-009, TC-010, TC-011).
+        """
+        cards = self.get_release_cards()
+        if not cards:
+            raise AssertionError("No release cards found to click Delete on.")
+        cards[0].find_element(By.CSS_SELECTOR, ".delete-btn").click()
+
+    def click_delete_button_by_title(self, title: str) -> None:
+        """Click Delete on the first card whose title contains *title* WITHOUT handling the alert.
+
+        Raises AssertionError if no matching card is found.
+        """
+        cards = self.get_release_cards()
+        for card in cards:
+            if title in self.get_card_title(card):
+                card.find_element(By.CSS_SELECTOR, ".delete-btn").click()
+                return
+        raise AssertionError(
+            f"No release card found with title containing '{title}'."
+        )
+
+    def click_delete_last_card_by_title(self, title: str) -> None:
+        """Click Delete on the last card whose title contains *title* WITHOUT handling the alert.
+
+        Used by TC-016 to delete the last card in an ordered list.
+        """
+        cards = self.get_release_cards()
+        for card in reversed(cards):
+            if title in self.get_card_title(card):
+                card.find_element(By.CSS_SELECTOR, ".delete-btn").click()
+                return
+        raise AssertionError(
+            f"No release card found with title containing '{title}'."
+        )
+
+    def accept_dialog(self) -> None:
+        """Accept (confirm) a currently-open browser alert/confirm dialog."""
+        self.driver.switch_to.alert.accept()
+
+    def dismiss_dialog(self) -> None:
+        """Dismiss (cancel) a currently-open browser alert/confirm dialog."""
+        self.driver.switch_to.alert.dismiss()
+
+    def is_dialog_present(self) -> bool:
+        """Return True if a browser alert/confirm dialog is currently open."""
+        try:
+            self.driver.switch_to.alert
+            return True
+        except NoAlertPresentException:
+            return False
+
+    def is_empty_state_visible(self) -> bool:
+        """Return True if the empty-state paragraph is visible in the release list (TC-014)."""
+        try:
+            elem = self.driver.find_element(*self.EMPTY_STATE)
+            return elem.is_displayed()
+        except NoSuchElementException:
+            return False
+
+    def set_product_filter(self, value: str) -> None:
+        """Select *value* in the product filter drop-down (TC-017).
+
+        The change event is dispatched manually to ensure renderReleaseList() fires.
+        """
+        from selenium.webdriver.support.ui import Select
+        elem = self.wait.until(EC.element_to_be_clickable(self.PRODUCT_FILTER))
+        Select(elem).select_by_visible_text(value)
+        self.driver.execute_script(
+            "document.getElementById('product-filter')"
+            ".dispatchEvent(new Event('change'));"
+        )
+        time.sleep(0.15)
+
+    def get_product_filter_value(self) -> str:
+        """Return the currently selected value of the product filter drop-down (TC-017)."""
+        return self.driver.find_element(*self.PRODUCT_FILTER).get_attribute("value") or "all"
+
+    def set_search_filter(self, text: str) -> None:
+        """Clear the search input and type *text*, triggering a DOM re-render (TC-021).
+
+        Dispatches a synthetic 'input' event after sending keys to guarantee
+        renderReleaseList() is called even if send_keys does not fire the event.
+        """
+        elem = self.wait.until(EC.visibility_of_element_located(self.SEARCH_FILTER))
+        elem.clear()
+        if text:
+            elem.send_keys(text)
+        self.driver.execute_script(
+            "document.getElementById('search-filter')"
+            ".dispatchEvent(new Event('input'));"
+        )
+        time.sleep(0.15)
+
+    def get_edit_form_title_value(self) -> str:
+        """Return the current value of the title input field (TC-008, TC-020)."""
+        return (
+            self.driver.find_element(*self.TITLE_INPUT).get_attribute("value") or ""
+        )
+
+    def is_form_in_default_state(self) -> bool:
+        """Return True if the form is in Add mode (submit button text = 'Add Release Note') (TC-008)."""
+        btn_text = self.driver.find_element(*self.SUBMIT_BTN).text.strip()
+        return btn_text.lower() == "add release note"
+
+    def click_edit_card_by_title(self, title: str) -> None:
+        """Click the Edit button on the first card whose title contains *title* (TC-020)."""
+        cards = self.get_release_cards()
+        for card in cards:
+            if title in self.get_card_title(card):
+                card.find_element(By.CSS_SELECTOR, ".edit-btn").click()
+                return
+        raise AssertionError(
+            f"No release card found with title containing '{title}' to edit."
+        )

@@ -2,12 +2,12 @@
   "source": "C:\\Users\\DipakMandlik\\.claude\\projects\\C--Users-DipakMandlik-Desktop-AgenticAI-Final-implementation-AgenticAI-master-stlc",
   "per_phase": {
     "orchestrator": {
-      "input_tokens": 1549,
-      "output_tokens": 607074,
-      "cache_creation_input_tokens": 5186563,
-      "cache_read_input_tokens": 77250936,
-      "messages": 1046,
-      "invocations": 31
+      "input_tokens": 1589,
+      "output_tokens": 616529,
+      "cache_creation_input_tokens": 5282525,
+      "cache_read_input_tokens": 78472008,
+      "messages": 1071,
+      "invocations": 34
     },
     "requirement-analysis": {
       "input_tokens": 70,
@@ -108,20 +108,20 @@
   },
   "per_agent": {
     "main-session (orchestrator)": {
-      "input_tokens": 1093,
-      "output_tokens": 428210,
-      "cache_creation_input_tokens": 4183372,
-      "cache_read_input_tokens": 67994518,
-      "messages": 729,
-      "invocations": 15
+      "input_tokens": 1131,
+      "output_tokens": 437386,
+      "cache_creation_input_tokens": 4265399,
+      "cache_read_input_tokens": 69215590,
+      "messages": 753,
+      "invocations": 17
     },
     "stlc-orchestrator": {
-      "input_tokens": 456,
-      "output_tokens": 178864,
-      "cache_creation_input_tokens": 1003191,
+      "input_tokens": 458,
+      "output_tokens": 179143,
+      "cache_creation_input_tokens": 1017126,
       "cache_read_input_tokens": 9256418,
-      "messages": 317,
-      "invocations": 16
+      "messages": 318,
+      "invocations": 17
     },
     "requirement-analysis-agent": {
       "input_tokens": 70,
