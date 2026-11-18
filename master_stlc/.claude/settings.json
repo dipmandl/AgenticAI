@@ -20,6 +20,15 @@
             "command": "python .claude/scripts/log-agent-model.py"
           }
         ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python .claude/scripts/jira-phase-sync.py"
+          }
+        ]
       }
     ],
     "Stop": [

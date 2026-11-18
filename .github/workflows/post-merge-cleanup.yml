@@ -1,0 +1,93 @@
+name: Post-merge cleanup
+
+on:
+  pull_request:
+    branches: [main]
+    types: [closed]
+
+jobs:
+  cleanup:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Extract story ID from branch name
+        id: extract
+        run: |
+          BRANCH="${{ github.event.pull_request.head.ref }}"
+          # Extract COD-NNN from branch name (e.g. feature/cod-8-delete → COD-8)
+          STORY_ID=$(echo "$BRANCH" | grep -oiE 'cod-[0-9]+' | head -1 | tr '[:lower:]' '[:upper:]')
+          echo "story_id=$STORY_ID" >> $GITHUB_OUTPUT
+          echo "branch=$BRANCH"     >> $GITHUB_OUTPUT
+          echo "pr_number=${{ github.event.pull_request.number }}" >> $GITHUB_OUTPUT
+          echo "Detected story: $STORY_ID from branch: $BRANCH"
+
+      - name: Delete story artifact folder
+        if: steps.extract.outputs.story_id != ''
+        run: |
+          STORY_ID="${{ steps.extract.outputs.story_id }}"
+          ARTIFACT_DIR="master_stlc/artifacts/$STORY_ID"
+          if [ -d "$ARTIFACT_DIR" ]; then
+            rm -rf "$ARTIFACT_DIR"
+            echo "Deleted $ARTIFACT_DIR"
+          else
+            echo "No artifact folder found at $ARTIFACT_DIR — skipping"
+          fi
+
+      - name: Update story_registry.json
+        if: steps.extract.outputs.story_id != ''
+        run: |
+          python - <<'EOF'
+          import json, os, sys
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          story_id  = os.environ["STORY_ID"]
+          pr_number = int(os.environ["PR_NUMBER"])
+          branch    = os.environ["BRANCH"]
+          merged_at = datetime.now(timezone.utc).isoformat()
+
+          registry_path = Path("master_stlc/artifacts/story_registry.json")
+          if not registry_path.exists():
+              print(f"Registry not found at {registry_path} — skipping update")
+              sys.exit(0)
+
+          registry = json.loads(registry_path.read_text())
+          story    = registry.setdefault("stories", {}).setdefault(story_id, {})
+          story["status"]    = "merged"
+          story["merged_at"] = merged_at
+          story["pr_number"] = pr_number
+          story["branch"]    = branch
+
+          registry_path.write_text(json.dumps(registry, indent=2))
+          print(f"Updated registry: {story_id} → merged (PR #{pr_number})")
+          EOF
+        env:
+          STORY_ID:  ${{ steps.extract.outputs.story_id }}
+          PR_NUMBER: ${{ steps.extract.outputs.pr_number }}
+          BRANCH:    ${{ steps.extract.outputs.branch }}
+
+      - name: Commit and push cleanup
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "Nothing to commit — already clean"
+          else
+            git commit -m "chore: cleanup ${{ steps.extract.outputs.story_id }} artifacts after merge (PR #${{ steps.extract.outputs.pr_number }})"
+            git push origin main
+          fi
