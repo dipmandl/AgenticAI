@@ -1,0 +1,13 @@
+{"timestamp": "2026-11-05T10:15:11.763309+00:00", "agent_type": "repository-discovery-agent", "agent_name": "", "description": "Repository discovery for COD-8", "model": "default", "result_summary": ""}
+{"timestamp": "2026-11-05T10:16:54.829403+00:00", "agent_type": "requirement-analysis-agent", "agent_name": "", "description": "Requirement analysis for COD-8", "model": "default", "result_summary": ""}
+{"timestamp": "2026-11-05T10:18:07.404079+00:00", "agent_type": "impact-analysis-agent", "agent_name": "", "description": "Impact analysis for COD-8", "model": "default", "result_summary": ""}
+{"timestamp": "2026-11-05T10:19:13.562471+00:00", "agent_type": "test-planning-agent", "agent_name": "", "description": "Test planning for COD-8", "model": "default", "result_summary": ""}
+{"timestamp": "2026-11-05T10:21:30.040437+00:00", "agent_type": "manual-test-generation-agent", "agent_name": "", "description": "Manual test generation for COD-8", "model": "default", "result_summary": ""}
+{"timestamp": "2026-11-05T10:28:29.609499+00:00", "agent_type": "test-review-agent", "agent_name": "", "description": "Test review for COD-8", "model": "default", "result_summary": ""}
+{"timestamp": "2026-11-05T10:33:39.489062+00:00", "agent_type": "framework-selection-agent", "agent_name": "", "description": "Framework selection for COD-8", "model": "default", "result_summary": ""}
+{"timestamp": "2026-11-05T10:34:41.667384+00:00", "agent_type": "automation-generation-agent", "agent_name": "", "description": "Automation generation for COD-8", "model": "default", "result_summary": ""}
+{"timestamp": "2026-11-05T10:44:17.951266+00:00", "agent_type": "automation-review-agent", "agent_name": "", "description": "Automation review for COD-8", "model": "default", "result_summary": ""}
+{"timestamp": "2026-11-05T10:48:32.572219+00:00", "agent_type": "stlc-orchestrator", "agent_name": "stlc-cod8-exec", "description": "COD-8 execution through final reporting", "model": "default", "result_summary": ""}
+{"timestamp": "2026-11-05T10:48:52.901889+00:00", "agent_type": "execution-agent", "agent_name": "", "description": "Execute all 22 COD-8 delete-release scenarios", "model": "default", "result_summary": ""}
+{"timestamp": "2026-11-05T11:22:19.206110+00:00", "agent_type": "failure-analysis-agent", "agent_name": "", "description": "Classify COD-8 execution failures by root cause", "model": "default", "result_summary": ""}
+{"timestamp": "2026-11-05T11:23:39.633450+00:00", "agent_type": "pr-generation-agent", "agent_name": "", "description": "Generate COD-8 PR description and create GitHub PR", "model": "default", "result_summary": ""}

@@ -1,0 +1,130 @@
+{
+  "story_id": "COD-8",
+  "pipeline_id": "COD-8-pipeline",
+  "current_phase": "pr_generation",
+  "completed_phases": [
+    {
+      "phase": "repository_discovery",
+      "status": "completed",
+      "timestamp": "2026-11-05T00:01:00Z",
+      "model_id": "claude-haiku-4-5",
+      "artifact": "artifacts/COD-8/discovery/repository-discovery.md"
+    },
+    {
+      "phase": "requirement_analysis",
+      "status": "completed",
+      "timestamp": "2026-11-05T00:02:00Z",
+      "model_id": "claude-sonnet-4-5",
+      "artifact": "artifacts/COD-8/requirements/requirement-analysis.md"
+    },
+    {
+      "phase": "impact_analysis",
+      "status": "completed",
+      "timestamp": "2026-11-05T00:03:00Z",
+      "model_id": "claude-haiku-4-5",
+      "artifact": "artifacts/COD-8/impact/impact-analysis.md"
+    },
+    {
+      "phase": "test_planning",
+      "status": "completed",
+      "timestamp": "2026-11-05T00:04:00Z",
+      "model_id": "claude-sonnet-4-5",
+      "artifact": "artifacts/COD-8/test-plans/test-plan.md"
+    },
+    {
+      "phase": "manual_test_generation",
+      "status": "completed",
+      "timestamp": "2026-11-05T00:05:00Z",
+      "model_id": "claude-sonnet-4-5",
+      "artifacts": [
+        "artifacts/COD-8/test-cases/test-case-inventory.md",
+        "product_release_dashboard/manual/delete_release/delete_release.feature"
+      ]
+    },
+    {
+      "phase": "test_review",
+      "status": "completed",
+      "timestamp": "2026-11-05T00:06:00Z",
+      "model_id": "claude-sonnet-4-5",
+      "artifact": "artifacts/COD-8/test-cases/test-case-review.md",
+      "notes": "2 FAILs corrected (TC-018, TC-019 multiple When/Then blocks). W-001 applied. Final verdict: APPROVED after corrections."
+    },
+    {
+      "phase": "framework_selection",
+      "status": "completed",
+      "timestamp": "2026-11-05T00:07:00Z",
+      "model_id": "claude-haiku-4-5",
+      "artifact": "artifacts/COD-8/framework/framework-selection.md",
+      "selected_framework": "behave",
+      "notes": "EXISTING_CONFIRMED — Behave 1.2.6 + Selenium 4.15.0 + MSEdgeDriver. Alert handling already in POM."
+    },
+    {
+      "phase": "automation_generation",
+      "status": "completed",
+      "timestamp": "2026-11-05T00:08:00Z",
+      "model_id": "claude-sonnet-4-5",
+      "artifacts": [
+        "product_release_dashboard/automation/features/delete_release/delete_release.feature",
+        "product_release_dashboard/automation/steps/step_delete_release.py",
+        "product_release_dashboard/automation/pages/release_dashboard_page.py",
+        "artifacts/COD-8/traceability/traceability-matrix.md"
+      ],
+      "notes": "22 automated scenarios (TC-001 to TC-023 excluding TC-012 and TC-024). POM extended with 14 new methods."
+    },
+    {
+      "phase": "automation_review",
+      "status": "completed",
+      "timestamp": "2026-11-05T00:09:00Z",
+      "model_id": "claude-sonnet-4-5",
+      "artifact": "artifacts/COD-8/automation/automation-review.md",
+      "notes": "1 FAIL corrected (TC-023 trivially-true assertion replaced). W-001 (silent pass else clauses), W-002 (NoAlertPresentException), W-004 (unused imports) applied. Final verdict: APPROVED after corrections."
+    },
+    {
+      "phase": "execution",
+      "status": "completed",
+      "timestamp": "2026-11-05T10:53:35Z",
+      "model_id": "claude-sonnet-5 (unresolved)",
+      "artifacts": [
+        "artifacts/COD-8/execution/execution-summary.md",
+        "artifacts/COD-8/execution/execution-metadata.json",
+        "artifacts/COD-8/execution/raw-results/20261105T105335Z/pretty.output",
+        "artifacts/COD-8/execution/raw-results/20261105T105335Z/behave-report.json"
+      ],
+      "notes": "ENVIRONMENT_FAILURE — all 22 scenarios blocked. msedgedriver v150 incompatible with Edge 156.0.4314.58. 0 scenarios ran."
+    },
+    {
+      "phase": "failure_analysis",
+      "status": "completed",
+      "timestamp": "2026-11-05T10:54:30Z",
+      "model_id": "claude-sonnet-5 (unresolved)",
+      "artifact": "artifacts/COD-8/execution/failure-analysis.md",
+      "notes": "All 22 scenarios: ENVIRONMENT_FAILURE. 0 AUTOMATION_FAILURE, 0 APPLICATION_FAILURE. Self-healing and defect creation skipped."
+    }
+  ],
+  "failed_phases": [],
+  "artifacts": {
+    "repository_discovery": "artifacts/COD-8/discovery/repository-discovery.md",
+    "requirement_analysis": "artifacts/COD-8/requirements/requirement-analysis.md",
+    "impact_analysis": "artifacts/COD-8/impact/impact-analysis.md",
+    "test_planning": "artifacts/COD-8/test-plans/test-plan.md",
+    "manual_test_generation": [
+      "artifacts/COD-8/test-cases/test-case-inventory.md",
+      "product_release_dashboard/manual/delete_release/delete_release.feature"
+    ],
+    "test_review": "artifacts/COD-8/test-cases/test-case-review.md",
+    "framework_selection": "artifacts/COD-8/framework/framework-selection.md",
+    "automation_generation": [
+      "product_release_dashboard/automation/features/delete_release/delete_release.feature",
+      "product_release_dashboard/automation/steps/step_delete_release.py",
+      "artifacts/COD-8/traceability/traceability-matrix.md"
+    ],
+    "automation_review": "artifacts/COD-8/automation/automation-review.md",
+    "execution": [
+      "artifacts/COD-8/execution/execution-summary.md",
+      "artifacts/COD-8/execution/execution-metadata.json"
+    ],
+    "failure_analysis": "artifacts/COD-8/execution/failure-analysis.md"
+  },
+  "created_at": "2026-11-05T00:00:00Z",
+  "updated_at": "2026-11-05T10:54:30Z"
+}

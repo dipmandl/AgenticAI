@@ -1,0 +1,31 @@
+HOOK-ERROR in before_all: SessionNotCreatedException: Message: session not created: This version of Microsoft Edge WebDriver only supports Microsoft Edge version 150
+Current browser version is 156.0.4314.58 with binary path C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe
+Stacktrace:
+	msedgedriver!GetHandleVerifier [0x7ff601d0ed05+e415]
+	msedgedriver!GetHandleVerifier [0x7ff601d0ed64+e474]
+	msedgedriver!GetHandleVerifier [0x7ff602389716+688e26]
+	msedgedriver!(No symbol) [0x7ff6016f37c3]
+	msedgedriver!(No symbol) [0x7ff6016f2cdc]
+	msedgedriver!(No symbol) [0x7ff6016ee481]
+	msedgedriver!(No symbol) [0x7ff6016eac80]
+	msedgedriver!(No symbol) [0x7ff60172baf3]
+	msedgedriver!(No symbol) [0x7ff60172b486]
+	msedgedriver!(No symbol) [0x7ff6016f6bfc]
+	msedgedriver!(No symbol) [0x7ff6016f5e56]
+	msedgedriver!(No symbol) [0x7ff6016f6a23]
+	msedgedriver!(No symbol) [0x7ff6019393f1]
+	msedgedriver!(No symbol) [0x7ff60193580f]
+	msedgedriver!(No symbol) [0x7ff601946699]
+	msedgedriver!GetHandleVerifier [0x7ff601d2a3f1+29b01]
+	msedgedriver!GetHandleVerifier [0x7ff601d32bf6+32306]
+	msedgedriver!GetHandleVerifier [0x7ff601d16864+15f74]
+	msedgedriver!GetHandleVerifier [0x7ff601d16985+16095]
+	msedgedriver!GetHandleVerifier [0x7ff601d02da3+24b3]
+	KERNEL32!(No symbol) [0x7ffc5eb6dda7]
+	ntdll!RtlUserThreadStart [0x7ffc6035ee4c+2c]
+
+ABORTED: By user.
+0 features passed, 0 failed, 0 skipped, 1 untested
+0 scenarios passed, 0 failed, 0 skipped, 22 untested
+0 steps passed, 0 failed, 0 skipped, 0 undefined, 174 untested
+Took 0m0.000s
