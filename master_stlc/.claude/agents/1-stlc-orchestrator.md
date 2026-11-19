@@ -27,6 +27,16 @@ Central coordinator for the Generic Claude STLC pipeline. Sequences phases, mana
 
 ## Pipeline sequence
 
+### Step 0: Jira story pickup (run once, before everything else)
+1. Get the current git branch: run `git rev-parse --abbrev-ref HEAD` via Bash.
+2. Run via Bash:
+   ```
+   python .claude/scripts/jira-story-pickup.py --story-id <story_key> --branch <branch>
+   ```
+   where `story_key` is the Jira key the user provided (e.g. `COD-9`) and `branch` is from step 1.
+3. The script: looks up the authenticated user's account ID, assigns the story, transitions it to In Progress, and writes the initial entry in `artifacts/story_registry.json`.
+4. If the script fails or prints errors, log a warning and continue — never block the pipeline for a Jira error.
+
 ### Story ID assignment (run once, before any phase agent)
 1. Read `artifacts/state/stlc-state.json`.
    - If `story_id` is already set, use it (resume mode).
