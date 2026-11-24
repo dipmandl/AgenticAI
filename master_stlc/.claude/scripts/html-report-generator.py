@@ -45,11 +45,29 @@ def load_json(path: Path) -> dict:
     return {}
 
 
+def cache_hit_rate(u: dict) -> str:
+    denom = u.get("input_tokens", 0) + u.get("cache_creation_input_tokens", 0) + u.get("cache_read_input_tokens", 0)
+    if denom == 0:
+        return "—"
+    return f"{u.get('cache_read_input_tokens', 0) / denom * 100:.1f}%"
+
+
+def cache_roi(u: dict) -> str:
+    if u.get("cache_creation_input_tokens", 0) == 0:
+        return "—"
+    return f"{u.get('cache_read_input_tokens', 0) / u.get('cache_creation_input_tokens', 0):.1f}x"
+
+
 def format_number(n) -> str:
-    if isinstance(n, float):
+    if isinstance(n, float) and not n.is_integer():
         return f"{n:,.2f}"
     try:
-        return f"{int(n):,}"
+        v = int(n)
+        if v >= 1_000_000:
+            return f"{v / 1_000_000:.1f}M"
+        if v >= 1_000:
+            return f"{v / 1_000:.1f}K"
+        return str(v)
     except (TypeError, ValueError):
         return str(n)
 
@@ -459,7 +477,7 @@ code {{ background: var(--surface-2); padding: 0.2rem 0.5rem;
 <table>
 <thead><tr>
   <th>Phase</th><th>Model</th><th>Input Tokens</th><th>Output Tokens</th>
-  <th>Cache Creation</th><th>Cache Read</th><th>Messages</th><th>Invocations</th>
+  <th>Cache Write</th><th>Cache Read</th><th>Hit Rate</th><th>Cache ROI</th><th>Messages</th><th>Invocations</th>
 </tr></thead>
 <tbody>
 """
@@ -474,13 +492,16 @@ code {{ background: var(--surface-2); padding: 0.2rem 0.5rem;
   <td><strong>{phase}</strong></td><td><code>{model}</code></td>
   <td>{format_number(i)}</td><td>{format_number(o)}</td>
   <td>{format_number(cc)}</td><td>{format_number(cr)}</td>
+  <td>{cache_hit_rate(d)}</td><td>{cache_roi(d)}</td>
   <td>{msg}</td><td>{inv}</td>
 </tr>
 """
+            grand_d = {"input_tokens": t_in, "output_tokens": t_out, "cache_creation_input_tokens": t_cc, "cache_read_input_tokens": t_cr}
             html += f"""<tr style="background:var(--surface-2);font-weight:600;border-top:2px solid var(--border);">
   <td>TOTAL</td><td></td>
   <td>{format_number(t_in)}</td><td>{format_number(t_out)}</td>
   <td>{format_number(t_cc)}</td><td>{format_number(t_cr)}</td>
+  <td>{cache_hit_rate(grand_d)}</td><td>{cache_roi(grand_d)}</td>
   <td>{t_msg}</td><td>{t_inv}</td>
 </tr>
 </tbody></table></div>
@@ -491,7 +512,7 @@ code {{ background: var(--surface-2); padding: 0.2rem 0.5rem;
 <table>
 <thead><tr>
   <th>Agent</th><th>Input Tokens</th><th>Output Tokens</th>
-  <th>Cache Creation</th><th>Cache Read</th><th>Messages</th><th>Invocations</th>
+  <th>Cache Write</th><th>Cache Read</th><th>Hit Rate</th><th>Cache ROI</th><th>Messages</th><th>Invocations</th>
 </tr></thead>
 <tbody>
 """
@@ -505,13 +526,16 @@ code {{ background: var(--surface-2); padding: 0.2rem 0.5rem;
   <td><strong>{agent}</strong></td>
   <td>{format_number(i)}</td><td>{format_number(o)}</td>
   <td>{format_number(cc)}</td><td>{format_number(cr)}</td>
+  <td>{cache_hit_rate(d)}</td><td>{cache_roi(d)}</td>
   <td>{msg}</td><td>{inv}</td>
 </tr>
 """
+            grand_d = {"input_tokens": t_in, "output_tokens": t_out, "cache_creation_input_tokens": t_cc, "cache_read_input_tokens": t_cr}
             html += f"""<tr style="background:var(--surface-2);font-weight:600;border-top:2px solid var(--border);">
   <td>TOTAL</td>
   <td>{format_number(t_in)}</td><td>{format_number(t_out)}</td>
   <td>{format_number(t_cc)}</td><td>{format_number(t_cr)}</td>
+  <td>{cache_hit_rate(grand_d)}</td><td>{cache_roi(grand_d)}</td>
   <td>{t_msg}</td><td>{t_inv}</td>
 </tr>
 </tbody></table></div>

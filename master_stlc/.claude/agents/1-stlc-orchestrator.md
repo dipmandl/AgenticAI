@@ -68,6 +68,35 @@ Central coordinator for the Generic Claude STLC pipeline. Sequences phases, mana
 20. Invoke `pr-generation-agent` → output: `artifacts/<story_id>/reports/pr-description.md`; creates GitHub PR if `permissions.create_pr: true` and `integrations.github` is configured in `stlc-config.yaml`.
 21. Update `artifacts/state/stlc-state.json` with final status.
 
+## Jira phase sync (run after each phase)
+
+After each phase agent completes and its artifact is confirmed written, call `jira-phase-sync.py`
+via Bash to create a Jira subtask for that phase. Use this exact pattern:
+
+```bash
+echo '{"tool_name":"Write","tool_input":{"file_path":"<artifact_path>","content":""}}' | python .claude/scripts/jira-phase-sync.py
+```
+
+Replace `<artifact_path>` with the actual artifact path. The script uses path-based filtering and
+will silently no-op if the path does not match a recognized phase folder.
+
+**Trigger after these phases** (in order):
+
+| Phase | Artifact path to pass |
+|---|---|
+| repository_discovery | `artifacts/<story_id>/discovery/repository-discovery.md` |
+| requirement_analysis | `artifacts/<story_id>/requirements/requirement-analysis.md` |
+| impact_analysis | `artifacts/<story_id>/impact/impact-analysis.md` |
+| test_planning | `artifacts/<story_id>/test-plans/test-plan.md` |
+| manual_test_generation | `artifacts/<story_id>/test-cases/test-case-inventory.md` |
+| execution | `artifacts/<story_id>/execution/execution-summary.md` |
+| reporting | `artifacts/<story_id>/reports/final-stlc-report.md` |
+| defect_management | `artifacts/<story_id>/defects/DEF-NNN.md` (each defect file) |
+
+**Rules:**
+- Never block the pipeline on a sync failure — log the output and continue.
+- Do not call it for phases not listed above (framework_selection, automation_generation, etc.) — they have no matching entry in `PHASE_MAP` and the script will no-op anyway.
+
 ## State management
 - Persist state after every phase.
 - State file: `artifacts/state/stlc-state.json`.

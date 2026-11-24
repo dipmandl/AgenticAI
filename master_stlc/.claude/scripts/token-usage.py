@@ -182,23 +182,48 @@ def total_of(usage: dict) -> int:
     return sum(usage[k] for k in USAGE_FIELDS)
 
 
+def fmt_tok(n: int) -> str:
+    if n >= 1_000_000:
+        return f"{n / 1_000_000:.1f}M"
+    if n >= 1_000:
+        return f"{n / 1_000:.1f}K"
+    return str(n)
+
+
+def cache_hit_rate(u: dict) -> str:
+    """% of input-side tokens served from cache."""
+    denom = u["input_tokens"] + u["cache_creation_input_tokens"] + u["cache_read_input_tokens"]
+    if denom == 0:
+        return "—"
+    return f"{u['cache_read_input_tokens'] / denom * 100:.1f}%"
+
+
+def cache_roi(u: dict) -> str:
+    """How many times each cached token was reused."""
+    if u["cache_creation_input_tokens"] == 0:
+        return "—"
+    return f"{u['cache_read_input_tokens'] / u['cache_creation_input_tokens']:.1f}x"
+
+
 def fmt_table(title: str, rows: dict) -> str:
-    header = f"| {title} | Input | Output | Cache Write | Cache Read | Total | Msgs | Runs |"
-    sep = "|" + "---|" * 8
+    header = f"| {title} | Input | Output | Cache Write | Cache Read | Total | Hit Rate | Cache ROI | Msgs | Runs |"
+    sep = "|" + "---|" * 10
     lines = [header, sep]
     grand = {k: 0 for k in (*USAGE_FIELDS, "messages", "invocations")}
     for name, u in sorted(rows.items(), key=lambda x: -total_of(x[1])):
         lines.append(
-            f"| {name} | {u['input_tokens']:,} | {u['output_tokens']:,} | "
-            f"{u['cache_creation_input_tokens']:,} | {u['cache_read_input_tokens']:,} | "
-            f"{total_of(u):,} | {u['messages']} | {u['invocations']} |"
+            f"| {name} | {fmt_tok(u['input_tokens'])} | {fmt_tok(u['output_tokens'])} | "
+            f"{fmt_tok(u['cache_creation_input_tokens'])} | {fmt_tok(u['cache_read_input_tokens'])} | "
+            f"{fmt_tok(total_of(u))} | {cache_hit_rate(u)} | {cache_roi(u)} | "
+            f"{u['messages']} | {u['invocations']} |"
         )
         for k in grand:
             grand[k] += u[k]
     lines.append(
-        f"| **TOTAL** | **{grand['input_tokens']:,}** | **{grand['output_tokens']:,}** | "
-        f"**{grand['cache_creation_input_tokens']:,}** | **{grand['cache_read_input_tokens']:,}** | "
-        f"**{total_of(grand):,}** | **{grand['messages']}** | **{grand['invocations']}** |"
+        f"| **TOTAL** | **{fmt_tok(grand['input_tokens'])}** | **{fmt_tok(grand['output_tokens'])}** | "
+        f"**{fmt_tok(grand['cache_creation_input_tokens'])}** | **{fmt_tok(grand['cache_read_input_tokens'])}** | "
+        f"**{fmt_tok(total_of(grand))}** | **{cache_hit_rate(grand)}** | **{cache_roi(grand)}** | "
+        f"**{grand['messages']}** | **{grand['invocations']}** |"
     )
     return "\n".join(lines)
 
