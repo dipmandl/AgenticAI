@@ -25,7 +25,17 @@ Central coordinator for the Generic Claude STLC pipeline. Sequences phases, mana
 - Every phase MUST be delegated to its sub-agent via the Agent tool — never perform a phase's work (e.g., repository discovery) inline in the main session. The main session runs on a standard model; sub-agents may run on cheaper models.
 - Do not read phase artifacts back into the main session except the few lines needed to verify the phase completed and to update state.
 
+## Memory directory
+`C:\Users\DipakMandlik\.claude\projects\C--Users-DipakMandlik-Desktop-AgenticAI-Final-implementation-AgenticAI-master_stlc\memory\`
+
 ## Pipeline sequence
+
+### Step 0a: Memory bootstrap (always run first, before Step 0)
+1. Read `<memory_dir>\MEMORY.md`. If the file is missing or empty, skip — no prior memories.
+2. Load every memory file listed under `metadata.type: project` or `metadata.type: feedback`.
+3. Build a `pre_answered_clarifications` map: `{ clarification_topic → answer }` from any memory
+   file that has a `clarification_topic:` key in its `metadata` block.
+4. Keep this map in working context — Gate 1 (step 4a) will use it to skip already-answered questions.
 
 ### Step 0: Jira story pickup (run once, before everything else)
 1. Get the current git branch: run `git rev-parse --abbrev-ref HEAD` via Bash.
@@ -47,9 +57,40 @@ Central coordinator for the Generic Claude STLC pipeline. Sequences phases, mana
 3. Invoke `repository-discovery-agent` → output: `artifacts/<story_id>/discovery/repository-discovery.md`.
 4. Invoke `requirement-analysis-agent` → output: `artifacts/<story_id>/requirements/requirement-analysis.md`.
 4a. **Gate**: After requirement analysis completes, read `artifacts/<story_id>/requirements/requirement-analysis.md` and locate the `Missing information requiring clarification` and `Ambiguities` sections.
-    - If either section contains one or more items (non-empty, non-"none", non-"N/A"), **stop the pipeline** and present each item to the user as a numbered list with the heading "Clarification needed before proceeding:".
-    - Wait for the user's answers. Once answered, update the requirement artifact by appending an `## Clarification Responses` section with the Q&A pairs, then continue.
+    - **Check memory first**: for each question item, derive its `clarification_topic` slug (e.g., `subtask_dedup_policy`). If the `pre_answered_clarifications` map (from Step 0a) contains an answer for that topic, inject it directly — log `Using remembered answer for [topic]` — and do not present it to the user.
+    - For questions with no stored answer: **stop the pipeline** and present them as a numbered list under "Clarification needed before proceeding:".
+    - If all questions are pre-answered by memory, skip the user gate entirely.
+    - Wait for the user's answers for any remaining questions. Once answered, update the requirement artifact by appending an `## Clarification Responses` section with all Q&A pairs (memory-sourced and user-answered), then continue.
     - If both sections are empty or explicitly state "None", proceed without stopping.
+4b. **Memory candidate detection** (run immediately after Gate 1 resolves, only if the user answered at least one question):
+    - Review each Q&A pair the **user** just answered (skip memory-sourced ones).
+    - For each pair, evaluate: is this a **standing policy** (would apply to any future story in this project), or is it **story-specific** (data/context unique to this story)?
+    - If any standing-policy candidates exist, present them:
+      ```
+      These answers look like standing project policies — save any for future stories?
+      Reply with numbers (e.g. "1 3") or "none".
+
+      1. [topic]: [one-line answer summary]
+      2. [topic]: [one-line answer summary]
+      ```
+    - For each user-approved number, write a memory file at `<memory_dir>\project_<topic_slug>.md`:
+      ```markdown
+      ---
+      name: project-<topic-slug>
+      description: <one-line summary>
+      metadata:
+        type: project
+        clarification_topic: <topic_slug>
+      ---
+
+      <full answer>
+
+      **Why:** Resolved during <story_id> clarification on <date>.
+      **How to apply:** If this question arises in a future story, skip Gate 1 for this topic and use this answer directly.
+      ```
+      Then append one line to `<memory_dir>\MEMORY.md`: `- [Title](project_<topic_slug>.md) — <one-line hook>`
+    - If the user replies "none", skip — no memories written.
+    - Never block the pipeline on a memory write failure — log and continue.
 5. Invoke `impact-analysis-agent` → output: `artifacts/<story_id>/impact/impact-analysis.md`.
 6. Invoke `test-planning-agent` → output: `artifacts/<story_id>/test-plans/test-plan.md`.
 7. **Gate**: request user approval before generating tests if configured.
